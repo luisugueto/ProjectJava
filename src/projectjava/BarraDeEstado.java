@@ -14,10 +14,9 @@ public class BarraDeEstado extends JPanel
     {
         super();
         this.default_message = " ";
-        
-        add(estadoActual);
-        
+                
         estadoActual = new JLabel(default_message);
+        add(estadoActual);
         estadoActual.setFont(font);
         estadoActual.setForeground(Colores.font_tborder);        
     }   

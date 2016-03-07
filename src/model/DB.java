@@ -32,11 +32,11 @@ public final class DB
                
         try {
             Class.forName("org.sqlite.JDBC");
-            c = DriverManager.getConnection("jdbc:sqlite:src/app.bd");
+            c = DriverManager.getConnection("jdbc:sqlite:src/java.bd");
             query = c.createStatement();
         } catch (Exception e) { imprimirExcepcion(e); System.exit(0); }
         finally {}
-        inicializar();
+        //inicializar();
         System.out.println("Conexión establecida con la base de datos.");
     }
     
