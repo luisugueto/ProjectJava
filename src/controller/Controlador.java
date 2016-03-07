@@ -15,7 +15,6 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import spev.AreaTrabajo;
 import spev.BarraDeEstado;
-import model.Ciclo;
 import model.DB;
 import spev.BarraHerramientas;
 import spev.Configuracion;
@@ -49,7 +48,7 @@ public class Controlador extends AbsControlador
     public void actionPerformed(ActionEvent e) {
         String fuente = ((JComponent)e.getSource()).getName();
         Reportes reportes = new Reportes();
-        Ciclo d = area.getCicloActual();
+
         switch (fuente)
         {
             case "NUEVO":
