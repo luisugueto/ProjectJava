@@ -1,21 +1,21 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package projectjava;
 
-/**
- *
- * @author Luis
- */
-public class ProjectJava {
+import controller.Controlador;
+import model.DB;
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
+public class ProjectJava
+{
+    public static void main(String[] args)
+    {
         Ventana ventana = new Ventana();
+        Controlador controlador = new Controlador();
+        controlador.setVentana(ventana);
+        ventana.setControlador(controlador);
+        ventana.construirGUI();
+        controlador.setObjects();
+        
+        DB datos = DB.getInstance();
+        
+        ventana.setVisible(true);
     }
-    
 }
