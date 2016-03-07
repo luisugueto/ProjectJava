@@ -15,9 +15,10 @@ public class Ventana extends JFrame{
     
     Ventana(){
         super("ProjectJava");
-        setVisible(true);
-        setExtendedState(6);
-        setLocation(0, 0);
+        this.setVisible(true);
+        this.setExtendedState(6);
+        this.setLocation(0, 0);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     
 }

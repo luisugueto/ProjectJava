@@ -15,7 +15,9 @@ public class ProjectJava {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Ventana ventana = new Ventana();
+        Login login = new Login();
+        login.setVisible(true);
+
     }
     
 }
