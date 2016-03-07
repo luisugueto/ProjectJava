@@ -5,17 +5,19 @@
  */
 package projectjava;
 
+import javax.swing.JFrame;
+
 /**
  *
- * @author Luis
+ * @author Luis 
  */
-public class ProjectJava {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        Ventana ventana = new Ventana();
+public class Ventana extends JFrame{
+    
+    Ventana(){
+        super("ProjectJava");
+        setVisible(true);
+        setExtendedState(6);
+        setLocation(0, 0);
     }
     
 }
