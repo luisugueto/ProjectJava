@@ -28,8 +28,8 @@ public class Ventana extends JFrame
     
     Ventana ()
     {
-        super("Simulador de Plantas de Energía de Vapor");
-        setIconImage(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/images/logo.png")));
+        super("EVA");
+        //setIconImage(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/images/logo.png")));
         this.setLocation(100,100);
         this.setSize(800,600);        
         this.setExtendedState(6);
