@@ -67,21 +67,7 @@ public class Ventana extends JFrame
     public void setBackground(){
         setBackground(Color.yellow);
     }
-    
-    public void toggleComponents () {
-        String panelActivo = datos.getValorConf("panelActivo");
         
-        if (!toggled) {
-            barraHerramientas.toggleBotones();
-            if (panelActivo.equals("true")) getContentPane().add("South", barraEstado);
-        }
-        else {
-            barraHerramientas.toggleBotones();
-            if (barraEstado.getParent() == getContentPane()) getContentPane().remove(barraEstado);
-        }
-        toggled = !toggled;
-    }
-    
     public void toggleBarraEstado () {
         if (toggledBarraEstado) getContentPane().remove(barraEstado);
         else getContentPane().add("South", barraEstado);

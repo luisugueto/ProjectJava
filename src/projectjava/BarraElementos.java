@@ -1,8 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-package spev;
+package projectjava;
 
 import controller.Controlador;
 import java.awt.BorderLayout;
@@ -14,10 +10,6 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 
-/**
- *
- * @author POSTGRADO
- */
 public class BarraElementos extends JPanel
 {
     JButton botonh1, botonh2, botonh3;

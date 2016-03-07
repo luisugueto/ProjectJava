@@ -1,23 +1,12 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-package spev;
+package projectjava;
 
 import controller.Controlador;
-import java.awt.Color;
 import java.awt.FlowLayout;
-import java.awt.Image;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-/**
- *
- * @author POSTGRADO
- */
 public class BarraHerramientas extends JPanel
 {
     
@@ -28,6 +17,7 @@ public class BarraHerramientas extends JPanel
                      "Guarda todos los Ciclos abiertos.",
                      "Imprime el Ciclo actual",
                      "Abre las tablas de valores de vapor de agua (A-4, A-5, A-6)"};
+    
     ArrayList botones;
     boolean activos[] = new boolean[]{true, true, false, false, false, true};
     
@@ -73,25 +63,4 @@ public class BarraHerramientas extends JPanel
 
     }
    
-   
-    public void toggleBotones () {
-
-        if (!toggled) {
-            for (int i = 0; i < botones.size(); i++)
-            {
-                JButton a;
-                a = (JButton) botones.get(i);
-                a.setVisible(true);
-            }
-        } else {
-            int i=0;
-            for (Object o : botones)
-            {
-                JButton a = (JButton) o;
-                a.setVisible(activos[i++]);
-            }
-        }
-        
-        toggled = !toggled;
-    }
 }
