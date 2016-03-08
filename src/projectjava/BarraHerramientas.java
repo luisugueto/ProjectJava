@@ -51,8 +51,8 @@ public class BarraHerramientas extends JPanel
             boton.setToolTipText(tts[i-1]);
             boton.setBEText(tts[i-1]);
             
-            boton.setIcon(controlador.crearImagen("/images/Iconos/"+texts[i-1]+".png", "Boton "+texts[i-1]));
-            add(boton);
+//            boton.setIcon(controlador.crearImagen("/images/Iconos/"+texts[i-1]+".png", "Boton "+texts[i-1]));
+//            add(boton);
             
             boton.setVisible(activos[i-1]);
             

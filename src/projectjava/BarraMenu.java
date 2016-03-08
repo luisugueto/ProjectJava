@@ -15,21 +15,20 @@ import projectjava.Colores;
 public class BarraMenu extends JMenuBar
 {
     private KeyStroke accelerator;
-    String menuText[] = {"Archivo", "Reportes", "Ayuda"};
+    String menuText[] = {"Archivo", "Grafico", "Ayuda"};
     JMenu menus[];
     
-    String archivoText[]   = {"Nuevo", "Abrir", "Guardar", /*"Guardar todo",*/
-                              "Guardar Como...", "Cerrar todo","Imprimir",
+    String archivoText[]   = {"Nuevo", /*"Abrir", "Guardar", "Guardar todo",
+                              "Guardar Como...", "Cerrar todo",*/"Imprimir",
                               /*"Configuración",*/ "Salir"},
             
-           reportesText[] = {"Historial Actual", "Estado Actual", "Reporte Completo"},
+           graficoText[] = {"Ver Gráfico"},
             
-           ayudaText[]   = {"Información","Reportar error", "Ver Logs",
-                            "Tablas Termodinámica","Acerca de..."};
+           ayudaText[]   = {"Información","Reportar error"};
     
-    String textItems[][] = {archivoText, reportesText, ayudaText};
+    String textItems[][] = {archivoText, graficoText, ayudaText};
     
-    String toToggle [] = {"Guardar",/* "Guardar todo",*/ "Guardar Como...", "Cerrar todo","Imprimir"};
+    //String toToggle [] = {"Guardar",/* "Guardar todo",*/ "Guardar Como...", "Cerrar todo","Imprimir"};
     boolean menusActivos;
     
     Controlador controlador;
@@ -60,9 +59,9 @@ public class BarraMenu extends JMenuBar
         menusActivos = !menusActivos;
         
         JMenu archivo = getMenu("Archivo");
-        for (String n : toToggle) getMenuItem(archivo, n).setEnabled(menusActivos);
+//        for (String n : toToggle) getMenuItem(archivo, n).setEnabled(menusActivos);
                 
-        getMenu("Reportes").setEnabled(menusActivos);
+//        getMenu("Reportes").setEnabled(menusActivos);
     }
     
     private JMenu getMenu (String name) {
