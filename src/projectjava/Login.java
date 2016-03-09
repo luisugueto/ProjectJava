@@ -15,6 +15,8 @@ import model.DB;
 public class Login extends javax.swing.JFrame {
 
     Ventana ventana = new Ventana();
+    FormDatos form = new FormDatos();
+
     
     /**
      * Creates new form Login1
@@ -102,7 +104,6 @@ public class Login extends javax.swing.JFrame {
 
     private void aceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarActionPerformed
         // TODO add your handling code here:
-        Ventana ventana = new Ventana();
         Controlador controlador = new Controlador();
         controlador.setVentana(ventana);
         ventana.setControlador(controlador);
@@ -112,6 +113,7 @@ public class Login extends javax.swing.JFrame {
         DB datos = DB.getInstance();
         
         ventana.setVisible(true);
+        form.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_aceptarActionPerformed
 

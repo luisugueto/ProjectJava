@@ -15,7 +15,7 @@ import projectjava.Colores;
 public class BarraMenu extends JMenuBar
 {
     private KeyStroke accelerator;
-    String menuText[] = {"Archivo", "Grafico", "Ayuda"};
+    String menuText[] = {"Archivo", "Grafico", "Usuarios", "Ayuda"};
     JMenu menus[];
     
     String archivoText[]   = {"Nuevo", /*"Abrir", "Guardar", "Guardar todo",
@@ -24,9 +24,11 @@ public class BarraMenu extends JMenuBar
             
            graficoText[] = {"Ver Gráfico"},
             
+           usuarioText[] = {"Nuevo Usuario", "Lista de Usuarios"},
+            
            ayudaText[]   = {"Información","Reportar error"};
     
-    String textItems[][] = {archivoText, graficoText, ayudaText};
+    String textItems[][] = {archivoText, graficoText, usuarioText, ayudaText};
     
     //String toToggle [] = {"Guardar",/* "Guardar todo",*/ "Guardar Como...", "Cerrar todo","Imprimir"};
     boolean menusActivos;
@@ -113,41 +115,9 @@ public class BarraMenu extends JMenuBar
                
                String texto = jm.getText();
                
-              if(texto.equalsIgnoreCase("Nuevo"))
-              { 
-                jm.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, KeyEvent.CTRL_MASK));
-              }
-              if(texto.equalsIgnoreCase("Abrir"))
-              { 
-                jm.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, KeyEvent.CTRL_MASK));
-              }
-              if(texto.equalsIgnoreCase("Guardar como..."))
-              { 
-                jm.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, KeyEvent.CTRL_MASK));
-              }
-              if(texto.equalsIgnoreCase("Cerrar todo"))
-              { 
-                jm.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F4, KeyEvent.CTRL_MASK));
-              }
-              if(texto.equalsIgnoreCase("Configuración"))
-              { 
-                jm.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F3, KeyEvent.CTRL_MASK));
-              }
-              if(texto.equalsIgnoreCase("Gráfico"))
-              { 
-                jm.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_G, KeyEvent.CTRL_MASK));
-              }
               if(texto.equalsIgnoreCase("Acerca de..."))
               { 
                 jm.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F2, KeyEvent.CTRL_MASK));
-              }
-              if(texto.equalsIgnoreCase("Imprimir"))
-              { 
-                jm.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, KeyEvent.CTRL_MASK));
-              }
-              if(texto.equalsIgnoreCase("FONDO"))
-              { 
-                jm.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F, KeyEvent.CTRL_MASK));
               }
               if(texto.equalsIgnoreCase("REPORTAR ERROR"))
               { 

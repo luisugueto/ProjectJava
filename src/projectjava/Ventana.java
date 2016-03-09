@@ -34,8 +34,7 @@ public class Ventana extends JFrame
         this.setSize(800,600);        
         this.setExtendedState(6);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        datos = DB.getInstance();
-        
+        datos = DB.getInstance();        
     }
     
     public void setControlador (Controlador controlador) {
