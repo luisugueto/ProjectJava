@@ -53,6 +53,7 @@ public class Ventana extends JFrame
         areaTrabajo = new AreaTrabajo(controlador);
         
         getContentPane().add(barraHerramientas, "North");
+        getContentPane().add(barraEstado, "South");
         
         setJMenuBar(barraMenu);
         

@@ -31,7 +31,7 @@ public class AreaTrabajo extends JPanel
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-/*            Image fondo;
+        Image fondo;
             fondo = controlador.crearImagen("/images/inicio.png", "Fondo Inicial").getImage();
             int x, y, w, h;
             w = fondo.getWidth(null);
@@ -39,7 +39,6 @@ public class AreaTrabajo extends JPanel
             x = (this.getWidth()/2)-(w/2);
             y = (this.getHeight()/2)-(h/2);
             g.drawImage(fondo, x, y, w, h, this);
-            */
     }
 
     public static synchronized AreaTrabajo getInstance() {
