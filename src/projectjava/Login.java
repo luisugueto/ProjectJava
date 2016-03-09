@@ -1,12 +1,15 @@
 package projectjava;
 
-import controller.Controlador;
-import model.DB;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 
 public class Login extends javax.swing.JFrame {
     public Login() {
         initComponents();
         setVisible(true);
+        
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        setLocation(dim.width/2-getSize().width/2, dim.height/2-getSize().height/2);
     }
 
     /**
@@ -137,9 +140,7 @@ public class Login extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
+        //</editor-fold>        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Login().setVisible(true);
