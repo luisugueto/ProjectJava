@@ -4,12 +4,18 @@ import controller.Controlador;
 import model.DB;
 
 public class ProjectJava
-{
+{    
     public static void main(String[] args)
     {
-        Ventana ventana = new Ventana();
         Login login = new Login();
-        
+                
+        login.setVisible(true);
+    }
+    
+    public static void iniciar() {
+        Ventana ventana = new Ventana();
+        FormDatos form = new FormDatos();
+    
         Controlador controlador = new Controlador();
         controlador.setVentana(ventana);
         ventana.setControlador(controlador);
@@ -18,6 +24,7 @@ public class ProjectJava
         
         DB datos = DB.getInstance();
         
-        login.setVisible(true);
+        ventana.setVisible(true);
+        form.setVisible(true);
     }
 }
