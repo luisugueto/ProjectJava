@@ -3,7 +3,6 @@ package projectjava;
 import controller.Controlador;
 import javax.swing.*;
 import java.awt.*;
-import javax.swing.event.ChangeEvent;
 import model.DB;
 
 
@@ -19,13 +18,21 @@ public class AreaTrabajo extends JPanel
     {
         super();
         setName("AT");
-        
+        setLayout(null);
         this.controlador = controlador;
         addMouseListener(controlador);
         addMouseMotionListener(controlador);
                 
         datos = DB.getInstance();
         instance = this;
+        
+        dibujarDiagrama();
+    }
+    
+    public void dibujarDiagrama () {
+        Caja uno = new Caja("Prueba", 200, 200, "239.11");
+        uno.setBounds(200, 200, 100, 100);
+        add(uno);
     }
     
     @Override
