@@ -10,6 +10,7 @@ import projectjava.BarraDeEstado;
 import model.DB;
 import projectjava.Ventana;
 import projectjava.BarraHerramientas;
+import projectjava.FormDatos;
 
 public class Controlador extends AbsControlador
 {
@@ -33,6 +34,10 @@ public class Controlador extends AbsControlador
 
         switch (fuente)
         {
+            case "NUEVO":
+                FormDatos form = new FormDatos();
+                form.setVisible(true);
+                break;
             
              default:
                 System.out.println(fuente+" no tiene una accion asignada.");

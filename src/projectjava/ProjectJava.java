@@ -25,6 +25,5 @@ public class ProjectJava
         DB datos = DB.getInstance();
         
         ventana.setVisible(true);
-        form.setVisible(true);
     }
 }

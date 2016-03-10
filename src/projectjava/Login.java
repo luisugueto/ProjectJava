@@ -2,8 +2,16 @@ package projectjava;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+import model.DB;
 
 public class Login extends javax.swing.JFrame {
+    
+    String user, password;
+    ResultSet resultados = null;
+    DB datos = DB.getInstance();
+    
     public Login() {
         initComponents();
         setVisible(true);
@@ -61,22 +69,22 @@ public class Login extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(aceptar)
+                        .addGap(18, 18, 18)
+                        .addComponent(cancelar)
+                        .addGap(38, 38, 38))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(20, 20, 20)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(aceptar)
-                                .addGap(18, 18, 18)
-                                .addComponent(cancelar))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel2))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(usuario)
-                                    .addComponent(contrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(usuario)
+                            .addComponent(contrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel3)))
@@ -106,8 +114,27 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void aceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarActionPerformed
-        ProjectJava.iniciar();
-        dispose();
+        char[] arrayC = contrasena.getPassword();
+        user = usuario.getText().toString().toUpperCase();
+        String pass = new String(arrayC);
+        resultados = datos.getUser();
+        
+                    dispose();
+                    ProjectJava.iniciar();        
+        try {
+            while (resultados.next()) {
+                String us = resultados.getString(2);
+                String pas = resultados.getString(3); 
+                
+                if ((us.toUpperCase().equals(user))){
+                    ProjectJava.iniciar();
+                    break;
+                }
+            }
+        } catch (Exception e) {
+            
+        }
+        
     }//GEN-LAST:event_aceptarActionPerformed
 
     private void cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarActionPerformed

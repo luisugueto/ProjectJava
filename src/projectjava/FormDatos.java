@@ -246,6 +246,7 @@ public class FormDatos extends javax.swing.JFrame {
 
     private void cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarActionPerformed
         // TODO add your handling code here:
+        dispose();
     }//GEN-LAST:event_cancelarActionPerformed
 
     /**

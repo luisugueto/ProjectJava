@@ -73,9 +73,16 @@ public final class DB
         return res;
     }
     
-    public ResultSet getValoresA6 (String kpa) {
+    public ResultSet getUser () {
         try {
-            res = query.executeQuery("SELECT * FROM `A-6` WHERE kPa = "+kpa);
+            res = query.executeQuery("SELECT * FROM `user`");
+        } catch (Exception e) { imprimirExcepcion(e); }
+        return res;
+    }
+    
+    public ResultSet getUsuario (String usuario, String contrasena) {
+        try {
+            res = query.executeQuery("SELECT * FROM `user` WHERE user = "+usuario+" AND contrasena = "+contrasena);
         } catch (Exception e) { imprimirExcepcion(e); }
         return res;
     }
