@@ -115,18 +115,16 @@ public class Login extends javax.swing.JFrame {
 
     private void aceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarActionPerformed
         char[] arrayC = contrasena.getPassword();
-        user = usuario.getText().toString().toUpperCase();
+        user = usuario.getText();
         String pass = new String(arrayC);
-        resultados = datos.getUser();
-        
-                    dispose();
-                    ProjectJava.iniciar();        
-        try {
+      
+        try { resultados = datos.getUser();
             while (resultados.next()) {
-                String us = resultados.getString(2);
-                String pas = resultados.getString(3); 
+                String nombre = resultados.getString("user");
+                String contrasena1 = resultados.getString("password");
                 
-                if ((us.toUpperCase().equals(user))){
+                if ((nombre.equals(user)) && (contrasena1.equals(pass))){
+                    dispose();
                     ProjectJava.iniciar();
                     break;
                 }
