@@ -12,7 +12,7 @@ public class ProjectJava
         login.setVisible(true);
     }
     
-    public static void iniciar() {
+    public static void iniciar(int tipo) {
         Ventana ventana = new Ventana();
         FormDatos form = new FormDatos();
     
