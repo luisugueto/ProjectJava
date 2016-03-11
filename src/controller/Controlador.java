@@ -10,6 +10,7 @@ import projectjava.BarraDeEstado;
 import model.DB;
 import projectjava.Ventana;
 import projectjava.BarraHerramientas;
+import projectjava.CrearUsuario;
 import projectjava.FormDatos;
 
 public class Controlador extends AbsControlador
@@ -37,6 +38,10 @@ public class Controlador extends AbsControlador
             case "NUEVO":
                 FormDatos form = new FormDatos();
                 form.setVisible(true);
+                break;
+            case "NUEVO USUARIO":
+                CrearUsuario crear = new CrearUsuario();
+                crear.setVisible(true);
                 break;
             
              default:
