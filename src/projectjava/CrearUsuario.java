@@ -39,6 +39,7 @@ public class CrearUsuario extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Crear Usuario");
+        setResizable(false);
 
         jLabel1.setText("Usuario:");
 
@@ -47,6 +48,11 @@ public class CrearUsuario extends javax.swing.JFrame {
         jLabel3.setText("Confirmar Contraseña:");
 
         aceptar.setText("Guardar");
+        aceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aceptarActionPerformed(evt);
+            }
+        });
 
         cancelar.setText("Cancelar");
 
@@ -98,6 +104,10 @@ public class CrearUsuario extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void aceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_aceptarActionPerformed
 
     /**
      * @param args the command line arguments

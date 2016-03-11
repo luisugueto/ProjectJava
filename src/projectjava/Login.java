@@ -58,7 +58,9 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        usuario.setToolTipText("jTextField1");
+        usuario.setToolTipText("Ingrese su Usuario. Ejm: pedro");
+
+        contrasena.setToolTipText("Ingrese su Contraseña.");
 
         jLabel2.setText("Contraseña:");
 
