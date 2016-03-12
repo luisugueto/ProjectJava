@@ -14,6 +14,7 @@ import projectjava.BarraHerramientas;
 import projectjava.CrearUsuario;
 import projectjava.FormDatos;
 import projectjava.Login;
+import projectjava.LineChartSimple;
 
 public class Controlador extends AbsControlador
 {
