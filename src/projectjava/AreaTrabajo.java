@@ -31,7 +31,6 @@ public class AreaTrabajo extends JPanel
     
     public void dibujarDiagrama () {
         Caja uno = new Caja("Prueba", 200, 200, "239.11");
-        uno.setBounds(200, 200, 100, 100);
         add(uno);
     }
     
