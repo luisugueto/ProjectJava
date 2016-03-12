@@ -118,6 +118,12 @@ public class CrearUsuario extends javax.swing.JFrame {
         // TODO add your handling code here:
         int num=0;
         datos.getUser();
+       
+        try { resultados = datos.getUser();
+                while (resultados.next()) { num = resultados.getInt(1); }
+            } catch (Exception e) {   
+            }
+            num++;
         
         //VERIFICAR SI EXISTE UN USUARIO CON EL MISMO NOMBRE
          try { resultados = datos.getUser();
@@ -126,22 +132,22 @@ public class CrearUsuario extends javax.swing.JFrame {
                        JOptionPane.showMessageDialog(null, "Ya existe un usuario");
                        break;
                     }
+                    if(contrasena.getText().compareTo(confirmarContrasena.getText())==1){
+                        JOptionPane.showMessageDialog(null, "Las contraseñas no son iguales");
+                       break;
+                    }
+                    else{
+                         datos.insertGeneral("user",""+num, usuario.getText(), contrasena.getText(), "2");
+                         dispose();            
+                    }
                 }
             } catch (Exception e) {   
             }
         
          //VERIFICAR SI LAS CONTRASEÑAS ESTAN BIEN CORRECTAS
-        if(contrasena.getText().compareTo(confirmarContrasena.getText())==0){
-            try { resultados = datos.getUser();
-                while (resultados.next()) { num = resultados.getInt(1); }
-            } catch (Exception e) {   
-            }
-            num++;
-            datos.insertGeneral("user",""+num, usuario.getText(), contrasena.getText(), "2");
             
-            dispose();
-        }
-        else JOptionPane.showMessageDialog(null, "Las contraseñas no son iguales.");
+           
+   
     }//GEN-LAST:event_aceptarActionPerformed
 
     /**
