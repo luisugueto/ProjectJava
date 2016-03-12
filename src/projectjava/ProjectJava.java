@@ -19,6 +19,7 @@ public class ProjectJava
         Controlador controlador = new Controlador();
         controlador.setVentana(ventana);
         ventana.setControlador(controlador);
+        ventana.setTipo(tipo);
         ventana.construirGUI();
         controlador.setObjects();
         

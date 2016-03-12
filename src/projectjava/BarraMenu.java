@@ -14,6 +14,8 @@ import projectjava.Colores;
  */
 public class BarraMenu extends JMenuBar
 {
+    Ventana ventana = new Ventana();
+    int tipo;
     private KeyStroke accelerator;
     String menuText[] = {"Archivo", "Grafico", "Usuarios", "Ayuda"};
     JMenu menus[];
@@ -30,19 +32,20 @@ public class BarraMenu extends JMenuBar
     
     String textItems[][] = {archivoText, graficoText, usuarioText, ayudaText};
     
-    //String toToggle [] = {"Guardar",/* "Guardar todo",*/ "Guardar Como...", "Cerrar todo","Imprimir"};
+    String toToggle [] = {"Nuevo"};
     boolean menusActivos;
     
     Controlador controlador;
             
-    BarraMenu (Controlador controlador)
+    BarraMenu (Controlador controlador, int tipo)
     {
         super();
         this.controlador = controlador;
         this.setBackground(Colores.main);
         menusActivos = true;
         crearMenus();
-        toggleMenus();
+        setTipo(tipo);
+        if (getTipo() == 2) toggleMenus();
     }
     
     public void setAccelerator(KeyStroke keyStroke) {
@@ -60,10 +63,9 @@ public class BarraMenu extends JMenuBar
     public void toggleMenus () {
         menusActivos = !menusActivos;
         
-        JMenu archivo = getMenu("Archivo");
-//        for (String n : toToggle) getMenuItem(archivo, n).setEnabled(menusActivos);
-                
-//        getMenu("Reportes").setEnabled(menusActivos);
+       // JMenu archivo = getMenu("Archivo");
+       // for (String n : toToggle) getMenuItem(archivo, n).setEnabled(menusActivos);
+       getMenu("Usuarios").setVisible(menusActivos);
     }
     
     private JMenu getMenu (String name) {
@@ -126,4 +128,8 @@ public class BarraMenu extends JMenuBar
             }
         }
     }
+    
+    public void setTipo(int tipo){this.tipo = tipo;}
+    private int getTipo(){ return this.tipo;}
+    
 }

@@ -22,7 +22,7 @@ public class Controlador extends AbsControlador
     private Ventana ventana;
     private BarraHerramientas bh;
     private StringBuffer log = new StringBuffer();
-    
+  
     private final DB datos = DB.getInstance();
     
     JFileChooser fc;

@@ -21,7 +21,7 @@ public class Ventana extends JFrame
     AreaTrabajo areaTrabajo;
     
     Controlador controlador;
-    
+    int tipo;
     boolean toggledBarraEstado = false;
     boolean toggled = false;
     
@@ -47,11 +47,10 @@ public class Ventana extends JFrame
     }
     
     public void construirGUI() {
-        barraMenu = new BarraMenu(controlador);
+        barraMenu = new BarraMenu(controlador, getTipo());
         barraEstado = new BarraDeEstado();
         barraHerramientas = new BarraHerramientas(controlador, false);
         areaTrabajo = new AreaTrabajo(controlador);
-        
         getContentPane().add(barraHerramientas, "North");
         getContentPane().add(barraEstado, "South");
         
@@ -83,6 +82,9 @@ public class Ventana extends JFrame
     public BarraDeEstado getBarraEstado() {return barraEstado;}
     public AreaTrabajo getAreaTrabajo () {return areaTrabajo;}
     public Controlador getControlador() { return controlador; }
+    
+    public void setTipo(int tipo){this.tipo = tipo;}
+    public int getTipo(){ return this.tipo;}
     
     public static synchronized Ventana getInstance() {
         if (instance == null) instance = new Ventana();
