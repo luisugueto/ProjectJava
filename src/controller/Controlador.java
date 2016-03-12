@@ -2,6 +2,7 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowEvent;
 import java.io.File;
 import javax.swing.JComponent;
 import javax.swing.JFileChooser;
@@ -12,6 +13,7 @@ import projectjava.Ventana;
 import projectjava.BarraHerramientas;
 import projectjava.CrearUsuario;
 import projectjava.FormDatos;
+import projectjava.Login;
 
 public class Controlador extends AbsControlador
 {
@@ -43,8 +45,11 @@ public class Controlador extends AbsControlador
                 CrearUsuario crear = new CrearUsuario();
                 crear.setVisible(true);
                 break;
+            case "SALIR":
+                ventana.dispatchEvent(new WindowEvent(ventana, WindowEvent.WINDOW_CLOSING));
+                break;
             
-             default:
+            default:
                 System.out.println(fuente+" no tiene una accion asignada.");
                 break;
         }

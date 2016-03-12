@@ -21,8 +21,8 @@ public class BarraMenu extends JMenuBar
     JMenu menus[];
     
     String archivoText[]   = {"Nuevo", /*"Abrir", "Guardar", "Guardar todo",
-                              "Guardar Como...", "Cerrar todo",*/"Imprimir",
-                              /*"Configuración",*/ "Salir"},
+                              "Guardar Como...", "Cerrar todo","Imprimir",
+                              "Configuración",*/ "Salir"},
             
            graficoText[] = {"Ver Gráfico"},
             

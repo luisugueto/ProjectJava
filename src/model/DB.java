@@ -58,21 +58,7 @@ public final class DB
             return query.getGeneratedKeys().getInt(1);
         } catch (Exception e) { imprimirExcepcion(e, strQuery); return -1; }
     }
-    
-    public ResultSet getValoresA4 () {
-        try {
-            res = query.executeQuery("SELECT * FROM `A-4`");
-        } catch (Exception e) { imprimirExcepcion(e); }
-        return res;
-    }
-    
-    public ResultSet getValoresA5 () {
-        try {
-            res = query.executeQuery("SELECT * FROM `A-5`");
-        } catch (Exception e) { imprimirExcepcion(e); }
-        return res;
-    }
-    
+       
     public ResultSet getUser () {
         try {
             res = query.executeQuery("SELECT * FROM `user`");
@@ -86,10 +72,6 @@ public final class DB
         } catch (Exception e) { imprimirExcepcion(e); }
         return res;
     }
-    
-    public void setValoresA4(){}
-    public void setValoresA5(){}
-    public void setValoresA6(){}
     
     public String[][] getPerfiles () {
         String[][] perfiles = null;

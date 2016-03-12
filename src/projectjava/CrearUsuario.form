@@ -87,6 +87,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="usuario">
+      <Properties>
+        <Property name="toolTipText" type="java.lang.String" value="Ingrese usuario. Ejm: pedro"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
@@ -94,6 +97,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="contrasena">
+      <Properties>
+        <Property name="toolTipText" type="java.lang.String" value="Ingrese contrase&#xf1;a."/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
@@ -101,6 +107,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="confirmarContrasena">
+      <Properties>
+        <Property name="toolTipText" type="java.lang.String" value="Repita la contrase&#xf1;a."/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="aceptar">
       <Properties>

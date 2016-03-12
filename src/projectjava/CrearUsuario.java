@@ -52,9 +52,15 @@ public class CrearUsuario extends javax.swing.JFrame {
 
         jLabel1.setText("Usuario:");
 
+        usuario.setToolTipText("Ingrese usuario. Ejm: pedro");
+
         jLabel2.setText("Contraseña:");
 
+        contrasena.setToolTipText("Ingrese contraseña.");
+
         jLabel3.setText("Confirmar Contraseña:");
+
+        confirmarContrasena.setToolTipText("Repita la contraseña.");
 
         aceptar.setText("Guardar");
         aceptar.addActionListener(new java.awt.event.ActionListener() {
@@ -125,7 +131,7 @@ public class CrearUsuario extends javax.swing.JFrame {
             }
             num++;
         
-        //VERIFICAR SI EXISTE UN USUARIO CON EL MISMO NOMBRE
+        //VERIFICAR SI EXISTE UN USUARIO CON EL MISMO NOMBRE Y SI LAS CONTRASEÑAS SON IGUALES.
          try { resultados = datos.getUser();
                 while (resultados.next()) { 
                     if (resultados.getString("user").compareTo(usuario.getText())==0) {
@@ -142,12 +148,7 @@ public class CrearUsuario extends javax.swing.JFrame {
                     }
                 }
             } catch (Exception e) {   
-            }
-        
-         //VERIFICAR SI LAS CONTRASEÑAS ESTAN BIEN CORRECTAS
-            
-           
-   
+            }          
     }//GEN-LAST:event_aceptarActionPerformed
 
     /**
