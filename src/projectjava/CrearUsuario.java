@@ -5,6 +5,10 @@
  */
 package projectjava;
 
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+import model.DB;
+
 /**
  *
  * @author Luis
@@ -14,6 +18,11 @@ public class CrearUsuario extends javax.swing.JFrame {
     /**
      * Creates new form CrearUsuario
      */
+    
+    DB datos = DB.getInstance();
+    ResultSet resultados = null;
+    
+    
     public CrearUsuario() {
         initComponents();
         setLocationRelativeTo(null);
@@ -107,6 +116,32 @@ public class CrearUsuario extends javax.swing.JFrame {
 
     private void aceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarActionPerformed
         // TODO add your handling code here:
+        int num=0;
+        datos.getUser();
+        
+        //VERIFICAR SI EXISTE UN USUARIO CON EL MISMO NOMBRE
+         try { resultados = datos.getUser();
+                while (resultados.next()) { 
+                    if (resultados.getString("user").compareTo(usuario.getText())==0) {
+                       JOptionPane.showMessageDialog(null, "Ya existe un usuario");
+                       break;
+                    }
+                }
+            } catch (Exception e) {   
+            }
+        
+         //VERIFICAR SI LAS CONTRASEÑAS ESTAN BIEN CORRECTAS
+        if(contrasena.getText().compareTo(confirmarContrasena.getText())==0){
+            try { resultados = datos.getUser();
+                while (resultados.next()) { num = resultados.getInt(1); }
+            } catch (Exception e) {   
+            }
+            num++;
+            datos.insertGeneral("user",""+num, usuario.getText(), contrasena.getText(), "2");
+            
+            dispose();
+        }
+        else JOptionPane.showMessageDialog(null, "Las contraseñas no son iguales.");
     }//GEN-LAST:event_aceptarActionPerformed
 
     /**
