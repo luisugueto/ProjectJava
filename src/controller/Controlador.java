@@ -107,7 +107,10 @@ public class Controlador extends AbsControlador
         String fuente = ((JComponent)e.getSource()).getName();
         
         switch (fuente)
-        {           
+        {         
+            case "NUEVO":
+                System.out.println("perra");
+                break;
             default:
                 System.out.println(fuente+" no tiene una accion asignada.");
                 break;

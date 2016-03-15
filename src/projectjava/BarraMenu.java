@@ -41,6 +41,7 @@ public class BarraMenu extends JMenuBar
     {
         super();
         this.controlador = controlador;
+        this.addMouseListener(controlador);
         this.setBackground(Colores.main);
         menusActivos = true;
         crearMenus();
@@ -113,6 +114,7 @@ public class BarraMenu extends JMenuBar
                jm.setBackground(Colores.main);
                jm.setForeground(Colores.font_tborder);
                jm.addActionListener(controlador);
+               jm.addMouseListener(controlador);
                menu.add(jm);
                
                String texto = jm.getText();
