@@ -26,6 +26,7 @@ public class BarraDeEstado extends JPanel
         estadoActual.setText(m);
     }
     public void setMensaje(String msj) {
+        m = " ";
         m = msj;
         this.estadoActual.setText(m);
     }

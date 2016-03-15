@@ -109,7 +109,13 @@ public class Controlador extends AbsControlador
         switch (fuente)
         {         
             case "NUEVO":
-                System.out.println("perra");
+                setEstado("Nuevo");
+                break;
+            case "SALIR":
+                setEstado("Salir");
+                break;
+            case "NUEVO USUARIO":
+                setEstado("Nuevo Usuario");
                 break;
             default:
                 System.out.println(fuente+" no tiene una accion asignada.");
