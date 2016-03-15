@@ -42,6 +42,10 @@ public class AreaTrabajo extends JPanel
         datos = DB.getInstance();
         instance = this;
         
+        //botones("Nuevo", 200, 300, 50, 50, "bar-chart");
+        //botones("Ver Diagrama", 400, 300, 50, 50, "bar-chart");
+        //botones("Nuevo Usuario", 600, 300, 50, 50, "inicio");
+        
         dibujarDiagrama();
     }
     
@@ -83,7 +87,7 @@ public class AreaTrabajo extends JPanel
             w = fondo.getWidth(null);
             h = fondo.getHeight(null);
             x = (this.getWidth()/2)-(w/2);
-            y = (this.getHeight()/2)-(h/2);
+            y = (this.getHeight()/5)-(h/2);
             g.drawImage(fondo, x, y, w, h, this);
         }
     }
