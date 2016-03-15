@@ -26,8 +26,8 @@ public class AreaTrabajo extends JPanel
         datos = DB.getInstance();
         instance = this;
         
-        botones("Ver Diagrama", 200, 300, 50, 50, "bar-chart");
-        botones("Ver Diagrama", 400, 300, 50, 50, "inicio");
+        botones("Nuevo", 200, 300, 50, 50, "bar-chart");
+        botones("Ver Diagrama", 400, 300, 50, 50, "bar-chart");
         botones("Ver Diagrama", 600, 300, 50, 50, "inicio");
 
     }
@@ -40,10 +40,11 @@ public class AreaTrabajo extends JPanel
     
     public void botones(String nombre, int x, int y, int ancho, int alto, String imagen){
         JButton boton = new JButton();
-        boton.setName(nombre);
+        boton.setName(nombre.toUpperCase());
         boton.setBounds(x, y, ancho, alto);
         boton.setToolTipText(nombre);
         boton.setIcon(new ImageIcon("src/images/"+imagen+".png"));
+        boton.addActionListener(controlador);
         add(boton);
     }
     

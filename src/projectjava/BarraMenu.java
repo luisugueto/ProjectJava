@@ -26,7 +26,7 @@ public class BarraMenu extends JMenuBar
             
            graficoText[] = {"Ver Gráfico"},
             
-           usuarioText[] = {"Nuevo Usuario", "Lista de Usuarios"},
+           usuarioText[] = {"Nuevo Usuario", "Lista de Usuarios", "Modificar Usuario"},
             
            ayudaText[]   = {"Información","Reportar error"};
     
