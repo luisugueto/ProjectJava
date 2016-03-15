@@ -13,7 +13,7 @@ public class BarraDeEstado extends JPanel
     BarraDeEstado ()
     {
         super();
-        this.default_message = " ";
+        this.default_message = " ... ";
                 
         estadoActual = new JLabel(default_message);
         add(estadoActual);
@@ -26,6 +26,7 @@ public class BarraDeEstado extends JPanel
         estadoActual.setText(m);
     }
     public void setMensaje(String msj) {
+        m = " ";
         m = msj;
         this.estadoActual.setText(m);
     }
