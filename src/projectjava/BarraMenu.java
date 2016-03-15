@@ -17,22 +17,21 @@ public class BarraMenu extends JMenuBar
     Ventana ventana = new Ventana();
     int tipo;
     private KeyStroke accelerator;
-    String menuText[] = {"Archivo", "Gráfico", "Usuarios", "Ayuda"};
+    String menuText[] = {"Datos", "Grafico", "Usuarios", "Sistema"};
+
     JMenu menus[];
     
-    String archivoText[]   = {"Nuevo", /*"Abrir", "Guardar", "Guardar todo",
-                              "Guardar Como...", "Cerrar todo","Imprimir",
-                              "Configuración",*/ "Salir"},
+    String archivoText[]   = {"Registrar", "Listar", "Ver diagrama"},
             
-           graficoText[] = {"Ver Gráfico"},
+           graficoText[] = {"Disponibilidad", "Costos", "Ingresos"},
             
-           usuarioText[] = {"Nuevo Usuario", "Lista de Usuarios", "Modificar Usuario"},
+           usuarioText[] = {"Registrar", "Ver lista"},
             
-           ayudaText[]   = {"Información","Reportar error"};
+           ayudaText[]   = {"Ayuda", "Salir"};
     
     String textItems[][] = {archivoText, graficoText, usuarioText, ayudaText};
     
-    String toToggle [] = {"Nuevo"};
+    String toToggle [] = {"Registrar"};
     boolean menusActivos;
     
     Controlador controlador;
