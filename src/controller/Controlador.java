@@ -114,8 +114,23 @@ public class Controlador extends AbsControlador
             case "SALIR":
                 setEstado("Salir");
                 break;
-            case "NUEVO USUARIO":
+            case "VER GRÁFICO":
+                setEstado("Ver Gráfico");
+                break;
+             case "NUEVO USUARIO":
                 setEstado("Nuevo Usuario");
+                break;
+            case "LISTA DE USUARIOS":
+                setEstado("Lista de Usuarios");
+                break;
+            case "MODIFICAR USUARIO":
+                setEstado("Modificar Usuario");
+                break;
+            case "INFORMACIÓN":
+                setEstado("Información");
+                break;
+            case "REPORTAR ERROR":
+                setEstado("Reportar Error");
                 break;
             default:
                 System.out.println(fuente+" no tiene una accion asignada.");
