@@ -24,6 +24,7 @@ public class AreaTrabajo extends JPanel
     Graph graph = new SingleGraph("TITULO");
     Viewer viewer = new Viewer(graph, Viewer.ThreadingModel.GRAPH_IN_ANOTHER_THREAD);
     View view = viewer.addDefaultView(false);
+    ButtonTabComponent boton = new ButtonTabComponent(this);
     
     boolean diagramaActivo = false;
     DB datos;
@@ -47,7 +48,7 @@ public class AreaTrabajo extends JPanel
     public void dibujarDiagrama () {
         
         add(view, BorderLayout.CENTER);
-        view.setBounds(0, 40, getWidth()-10, getHeight()-40);
+        view.setBounds(0, 60, getWidth()-10, getHeight()-40);
         setVisible(true);
         viewer.enableAutoLayout();
         
@@ -62,6 +63,8 @@ public class AreaTrabajo extends JPanel
         graph.addAttribute("ui.antialias");
         
         diagramaActivo = true;
+        
+        boton.setBounds(this.getWidth()-20, 0, boton.getHeight(), boton.getHeight());
     }
     
     public void cerrarDiagrama() {

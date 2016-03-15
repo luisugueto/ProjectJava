@@ -6,9 +6,9 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class ButtonTabComponent extends JPanel {
-    private Diagrama pane;    
+    private AreaTrabajo pane;    
     
-    public ButtonTabComponent(final Diagrama pane) {
+    public ButtonTabComponent(final AreaTrabajo pane) {
         //unset default FlowLayout' gaps
         super(new FlowLayout(FlowLayout.LEFT, 0, 0));
         if (pane == null) {
