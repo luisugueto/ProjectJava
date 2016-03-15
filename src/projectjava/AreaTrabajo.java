@@ -28,7 +28,7 @@ public class AreaTrabajo extends JPanel
         
         botones("Nuevo", 200, 300, 50, 50, "bar-chart");
         botones("Ver Diagrama", 400, 300, 50, 50, "bar-chart");
-        botones("Ver Diagrama", 600, 300, 50, 50, "inicio");
+        botones("Nuevo Usuario", 600, 300, 50, 50, "inicio");
 
     }
     
@@ -45,6 +45,7 @@ public class AreaTrabajo extends JPanel
         boton.setToolTipText(nombre);
         boton.setIcon(new ImageIcon("src/images/"+imagen+".png"));
         boton.addActionListener(controlador);
+        boton.addMouseListener(controlador);
         add(boton);
     }
     
