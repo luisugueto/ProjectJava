@@ -4,6 +4,10 @@ import controller.Controlador;
 import javax.swing.*;
 import java.awt.*;
 import model.DB;
+import org.graphstream.graph.Graph;
+import org.graphstream.graph.implementations.SingleGraph;
+import org.graphstream.ui.swingViewer.View;
+import org.graphstream.ui.swingViewer.Viewer;
 
 
 public class AreaTrabajo extends JPanel
@@ -11,7 +15,16 @@ public class AreaTrabajo extends JPanel
     private static volatile AreaTrabajo instance = null;
     Controlador controlador;
     Cursor pt;
-    Diagrama d;
+
+    String[] titulosIniciales = 
+        { "Mantenimiento<br>predictivo", "Mantenimiento<br>preventivo",
+        "Planificación", "Programación", "Ejecución", "Gestión de las<br>paradas de planta",
+        "Punto de Pedido", "Cantidad de Pedido", "Materiales obsoletos"};
+            
+    Graph graph = new SingleGraph("TITULO");
+    Viewer viewer = new Viewer(graph, Viewer.ThreadingModel.GRAPH_IN_ANOTHER_THREAD);
+    View view = viewer.addDefaultView(false);
+    
     boolean diagramaActivo = false;
     DB datos;
     
@@ -19,7 +32,8 @@ public class AreaTrabajo extends JPanel
     {
         super();
         setName("AT");
-        setLayout(null);
+        setLayout(new BorderLayout());
+        
         this.controlador = controlador;
         addMouseListener(controlador);
         addMouseMotionListener(controlador);
@@ -35,14 +49,27 @@ public class AreaTrabajo extends JPanel
     }
     
     public void dibujarDiagrama () {
-        d = new Diagrama();
-        add(d);
-        diagramaActivo=true;
+        
+        add(view, BorderLayout.CENTER);
+        view.setBounds(0, 40, getWidth()-10, getHeight()-40);
+        setVisible(true);
+        viewer.enableAutoLayout();
+        
+        graph.addNode("A" );
+        graph.addNode("B" );
+        graph.addNode("C" );
+        graph.addEdge("AB", "A", "B");
+        graph.addEdge("BC", "B", "C");
+        graph.addEdge("CA", "C", "A");
+        
+        graph.addAttribute("ui.quality");
+        graph.addAttribute("ui.antialias");
+        
+        diagramaActivo = true;
     }
     
     public void cerrarDiagrama() {
         diagramaActivo = false;
-        d = null;
         repaint();
     }
     

@@ -18,14 +18,15 @@ public class Diagrama extends JPanel {
         
     AreaTrabajo at = AreaTrabajo.getInstance();
     
+    Graph graph = new SingleGraph("TITULO");
+    Viewer viewer = new Viewer(graph, Viewer.ThreadingModel.GRAPH_IN_ANOTHER_THREAD);
+    View view = viewer.addDefaultView(false);
+    
     public Diagrama () {
-        Graph graph = new SingleGraph("Tutorial 1");
-        Viewer viewer = new Viewer(graph, Viewer.ThreadingModel.GRAPH_IN_ANOTHER_THREAD);
-        View view = viewer.addDefaultView(false);
-        
+  
         setLayout(new BorderLayout());
-        add(view, BorderLayout.SOUTH);
-        setSize(at.getWidth(), at.getHeight()-40);
+        add(view, BorderLayout.CENTER);
+        setSize(at.getWidth()-10, at.getHeight()-40);
         setVisible(true);
         viewer.enableAutoLayout();
         
@@ -39,7 +40,6 @@ public class Diagrama extends JPanel {
         graph.addAttribute("ui.quality");
         graph.addAttribute("ui.antialias");
 
-        add(view);
     }
     
     public void cerrarDiagrama () {
