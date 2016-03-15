@@ -16,7 +16,7 @@ public class Diagrama extends JPanel {
         "Planificación", "Programación", "Ejecución", "Gestión de las<br>paradas de planta",
         "Punto de Pedido", "Cantidad de Pedido", "Materiales obsoletos"};
         
-    AreaTrabajoo at = AreaTrabajoo.getInstance();
+    AreaTrabajo at = AreaTrabajo.getInstance();
     
     public Diagrama () {
         Graph graph = new SingleGraph("Tutorial 1");
@@ -24,9 +24,10 @@ public class Diagrama extends JPanel {
         View view = viewer.addDefaultView(false);
         
         setLayout(new BorderLayout());
-        add(view, BorderLayout.CENTER);
-        setSize(320, 240);
+        add(view, BorderLayout.SOUTH);
+        setSize(at.getWidth(), at.getHeight()-40);
         setVisible(true);
+        viewer.enableAutoLayout();
         
         graph.addNode("A" );
         graph.addNode("B" );
@@ -39,6 +40,10 @@ public class Diagrama extends JPanel {
         graph.addAttribute("ui.antialias");
 
         add(view);
+    }
+    
+    public void cerrarDiagrama () {
+        at.cerrarDiagrama();
     }
 
 }

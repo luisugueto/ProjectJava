@@ -11,7 +11,7 @@ public class AreaTrabajo extends JPanel
     private static volatile AreaTrabajo instance = null;
     Controlador controlador;
     Cursor pt;
-    
+    Diagrama d;
     boolean diagramaActivo = false;
     DB datos;
     
@@ -31,9 +31,15 @@ public class AreaTrabajo extends JPanel
     }
     
     public void dibujarDiagrama () {
-        Diagrama d = new Diagrama();
+        d = new Diagrama();
         add(d);
-        //diagramaActivo=true;
+        diagramaActivo=true;
+    }
+    
+    public void cerrarDiagrama() {
+        diagramaActivo = false;
+        d = null;
+        repaint();
     }
     
     @Override
