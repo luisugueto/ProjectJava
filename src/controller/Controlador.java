@@ -6,7 +6,6 @@ import java.awt.event.WindowEvent;
 import java.io.File;
 import javax.swing.JComponent;
 import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
 import projectjava.AreaTrabajo;
 import projectjava.BarraDeEstado;
 import model.DB;
@@ -14,8 +13,6 @@ import projectjava.Ventana;
 import projectjava.BarraHerramientas;
 import projectjava.CrearUsuario;
 import projectjava.FormDatos;
-import projectjava.Login;
-import projectjava.LineChartSimple;
 
 public class Controlador extends AbsControlador
 {
@@ -50,7 +47,9 @@ public class Controlador extends AbsControlador
             case "SALIR":
                 ventana.dispatchEvent(new WindowEvent(ventana, WindowEvent.WINDOW_CLOSING));
                 break;
-            
+            case "VER DIAGRAMA":
+                area.dibujarDiagrama();
+                break;
             default:
                 System.out.println(fuente+" no tiene una accion asignada.");
                 break;
@@ -117,6 +116,7 @@ public class Controlador extends AbsControlador
             case "NUEVO USUARIO":
                 setEstado("Nuevo Usuario");
                 break;
+            
             default:
                 System.out.println(fuente+" no tiene una accion asignada.");
                 break;
