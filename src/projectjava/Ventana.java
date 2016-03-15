@@ -18,7 +18,7 @@ public class Ventana extends JFrame
     BarraDeEstado barraEstado;
     BarraHerramientas barraHerramientas;
     BarraElementos barraElementos;
-    AreaTrabajo areaTrabajo;
+    AreaTrabajoo areaTrabajo;
     
     Controlador controlador;
     int tipo;
@@ -50,7 +50,7 @@ public class Ventana extends JFrame
         barraMenu = new BarraMenu(controlador, getTipo());
         barraEstado = new BarraDeEstado();
         barraHerramientas = new BarraHerramientas(controlador, false);
-        areaTrabajo = new AreaTrabajo(controlador);
+        areaTrabajo = new AreaTrabajoo(controlador);
         getContentPane().add(barraHerramientas, "North");
         getContentPane().add(barraEstado, "South");
         
@@ -80,7 +80,7 @@ public class Ventana extends JFrame
     public BarraHerramientas getBarraHerramientas() {return barraHerramientas;}
     public BarraElementos getBarraElementos() {return barraElementos;}
     public BarraDeEstado getBarraEstado() {return barraEstado;}
-    public AreaTrabajo getAreaTrabajo () {return areaTrabajo;}
+    public AreaTrabajoo getAreaTrabajo () {return areaTrabajo;}
     public Controlador getControlador() { return controlador; }
     
     public void setTipo(int tipo){this.tipo = tipo;}
