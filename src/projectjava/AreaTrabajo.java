@@ -26,13 +26,25 @@ public class AreaTrabajo extends JPanel
         datos = DB.getInstance();
         instance = this;
         
-        dibujarDiagrama();
+        botones("Ver Diagrama", 200, 300, 50, 50, "bar-chart");
+        botones("Ver Diagrama", 400, 300, 50, 50, "inicio");
+        botones("Ver Diagrama", 600, 300, 50, 50, "inicio");
+
     }
     
     public void dibujarDiagrama () {
         Caja uno = new Caja("Prueba", 200, 200, "239.11");
         uno.setBounds(200, 200, 100, 100);
         add(uno);
+    }
+    
+    public void botones(String nombre, int x, int y, int ancho, int alto, String imagen){
+        JButton boton = new JButton();
+        boton.setName(nombre);
+        boton.setBounds(x, y, ancho, alto);
+        boton.setToolTipText(nombre);
+        boton.setIcon(new ImageIcon("src/images/"+imagen+".png"));
+        add(boton);
     }
     
     @Override
@@ -44,7 +56,7 @@ public class AreaTrabajo extends JPanel
             w = fondo.getWidth(null);
             h = fondo.getHeight(null);
             x = (this.getWidth()/2)-(w/2);
-            y = (this.getHeight()/2)-(h/2);
+            y = (this.getHeight()/5)-(h/2);
             g.drawImage(fondo, x, y, w, h, this);
     }
 

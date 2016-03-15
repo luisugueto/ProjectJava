@@ -17,7 +17,7 @@ public class BarraMenu extends JMenuBar
     Ventana ventana = new Ventana();
     int tipo;
     private KeyStroke accelerator;
-    String menuText[] = {"Archivo", "Grafico", "Usuarios", "Ayuda"};
+    String menuText[] = {"Archivo", "Gráfico", "Usuarios", "Ayuda"};
     JMenu menus[];
     
     String archivoText[]   = {"Nuevo", /*"Abrir", "Guardar", "Guardar todo",
