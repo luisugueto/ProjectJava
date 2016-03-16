@@ -119,7 +119,6 @@ public class Controlador extends AbsControlador
              case "NUEVO USUARIO":
                 setEstado("Nuevo Usuario");
                 break;
-<<<<<<< HEAD
             case "LISTA DE USUARIOS":
                 setEstado("Lista de Usuarios");
                 break;
@@ -132,9 +131,7 @@ public class Controlador extends AbsControlador
             case "REPORTAR ERROR":
                 setEstado("Reportar Error");
                 break;
-=======
-            
->>>>>>> 30b2d9b0327a62f5e0b500770dc599635f0ba5a9
+
             default:
                 System.out.println(fuente+" no tiene una accion asignada.");
                 break;

@@ -14,7 +14,6 @@ import projectjava.Colores;
  */
 public class BarraMenu extends JMenuBar
 {
-    Ventana ventana = new Ventana();
     int tipo;
     private KeyStroke accelerator;
     String menuText[] = {"Datos", "Grafico", "Usuarios", "Sistema"};
@@ -104,7 +103,8 @@ public class BarraMenu extends JMenuBar
            menu.setName(menuText[i]);
            menus[i] = menu;
            this.add(menu);
-           menu.setForeground(Colores.font_tborder); 
+           menu.setForeground(Colores.font_tborder);
+           menu.addMouseListener(controlador);
            
            for (String item : textItems[i])
            {

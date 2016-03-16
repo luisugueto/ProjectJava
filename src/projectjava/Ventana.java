@@ -27,9 +27,13 @@ public class Ventana extends JFrame
     
     DB datos;
     
-    Ventana ()
+    Ventana (int tipo)
     {
         super("EVA");
+        setTipo(tipo);
+        if (getTipo() == 1) setTitle("EVA (ADMINISTRADOR)");
+        if (getTipo() == 2) setTitle("EVA (USUARIO)");
+        System.out.println(getTipo());
         //setIconImage(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/images/logo.png")));
         
         this.setSize(800,600);        
@@ -86,8 +90,8 @@ public class Ventana extends JFrame
     public void setTipo(int tipo){this.tipo = tipo;}
     public int getTipo(){ return this.tipo;}
     
-    public static synchronized Ventana getInstance() {
+   /* public static synchronized Ventana getInstance() {
         if (instance == null) instance = new Ventana();
         return instance;
-    }
+    } */
 }

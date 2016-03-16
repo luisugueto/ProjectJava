@@ -36,8 +36,6 @@ public class AreaTrabajo extends JPanel
         setLayout(new BorderLayout());
         
         this.controlador = controlador;
-        addMouseListener(controlador);
-        addMouseMotionListener(controlador);
                 
         datos = DB.getInstance();
         instance = this;

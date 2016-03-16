@@ -15,7 +15,7 @@ public class ProjectJava
     }
     
     public static void iniciar(int tipo) {
-        Ventana ventana = new Ventana();
+        Ventana ventana = new Ventana(tipo);
         FormDatos form = new FormDatos();
     
         Controlador controlador = new Controlador();
