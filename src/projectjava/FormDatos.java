@@ -6,6 +6,8 @@
 package projectjava;
 
 import java.sql.ResultSet;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import model.DB;
 
 /**
@@ -22,12 +24,21 @@ public class FormDatos extends javax.swing.JFrame {
     ResultSet resultados = null;
 
     int num, id;
-
+    
+    Calendar calendario = new GregorianCalendar();
+    int dia, mes, anio;
+    String mess = " ";
     
     public FormDatos() {
         initComponents();
         setExtendedState(3);
         setLocationRelativeTo(null);
+        dia = calendario.get(Calendar.DAY_OF_MONTH);
+        mes = calendario.get(Calendar.MONTH);
+        if (mes <= 10) mess = "0"+mes;
+        else mess = ""+mes;
+        anio = calendario.get(Calendar.YEAR);
+        fecha.setText(""+dia+"/"+mess+"/"+anio);
     }
 
     /**
@@ -122,7 +133,7 @@ public class FormDatos extends javax.swing.JFrame {
         });
 
         fecha.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
-        fecha.setText("01/01/2016");
+        fecha.setText("1/1/2016");
         fecha.setToolTipText("Formato Correcto. Ejm: 14/04/2016");
 
         jLabel16.setText("Fecha:");
