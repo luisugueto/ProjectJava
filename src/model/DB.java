@@ -66,6 +66,13 @@ public final class DB
         return res;
     }
     
+    public ResultSet getId () {
+        try {
+            res = query.executeQuery("SELECT * FROM `datos`");
+        } catch (Exception e) { imprimirExcepcion(e); }
+        return res;
+    }
+    
     public ResultSet getUsuario (String usuario, String contrasena) {
         try {
             res = query.executeQuery("SELECT * FROM `user` WHERE user = "+usuario+" AND contrasena = "+contrasena);

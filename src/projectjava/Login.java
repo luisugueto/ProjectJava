@@ -132,9 +132,11 @@ public class Login extends javax.swing.JFrame {
                 String nombre = resultados.getString("user");
                 String contrasena1 = resultados.getString("password");
                 int tipo = resultados.getInt("tipo");
+                int id = resultados.getInt("id");
+                
                 if ((nombre.equals(user)) && (contrasena1.equals(pass))){
                     dispose();
-                    ProjectJava.iniciar(tipo);
+                    ProjectJava.iniciar(tipo, id);
                     break;
                 }
             }
