@@ -299,6 +299,8 @@ public class FormDatos extends javax.swing.JFrame {
          ""+tiempoIndisManten.getText(),""+nTotalItemsInvent.getText(), ""+nItemsCantPedidoVigente.getText(), ""+valorInventMatObs.getText(),
          ""+valorTotalInvent.getText(), ""+valorTotalInventManten.getText(), ""+valorTotalActivosOperac.getText(), ""+costoTotalManten.getText(),
          ""+cantidadTotalUnidProduc.getText(), ""+tiempoTotalOper.getText(), ""+tiempoTotalDisp.getText(), ""+fecha.getText());
+         
+         dispose();
     }//GEN-LAST:event_procesarActionPerformed
 
     private void cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarActionPerformed
