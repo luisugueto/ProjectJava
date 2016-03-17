@@ -14,14 +14,14 @@ public class ProjectJava
         login.setVisible(true);
     }
     
-    public static void iniciar(int tipo) {
+    public static void iniciar(int tipo, int id) {
         Ventana ventana = new Ventana(tipo);
-        FormDatos form = new FormDatos();
     
         Controlador controlador = new Controlador();
         controlador.setVentana(ventana);
         ventana.setControlador(controlador);
         ventana.setTipo(tipo);
+        ventana.setId(id);
         ventana.construirGUI();
         controlador.setObjects();
         

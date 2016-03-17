@@ -36,8 +36,9 @@ public class Controlador extends AbsControlador
 
         switch (fuente)
         {
-            case "NUEVO":
+            case "REGISTRAR":
                 FormDatos form = new FormDatos();
+                form.setId(ventana.getId());
                 form.setVisible(true);
                 break;
             case "NUEVO USUARIO":
@@ -107,7 +108,7 @@ public class Controlador extends AbsControlador
         
         switch (fuente)
         {         
-            case "NUEVO":
+            case "REGISTRAR":
                 setEstado("Nuevo");
                 break;
             case "SALIR":

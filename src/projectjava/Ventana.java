@@ -21,7 +21,7 @@ public class Ventana extends JFrame
     AreaTrabajo areaTrabajo;
     
     Controlador controlador;
-    int tipo;
+    int tipo, id;
     boolean toggledBarraEstado = false;
     boolean toggled = false;
     
@@ -33,7 +33,6 @@ public class Ventana extends JFrame
         setTipo(tipo);
         if (getTipo() == 1) setTitle("EVA (ADMINISTRADOR)");
         if (getTipo() == 2) setTitle("EVA (USUARIO)");
-        System.out.println(getTipo());
         //setIconImage(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/images/logo.png")));
         
         this.setSize(800,600);        
@@ -89,6 +88,9 @@ public class Ventana extends JFrame
     
     public void setTipo(int tipo){this.tipo = tipo;}
     public int getTipo(){ return this.tipo;}
+ 
+    public void setId(int id){this.id = id;}
+    public int getId(){ return this.id;}
     
    /* public static synchronized Ventana getInstance() {
         if (instance == null) instance = new Ventana();
