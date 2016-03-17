@@ -51,7 +51,7 @@ public class Controlador extends AbsControlador
                 area.dibujarDiagrama();
                 break;
             default:
-                System.out.println(fuente+" no tiene una accion asignada.");
+                System.out.println(fuente+" no tiene una accion asignada. AP.");
                 break;
         }
     }
@@ -133,7 +133,7 @@ public class Controlador extends AbsControlador
                 break;
 
             default:
-                System.out.println(fuente+" no tiene una accion asignada.");
+                System.out.println(fuente+" no tiene una accion asignada. ME.");
                 break;
         }
     }
