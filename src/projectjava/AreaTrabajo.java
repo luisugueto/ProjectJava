@@ -64,7 +64,7 @@ public class AreaTrabajo extends JPanel
         datos = DB.getInstance();
         
         boton = new ButtonTabComponent(this);
-        boton.setBounds(this.getWidth()-20, 0, boton.getWidth(), boton.getHeight());
+        boton.setBounds(5, 0, boton.getWidth(), boton.getHeight());
         
         graph.addAttribute("ui.stylesheet", "url('file:src/css/estiloPrincipal.css')");
         
@@ -74,8 +74,9 @@ public class AreaTrabajo extends JPanel
         datePanel = new JDatePanelImpl(model, p);
         botonFecha = new JDatePickerImpl(datePanel, new DateLabelFormatter());
         
+        
         barraSuperior.setSize(this.getWidth(), 25);
-        barraSuperior.add(boton, "East");
+        barraSuperior.add(boton);
         barraSuperior.add(botonFecha);
         /*botonFormulario = botones("Nuevo", 200, 300, 50, 50, "bar-chart");
         botonDiagrama = botones("Ver Diagrama", 400, 300, 50, 50, "bar-chart");
@@ -99,15 +100,16 @@ public class AreaTrabajo extends JPanel
 
             for (String[] tts : titulos) {
                 for (String t : tts) {
-                    Node n = graph.addNode(Integer.toString(i++));
+                    Node n = graph.addNode(t);
                     n.addAttribute("titulo", t);
                     n.addAttribute("linea", j);
+                    n.addAttribute("ui.style", "fill-image: url('src/images/nodes/"+t+".png');");
                     System.out.println(i+" "+j+" "+t);
                 }
                 j++;
             }
 
-            //graph.addEdge(titulos0[0]+titulos1[1], titulos0[0], titulos1[1]);
+            graph.addEdge(titulos0[0]+titulos1[1], titulos0[0], titulos1[1]);
 
             graph.addAttribute("ui.quality");
             graph.addAttribute("ui.antialias");
@@ -125,12 +127,12 @@ public class AreaTrabajo extends JPanel
             lineaActual = (int)n.getAttribute("linea");
             if (lineaActual != lineaAnterior) i=1;
             n.addAttribute("xy", x+(150*lineaActual), y*(++i));
-            n.addAttribute("ui.label", (Object)n.getAttribute("titulo")); //+" "+n.getAttribute("valor"));
+            //n.addAttribute("ui.label", (Object)n.getAttribute("titulo")); //+" "+n.getAttribute("valor"));
         }
         
         add(barraSuperior, BorderLayout.NORTH);
-        
-        paintComponent(getGraphics());
+        barraSuperior.repaint();
+        repaint();
     }
     
     public void cerrarDiagrama() {
