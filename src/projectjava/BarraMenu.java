@@ -26,7 +26,7 @@ public class BarraMenu extends JMenuBar
             
            usuarioText[] = {"Registrar", "Ver lista"},
             
-           ayudaText[]   = {"Ayuda", "Salir"};
+           ayudaText[]   = {"Ayuda", "Cerrar Sesión", "Salir"};
     
     String textItems[][] = {archivoText, graficoText, usuarioText, ayudaText};
     

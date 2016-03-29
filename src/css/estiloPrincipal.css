@@ -1,0 +1,24 @@
+node {
+    shape: rounded-box;
+    size: 100px, 50px;
+    size-mode: normal;
+    
+    text-size: 12;
+    text-padding: 4px;
+    fill-color: white;
+    
+    stroke-color:black;
+    stroke-mode: plain;
+    stroke-width: 3;
+        
+    /*shadow-mode: gradient-radial;*/
+    
+}
+
+node:clicked {
+    stroke-color: grey;
+}
+
+edge {
+    shape: cubic-curve;
+}

@@ -3,12 +3,16 @@ package projectjava;
 import controller.Controlador;
 import javax.swing.*;
 import java.awt.*;
+import java.util.Properties;
 import model.DB;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.Node;
 import org.graphstream.graph.implementations.SingleGraph;
 import org.graphstream.ui.swingViewer.View;
 import org.graphstream.ui.swingViewer.Viewer;
+import org.jdatepicker.impl.JDatePanelImpl;
+import org.jdatepicker.impl.JDatePickerImpl;
+import org.jdatepicker.impl.UtilDateModel;
 
 
 public class AreaTrabajo extends JPanel
@@ -17,61 +21,117 @@ public class AreaTrabajo extends JPanel
     Controlador controlador;
     Cursor pt;
     
-    String eol = System.getProperty("line.separator");
-    String[] titulosIniciales = 
-        { "Mantenimiento"+eol+"predictivo", "Mantenimiento"+eol+"preventivo",
-        "Planificación", "Programación", "Ejecución", "Gestión de las"+eol+"paradas de planta",
+    String eol = "<br>"; //System.getProperty("line.separator");
+    
+    String[] titulos0 = 
+        { "Mantenimiento predictivo", "Mantenimiento preventivo",
+        "Planificación", "Programación", "Ejecución", "Gestión de las paradas de planta",
         "Punto de Pedido", "Cantidad de Pedido", "Materiales obsoletos"};
+    String[] titulos1 =
+        {"ACR", "Mantenimiento Planificado", "Inventarios",
+         "Factor de Utilización de la Capacidad Instalada"};
+    String[] titulos2 = {"Confiabilidad", "MTTR"};
+    String[] titulos3 = {"Disponibilidad", "Costos"};
+    String[] titulos4 = {"Ingresos", "AO"};
+    String[] titulos5 = {"EBIT"};
+    String[] titulos6 = {"EVA"};
+    String[][] titulos = {titulos0, titulos1, titulos2, titulos3, titulos4, titulos5, titulos6};
             
     Graph graph = new SingleGraph("TITULO");
     Viewer viewer = new Viewer(graph, Viewer.ThreadingModel.GRAPH_IN_ANOTHER_THREAD);
     View view = viewer.addDefaultView(false);
     
-    ButtonTabComponent boton = new ButtonTabComponent(this);
+    ButtonTabComponent boton;
+    UtilDateModel model = new UtilDateModel();
+    JDatePanelImpl datePanel;
+    JDatePickerImpl botonFecha;
+    Properties p = new Properties();
     
     JButton botonFormulario, botonDiagrama, boton3;
     
     boolean diagramaActivo = false;
+    boolean diagramaCreado = false;
     DB datos;
     
-    AreaTrabajo (Controlador controlador)
-    {
+    AreaTrabajo (Controlador controlador) {
         super();
         setName("AT");
         setLayout(new BorderLayout());
-        
         this.controlador = controlador;
-                
-        datos = DB.getInstance();
         instance = this;
+        datos = DB.getInstance();
         
-        dibujarDiagrama();
+        boton = new ButtonTabComponent(this);
+        boton.setBounds(this.getWidth()-20, 0, boton.getWidth(), boton.getHeight());
+        
+        graph.addAttribute("ui.stylesheet", "url('file:src/css/estiloPrincipal.css')");
+        
+        p.put("text.today", "Today");
+        p.put("text.month", "Month");
+        p.put("text.year", "Year");
+        datePanel = new JDatePanelImpl(model, p);
+        botonFecha = new JDatePickerImpl(datePanel, new DateLabelFormatter());
         
         /*botonFormulario = botones("Nuevo", 200, 300, 50, 50, "bar-chart");
         botonDiagrama = botones("Ver Diagrama", 400, 300, 50, 50, "bar-chart");
         boton3 = botones("Nuevo Usuario", 600, 300, 50, 50, "bar-chart");*/
     }
     
-    public void dibujarDiagrama () {
+    public void valoresDiagrama() {
         
-        add(view, BorderLayout.CENTER);
+    }
+    
+    public void dibujarDiagrama () {
+                
         view.setBounds(0, 60, getWidth()-10, getHeight()-40);
         viewer.enableAutoLayout();
         
-        for (int i = 0; i < 9; i++) {
-            Node x = graph.addNode(Integer.toString(i));
-            x.addAttribute("xy", 20, 50*(i+1));
+        int c, i=0, j=0;
+        
+        if(!diagramaCreado) {
+            
+            c = titulos0.length;
+
+            for (String[] tts : titulos) {
+                for (String t : tts) {
+                    Node n = graph.addNode(Integer.toString(i++));
+                    n.addAttribute("titulo", t);
+                    n.addAttribute("linea", j);
+                    System.out.println(i+" "+j+" "+t);
+                }
+                j++;
+            }
+
+            //graph.addEdge(titulos0[0]+titulos1[1], titulos0[0], titulos1[1]);
+
+            graph.addAttribute("ui.quality");
+            graph.addAttribute("ui.antialias");
+            diagramaCreado = true;
+        }
+        int x,y, lineaActual, lineaAnterior;
+        lineaAnterior = 0;
+        x = 20; y = 100; i=0;
+        
+        diagramaActivo = true;
+        
+        add(view, BorderLayout.CENTER);
+        
+        for (Node n : graph.getEachNode()) {
+            lineaActual = (int)n.getAttribute("linea");
+            if (lineaActual != lineaAnterior) i=1;
+            n.addAttribute("xy", x+(150*lineaActual), y*(++i));
+            n.addAttribute("ui.label", (Object)n.getAttribute("titulo")); //+" "+n.getAttribute("valor"));
         }
         
-        graph.addAttribute("ui.quality");
-        graph.addAttribute("ui.antialias");
-                
-        boton.setBounds(this.getWidth()-20, 0, boton.getWidth(), boton.getHeight());
-        add(boton);
+        add(boton, BorderLayout.NORTH);
+        add(botonFecha);
+        paintComponent(getGraphics());
     }
     
     public void cerrarDiagrama() {
         diagramaActivo = false;
+        remove(view);
+        remove(boton);
         paintComponent(getGraphics());
     }
     
@@ -88,12 +148,6 @@ public class AreaTrabajo extends JPanel
             x = (this.getWidth()/2)-(w/2);
             y = (this.getHeight()/5)-(h/2);
             g.drawImage(fondo, x, y, w, h, this);
-            //if (view != null) remove(view);
-        } else {
-            /*remove(botonFormulario);
-            remove(botonDiagrama);
-            remove(boton3);
-            add(view, BorderLayout.CENTER);*/
         }
     }
     

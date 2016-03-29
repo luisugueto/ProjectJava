@@ -106,22 +106,23 @@ public class Controlador extends AbsControlador
     {
         String fuente = ((JComponent)e.getSource()).getName();
         
+        if (fuente != null)
         switch (fuente)
         {         
             case "REGISTRAR":
-                setEstado("Nuevo");
+                setEstado("Abre el formulario para el registro de datos.");
                 break;
             case "SALIR":
-                setEstado("Salir");
+                setEstado("Salir del sistema.");
                 break;
-            case "VER GRÁFICO":
-                setEstado("Ver Gráfico");
+            case "LISTAR":
+                setEstado("Muestra una lista de datos cargados en fechas anteriores.");
                 break;
-             case "NUEVO USUARIO":
-                setEstado("Nuevo Usuario");
+             case "VER DIAGRAMA":
+                setEstado("Dibuja el diagrama de valores de una fecha específica.");
                 break;
-            case "LISTA DE USUARIOS":
-                setEstado("Lista de Usuarios");
+            case "DISPONIBILIDAD":
+                setEstado("Muestra un gráfico según los valores de disponibilidad en un rango de fechas.");
                 break;
             case "MODIFICAR USUARIO":
                 setEstado("Modificar Usuario");
@@ -134,6 +135,7 @@ public class Controlador extends AbsControlador
                 break;
 
             default:
+                setEstado("");
                 System.out.println(fuente+" no tiene una accion asignada. ME.");
                 break;
         }
