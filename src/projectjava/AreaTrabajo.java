@@ -47,6 +47,8 @@ public class AreaTrabajo extends JPanel
     JDatePickerImpl botonFecha;
     Properties p = new Properties();
     
+    JPanel barraSuperior = new JPanel();
+    
     JButton botonFormulario, botonDiagrama, boton3;
     
     boolean diagramaActivo = false;
@@ -72,6 +74,9 @@ public class AreaTrabajo extends JPanel
         datePanel = new JDatePanelImpl(model, p);
         botonFecha = new JDatePickerImpl(datePanel, new DateLabelFormatter());
         
+        barraSuperior.setSize(this.getWidth(), 25);
+        barraSuperior.add(boton, "East");
+        barraSuperior.add(botonFecha);
         /*botonFormulario = botones("Nuevo", 200, 300, 50, 50, "bar-chart");
         botonDiagrama = botones("Ver Diagrama", 400, 300, 50, 50, "bar-chart");
         boton3 = botones("Nuevo Usuario", 600, 300, 50, 50, "bar-chart");*/
@@ -123,15 +128,15 @@ public class AreaTrabajo extends JPanel
             n.addAttribute("ui.label", (Object)n.getAttribute("titulo")); //+" "+n.getAttribute("valor"));
         }
         
-        add(boton, BorderLayout.NORTH);
-        add(botonFecha);
+        add(barraSuperior, BorderLayout.NORTH);
+        
         paintComponent(getGraphics());
     }
     
     public void cerrarDiagrama() {
         diagramaActivo = false;
         remove(view);
-        remove(boton);
+        remove(barraSuperior);
         paintComponent(getGraphics());
     }
     
