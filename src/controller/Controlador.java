@@ -106,38 +106,39 @@ public class Controlador extends AbsControlador
     {
         String fuente = ((JComponent)e.getSource()).getName();
         
-        if (fuente != null)
-        switch (fuente)
-        {         
-            case "REGISTRAR":
-                setEstado("Abre el formulario para el registro de datos.");
-                break;
-            case "SALIR":
-                setEstado("Salir del sistema.");
-                break;
-            case "LISTAR":
-                setEstado("Muestra una lista de datos cargados en fechas anteriores.");
-                break;
-             case "VER DIAGRAMA":
-                setEstado("Dibuja el diagrama de valores de una fecha específica.");
-                break;
-            case "DISPONIBILIDAD":
-                setEstado("Muestra un gráfico según los valores de disponibilidad en un rango de fechas.");
-                break;
-            case "MODIFICAR USUARIO":
-                setEstado("Modificar Usuario");
-                break;
-            case "INFORMACIÓN":
-                setEstado("Información");
-                break;
-            case "REPORTAR ERROR":
-                setEstado("Reportar Error");
-                break;
+        if (fuente != null){
+            switch (fuente)
+            {         
+                case "REGISTRAR":
+                    setEstado("Abre el formulario para el registro de datos.");
+                    break;
+                case "SALIR":
+                    setEstado("Salir del sistema.");
+                    break;
+                case "LISTAR":
+                    setEstado("Muestra una lista de datos cargados en fechas anteriores.");
+                    break;
+                 case "VER DIAGRAMA":
+                    setEstado("Dibuja el diagrama de valores de una fecha específica.");
+                    break;
+                case "DISPONIBILIDAD":
+                    setEstado("Muestra un gráfico según los valores de disponibilidad en un rango de fechas.");
+                    break;
+                case "MODIFICAR USUARIO":
+                    setEstado("Modificar Usuario");
+                    break;
+                case "INFORMACIÓN":
+                    setEstado("Información");
+                    break;
+                case "REPORTAR ERROR":
+                    setEstado("Reportar Error");
+                    break;
 
-            default:
-                setEstado("");
-                System.out.println(fuente+" no tiene una accion asignada. ME.");
-                break;
+                default:
+                    setEstado("");
+                    System.out.println(fuente+" no tiene una accion asignada. ME.");
+                    break;
+            }
         }
     }
 

@@ -49,7 +49,7 @@ public class AreaTrabajo extends JPanel
     
     JPanel barraSuperior = new JPanel();
     
-    JButton botonFormulario, botonDiagrama, boton3;
+    JButton botonFormulario, botonDiagrama, botonUsuario;
     
     boolean diagramaActivo = false;
     boolean diagramaCreado = false;
@@ -76,10 +76,7 @@ public class AreaTrabajo extends JPanel
         
         barraSuperior.setSize(this.getWidth(), 25);
         barraSuperior.add(boton, "East");
-        barraSuperior.add(botonFecha);
-        /*botonFormulario = botones("Nuevo", 200, 300, 50, 50, "bar-chart");
-        botonDiagrama = botones("Ver Diagrama", 400, 300, 50, 50, "bar-chart");
-        boton3 = botones("Nuevo Usuario", 600, 300, 50, 50, "bar-chart");*/
+        barraSuperior.add(botonFecha);        
     }
     
     public void valoresDiagrama() {
@@ -151,22 +148,28 @@ public class AreaTrabajo extends JPanel
             w = fondo.getWidth(null);
             h = fondo.getHeight(null);
             x = (this.getWidth()/2)-(w/2);
-            y = (this.getHeight()/5)-(h/2);
+            y = (this.getHeight()/5)-(h/2)+50;
             g.drawImage(fondo, x, y, w, h, this);
+            
+            /*botonFormulario = botonIcon("Formulario", 250, 300, "formulario1");
+            botonDiagrama = botonIcon("Diagrama", 450, 300, "diagrama1");
+            botonUsuario = botonIcon("Usuario", 650, 300, "nuevo1");*/
+            
         }
+        
     }
     
-    public JButton botones(String nombre, int x, int y, int ancho, int alto, String imagen){
-        JButton boton = new JButton();
-        boton.setName(nombre.toUpperCase());
-        boton.setBounds(x, y, ancho, alto);
-        boton.setToolTipText(nombre);
-        boton.setIcon(new ImageIcon("src/images/"+imagen+".png"));
-        boton.addActionListener(controlador);
-        boton.addMouseListener(controlador);
-        boton.setSize(ancho, alto);
-        add(boton);
-        return boton;
+    public JButton botonIcon(String nombre, int x, int y, String imagen){
+        JButton boto = new JButton();
+        ImageIcon img = new ImageIcon("src/images/"+imagen+".png");
+        boto.setIcon(img);
+        boto.setName(nombre.toUpperCase());
+        boto.setBounds(x, y, img.getIconWidth(), img.getIconHeight());
+        boto.setToolTipText(nombre);
+        boto.addActionListener(controlador);
+        //boto.addMouseListener(controlador);
+        add(boto);
+        return boto;
     }
     
     public static synchronized AreaTrabajo getInstance() {
