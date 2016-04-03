@@ -70,9 +70,9 @@ public final class AreaTrabajo extends JPanel
         graph.addAttribute("ui.stylesheet", "url('file:src/css/estiloPrincipal.css')");
         
         add(panelBoton);
-        crearBotonesInicio("Registrar", "formulario1");
-        crearBotonesInicio("Ver Diagrama", "diagrama1");
-        crearBotonesInicio("Nuevo Usuario", "nuevo1");
+        crearBotonesInicio("Registrar", "formulario");
+        crearBotonesInicio("Ver Diagrama", "diagrama");
+        crearBotonesInicio("Nuevo Usuario", "nuevo");
 
         p.put("text.today", "Today");
         p.put("text.month", "Month");
