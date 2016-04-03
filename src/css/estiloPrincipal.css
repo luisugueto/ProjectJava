@@ -1,6 +1,5 @@
 node {
     shape: rounded-box;
-    size: 100px, 50px;
     size-mode: normal;
     
     text-size: 12;

@@ -26,10 +26,10 @@ public final class AreaTrabajo extends JPanel
     String[] titulos0 = 
         { "Mantenimiento predictivo", "Mantenimiento preventivo",
         "Planificación", "Programación", "Ejecución", "Gestión de las paradas de planta",
-        "Punto de Pedido", "Cantidad de Pedido", "Materiales obsoletos"};
+        "Punto de pedido", "Cantidad de pedido", "Materiales obsoletos"};
     String[] titulos1 =
-        {"ACR", "Mantenimiento Planificado", "Inventarios",
-         "Factor de Utilización de la Capacidad Instalada"};
+        {"ACR", "Mantenimiento planificado", "Inventarios",
+         "Factor de utilización de la capacidad instalada"};
     String[] titulos2 = {"Confiabilidad", "MTTR"};
     String[] titulos3 = {"Disponibilidad", "Costos"};
     String[] titulos4 = {"Ingresos", "AO"};
@@ -60,7 +60,6 @@ public final class AreaTrabajo extends JPanel
         super();
         setName("AT");
         setLayout(new BorderLayout());       
-            
         this.controlador = controlador;
         instance = this;
         datos = DB.getInstance();
@@ -70,9 +69,6 @@ public final class AreaTrabajo extends JPanel
         graph.addAttribute("ui.stylesheet", "url('file:src/css/estiloPrincipal.css')");
         
         add(panelBoton);
-        crearBotonesInicio("Registrar", "formulario");
-        crearBotonesInicio("Ver Diagrama", "diagrama");
-        crearBotonesInicio("Nuevo Usuario", "nuevo");
 
         p.put("text.today", "Today");
         p.put("text.month", "Month");
@@ -80,14 +76,16 @@ public final class AreaTrabajo extends JPanel
         datePanel = new JDatePanelImpl(model, p);
         botonFecha = new JDatePickerImpl(datePanel, new DateLabelFormatter());
         
+        crearBotonesInicio("Registrar", "formulario");
+        crearBotonesInicio("Ver Diagrama", "diagrama");
+        crearBotonesInicio("Nuevo Usuario", "nuevo");
+        panelBoton.setSize(this.getWidth(), 80);
+        panelBoton.setLocation(30, 300);
         
         barraSuperior.setSize(this.getWidth(), 25);
-        barraSuperior.add(boton, "East");
+        barraSuperior.add(boton);
         barraSuperior.add(botonFecha);   
         
-        /*botonFormulario = botones("Nuevo", 200, 300, 50, 50, "bar-chart");
-        botonDiagrama = botones("Ver Diagrama", 400, 300, 50, 50, "bar-chart");
-        boton3 = botones("Nuevo Usuario", 600, 300, 50, 50, "bar-chart");*/
         
     }
     
@@ -97,10 +95,12 @@ public final class AreaTrabajo extends JPanel
     
     public void dibujarDiagrama () {
                 
-        view.setBounds(0, 60, getWidth()-10, getHeight()-40);
+        view.setBounds(0, 30, getWidth()-20, getHeight()-20);
         viewer.enableAutoLayout();
         remove(panelBoton);
-        int c, i=0, j=0;
+        int c, i=0, j=0, h, a;
+        h = Math.round(this.getHeight()/14);
+        a = Math.round((float)h*(float)2.5);
         
         if(!diagramaCreado) {
             
@@ -112,12 +112,13 @@ public final class AreaTrabajo extends JPanel
                     n.addAttribute("titulo", t);
                     n.addAttribute("linea", j);
                     n.addAttribute("ui.style", "fill-image: url('src/images/nodes/"+t+".png');");
+                    n.addAttribute("ui.style", "size: "+a+"px, "+h+"px;");
                     System.out.println(i+" "+j+" "+t);
                 }
                 j++;
             }
 
-            graph.addEdge(titulos0[0]+titulos1[1], titulos0[0], titulos1[1]);
+            //graph.addEdge(titulos0[0]+titulos1[1], titulos0[0], titulos1[1]);
 
             graph.addAttribute("ui.quality");
             graph.addAttribute("ui.antialias");
@@ -125,7 +126,7 @@ public final class AreaTrabajo extends JPanel
         }
         int x,y, lineaActual, lineaAnterior;
         lineaAnterior = 0;
-        x = 20; y = 100; i=0;
+        x = 20; y = 60; i=0;
         
         diagramaActivo = true;
         
@@ -134,7 +135,8 @@ public final class AreaTrabajo extends JPanel
         for (Node n : graph.getEachNode()) {
             lineaActual = (int)n.getAttribute("linea");
             if (lineaActual != lineaAnterior) i=1;
-            n.addAttribute("xy", x+(150*lineaActual), y*(++i));
+            n.addAttribute("xy", x+((150*lineaActual)+20), (y*(++i))+20);
+            System.out.println("xy "+x+((150*lineaActual)+20)+" "+(y*(++i))+20);
             //n.addAttribute("ui.label", (Object)n.getAttribute("titulo")); //+" "+n.getAttribute("valor"));
         }
         
@@ -165,27 +167,36 @@ public final class AreaTrabajo extends JPanel
             
             g.drawImage(fondo, x, y, w, h, this);
             
-            panelBoton.setVisible(!diagramaActivo);
+            add(panelBoton);            
         }
     }
     
     public JButton botonIcon(String nombre, int x, int y, String imagen){
         JButton boto = new JButton();
         ImageIcon img = new ImageIcon("src/images/"+imagen+".png");
-        boto.setIcon(img);
+        Image image = img.getImage();
+        image = image.getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH );
+        boto.setHorizontalAlignment(SwingConstants.RIGHT);
+        boto.setIcon(new ImageIcon(image));
         boto.setName(nombre.toUpperCase());
-        boto.setBounds(x, y, img.getIconWidth(), img.getIconHeight());
+        boto.setBounds(x, y, 200, 64);
         boto.setToolTipText(nombre);
         boto.addActionListener(controlador);
         boto.addMouseListener(controlador);
         boto.setLayout(new GridLayout(1,1));
+        boto.setBorder(BorderFactory.createEmptyBorder());
+        boto.setBorderPainted(false); 
+        boto.setContentAreaFilled(false); 
+        boto.setFocusPainted(false); 
+        boto.setOpaque(false);
+        boto.setText(nombre);
+        boto.setFont(new Font("Arial", Font.PLAIN, 24));
+        
         add(boto);
         return boto;
     }
     
     public void crearBotonesInicio (String toolTipText, String nombreImagen){
-        panelBoton.setSize(400,1000);
-        panelBoton.setLocation(300, 300);
         panelBoton.add(botonn = botonIcon(toolTipText, 250, 300, nombreImagen));
     }
     
