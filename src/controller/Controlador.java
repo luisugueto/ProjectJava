@@ -146,6 +146,7 @@ public class Controlador extends AbsControlador
                     break;
             }
         }
+        else setEstado("Puntero Nulo.");
     }
 
     @Override

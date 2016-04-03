@@ -50,7 +50,7 @@ public final class AreaTrabajo extends JPanel
     JPanel barraSuperior = new JPanel();
     JPanel panelBoton = new JPanel();
     
-    JButton botonFormulario, botonDiagrama, botonUsuario;
+    JButton botonn;
     
     boolean diagramaActivo = false;
     boolean diagramaCreado = false;
@@ -69,8 +69,11 @@ public final class AreaTrabajo extends JPanel
         
         graph.addAttribute("ui.stylesheet", "url('file:src/css/estiloPrincipal.css')");
         
-        crearBotonesInicio();
-        
+        add(panelBoton);
+        crearBotonesInicio("Registrar", "formulario1");
+        crearBotonesInicio("Ver Diagrama", "diagrama1");
+        crearBotonesInicio("Nuevo Usuario", "nuevo1");
+
         p.put("text.today", "Today");
         p.put("text.month", "Month");
         p.put("text.year", "Year");
@@ -170,13 +173,10 @@ public final class AreaTrabajo extends JPanel
         return boto;
     }
     
-    public void crearBotonesInicio (){
-            add(panelBoton);
-            panelBoton.setSize(400,10000);
-            panelBoton.setLocation(300, 300);
-            panelBoton.add(botonFormulario = botonIcon("Registrar", 250, 300, "formulario1"));
-            panelBoton.add(botonDiagrama = botonIcon("Ver Diagrama", 450, 300, "diagrama1"));
-            panelBoton.add(botonUsuario = botonIcon("Nuevo Usuario", 650, 300, "nuevo1"));
+    public void crearBotonesInicio (String toolTipText, String nombreImagen){
+        panelBoton.setSize(400,1000);
+        panelBoton.setLocation(300, 300);
+        panelBoton.add(botonn = botonIcon(toolTipText, 250, 300, nombreImagen));
     }
     
     public static synchronized AreaTrabajo getInstance() {
