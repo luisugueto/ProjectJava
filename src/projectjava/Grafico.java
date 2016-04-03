@@ -11,7 +11,9 @@ import javafx.stage.Stage;
  
  
 public class Grafico extends Application {
-    String desde = "", hasta = "";
+    int diaDesde, mesDesde, anioDesde, diaHasta, mesHasta, anioHasta;
+    String desde = ""+diaDesde+"-"+mesDesde+"-"+anioDesde, hasta = ""+diaHasta+"-"+mesHasta+"-"+anioHasta;
+
     @Override 
     public void start(Stage stage) {
         stage.setTitle("Gráfico");
@@ -44,4 +46,13 @@ public class Grafico extends Application {
     
     public void setDesde(String des){ this.desde = des; }
     public void setHasta(String has){ this.hasta = hasta; }
+    
+    public void setDiaDesde(int n){ this.diaDesde = n; }
+    public void setMesDesde(int n){ this.mesDesde = n; }
+    public void setAnioDesde(int n){ this.anioDesde = n; }
+
+    public void setDiaHasta(int n){ this.diaHasta = n; }
+    public void setMesHasta(int n){ this.mesHasta = n; }
+    public void setAnioHasta(int n){ this.anioHasta = n; }
+
 }
