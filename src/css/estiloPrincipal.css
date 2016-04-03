@@ -6,6 +6,7 @@ node {
     text-size: 12;
     text-padding: 4px;
     fill-color: white;
+    fill-mode: image-scaled;
     
     stroke-color:black;
     stroke-mode: plain;
