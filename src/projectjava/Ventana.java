@@ -31,8 +31,8 @@ public class Ventana extends JFrame
     {
         super("EVA");
         setTipo(tipo);
-        if (getTipo() == 1) setTitle("EVA (ADMINISTRADOR)");
-        if (getTipo() == 2) setTitle("EVA (USUARIO)");
+        //if (getTipo() == 1) setTitle("EVA (ADMINISTRADOR)");
+        //if (getTipo() == 2) setTitle("EVA (USUARIO)");
         //setIconImage(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/images/logo.png")));
         
         this.setSize(800,600);        

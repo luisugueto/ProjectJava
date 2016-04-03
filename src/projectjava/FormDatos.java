@@ -8,7 +8,12 @@ package projectjava;
 import java.sql.ResultSet;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.Properties;
+import javax.swing.JPanel;
 import model.DB;
+import org.jdatepicker.impl.JDatePanelImpl;
+import org.jdatepicker.impl.JDatePickerImpl;
+import org.jdatepicker.impl.UtilDateModel;
 
 /**
  *
@@ -27,18 +32,19 @@ public class FormDatos extends javax.swing.JFrame {
     
     Calendar calendario = new GregorianCalendar();
     int dia, mes, anio;
-    String mess = " ";
+    String mess = " ", diaa = " ";
     
     public FormDatos() {
         initComponents();
         setExtendedState(3);
         setLocationRelativeTo(null);
         dia = calendario.get(Calendar.DAY_OF_MONTH);
-        mes = calendario.get(Calendar.MONTH);
-        if (mes <= 10) mess = "0"+mes;
-        else mess = ""+mes;
+        mes = calendario.get(Calendar.MONTH)+1;
+        if (mes <= 10) mess = "0"+mes; else mess = ""+mes;
+        if (dia <= 10) diaa = "0"+dia; else diaa = ""+dia;
         anio = calendario.get(Calendar.YEAR);
-        fecha.setText(""+dia+"/"+mess+"/"+anio);
+        fecha.setText(""+diaa+"/"+mess+"/"+anio);
+        
     }
 
     /**

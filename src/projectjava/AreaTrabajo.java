@@ -15,7 +15,7 @@ import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
 
 
-public class AreaTrabajo extends JPanel
+public final class AreaTrabajo extends JPanel
 {
     private static volatile AreaTrabajo instance = null;
     Controlador controlador;
@@ -48,8 +48,9 @@ public class AreaTrabajo extends JPanel
     Properties p = new Properties();
     
     JPanel barraSuperior = new JPanel();
+    JPanel panelBoton = new JPanel();
     
-    JButton botonFormulario, botonDiagrama, boton3;
+    JButton botonn;
     
     boolean diagramaActivo = false;
     boolean diagramaCreado = false;
@@ -58,16 +59,21 @@ public class AreaTrabajo extends JPanel
     AreaTrabajo (Controlador controlador) {
         super();
         setName("AT");
-        setLayout(new BorderLayout());
+        setLayout(new BorderLayout());       
+            
         this.controlador = controlador;
         instance = this;
         datos = DB.getInstance();
-        
         boton = new ButtonTabComponent(this);
         boton.setBounds(5, 0, boton.getWidth(), boton.getHeight());
         
         graph.addAttribute("ui.stylesheet", "url('file:src/css/estiloPrincipal.css')");
         
+        add(panelBoton);
+        crearBotonesInicio("Registrar", "formulario");
+        crearBotonesInicio("Ver Diagrama", "diagrama");
+        crearBotonesInicio("Nuevo Usuario", "nuevo");
+
         p.put("text.today", "Today");
         p.put("text.month", "Month");
         p.put("text.year", "Year");
@@ -76,11 +82,13 @@ public class AreaTrabajo extends JPanel
         
         
         barraSuperior.setSize(this.getWidth(), 25);
-        barraSuperior.add(boton);
-        barraSuperior.add(botonFecha);
+        barraSuperior.add(boton, "East");
+        barraSuperior.add(botonFecha);   
+        
         /*botonFormulario = botones("Nuevo", 200, 300, 50, 50, "bar-chart");
         botonDiagrama = botones("Ver Diagrama", 400, 300, 50, 50, "bar-chart");
         boton3 = botones("Nuevo Usuario", 600, 300, 50, 50, "bar-chart");*/
+        
     }
     
     public void valoresDiagrama() {
@@ -91,7 +99,7 @@ public class AreaTrabajo extends JPanel
                 
         view.setBounds(0, 60, getWidth()-10, getHeight()-40);
         viewer.enableAutoLayout();
-        
+        remove(panelBoton);
         int c, i=0, j=0;
         
         if(!diagramaCreado) {
@@ -145,7 +153,7 @@ public class AreaTrabajo extends JPanel
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        
+
         if (!diagramaActivo) {
             Image fondo;
             fondo = controlador.crearImagen("/images/inicio.png", "Fondo Inicial").getImage();
@@ -153,22 +161,32 @@ public class AreaTrabajo extends JPanel
             w = fondo.getWidth(null);
             h = fondo.getHeight(null);
             x = (this.getWidth()/2)-(w/2);
-            y = (this.getHeight()/5)-(h/2);
+            y = (this.getHeight()/5)-(h/2)+50;
+            
             g.drawImage(fondo, x, y, w, h, this);
+            
+            panelBoton.setVisible(!diagramaActivo);
         }
     }
     
-    public JButton botones(String nombre, int x, int y, int ancho, int alto, String imagen){
-        JButton boton = new JButton();
-        boton.setName(nombre.toUpperCase());
-        boton.setBounds(x, y, ancho, alto);
-        boton.setToolTipText(nombre);
-        boton.setIcon(new ImageIcon("src/images/"+imagen+".png"));
-        boton.addActionListener(controlador);
-        boton.addMouseListener(controlador);
-        boton.setSize(ancho, alto);
-        add(boton);
-        return boton;
+    public JButton botonIcon(String nombre, int x, int y, String imagen){
+        JButton boto = new JButton();
+        ImageIcon img = new ImageIcon("src/images/"+imagen+".png");
+        boto.setIcon(img);
+        boto.setName(nombre.toUpperCase());
+        boto.setBounds(x, y, img.getIconWidth(), img.getIconHeight());
+        boto.setToolTipText(nombre);
+        boto.addActionListener(controlador);
+        boto.addMouseListener(controlador);
+        boto.setLayout(new GridLayout(1,1));
+        add(boto);
+        return boto;
+    }
+    
+    public void crearBotonesInicio (String toolTipText, String nombreImagen){
+        panelBoton.setSize(400,1000);
+        panelBoton.setLocation(300, 300);
+        panelBoton.add(botonn = botonIcon(toolTipText, 250, 300, nombreImagen));
     }
     
     public static synchronized AreaTrabajo getInstance() {

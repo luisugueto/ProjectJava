@@ -9,9 +9,24 @@ public class ProjectJava
     {
         System.setProperty("org.graphstream.ui.renderer", "org.graphstream.ui.j2dviewer.J2DGraphRenderer");
         
-        Login login = new Login();
-                
-        login.setVisible(true);
+       // Login login = new Login();
+       
+        // login.setVisible(true);
+        
+        Ventana ventana = new Ventana(1);
+    
+        Controlador controlador = new Controlador();
+        controlador.setVentana(ventana);
+        ventana.setControlador(controlador);
+        ventana.setTipo(1);
+        ventana.setId(1);
+        ventana.construirGUI();
+        controlador.setObjects();
+        
+        DB datos = DB.getInstance();
+        
+        ventana.setVisible(true);
+        
     }
     
     public static void iniciar(int tipo, int id) {
