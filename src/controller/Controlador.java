@@ -12,6 +12,7 @@ import model.DB;
 import projectjava.Ventana;
 import projectjava.BarraHerramientas;
 import projectjava.CrearUsuario;
+import projectjava.Fecha;
 import projectjava.FormDatos;
 
 public class Controlador extends AbsControlador
@@ -44,6 +45,9 @@ public class Controlador extends AbsControlador
             case "NUEVO USUARIO":
                 CrearUsuario crear = new CrearUsuario();
                 crear.setVisible(true);
+                break;
+            case "DISPONIBILIDAD":
+                Fecha fecha = new Fecha(2);
                 break;
             case "SALIR":
                 ventana.dispatchEvent(new WindowEvent(ventana, WindowEvent.WINDOW_CLOSING));
