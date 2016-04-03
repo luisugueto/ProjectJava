@@ -157,6 +157,8 @@ public final class AreaTrabajo extends JPanel
             y = (this.getHeight()/5)-(h/2)+50;
             
             g.drawImage(fondo, x, y, w, h, this);
+            
+            panelBoton.setVisible(!diagramaActivo);
         }
     }
     
@@ -169,6 +171,7 @@ public final class AreaTrabajo extends JPanel
         boto.setToolTipText(nombre);
         boto.addActionListener(controlador);
         boto.addMouseListener(controlador);
+        boto.setLayout(new GridLayout(1,1));
         add(boto);
         return boto;
     }
