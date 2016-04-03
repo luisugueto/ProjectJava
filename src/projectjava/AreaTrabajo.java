@@ -15,7 +15,7 @@ import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
 
 
-public class AreaTrabajo extends JPanel
+public final class AreaTrabajo extends JPanel
 {
     private static volatile AreaTrabajo instance = null;
     Controlador controlador;
@@ -48,6 +48,7 @@ public class AreaTrabajo extends JPanel
     Properties p = new Properties();
     
     JPanel barraSuperior = new JPanel();
+    JPanel panelBoton = new JPanel();
     
     JButton botonFormulario, botonDiagrama, botonUsuario;
     
@@ -58,15 +59,17 @@ public class AreaTrabajo extends JPanel
     AreaTrabajo (Controlador controlador) {
         super();
         setName("AT");
-        setLayout(new BorderLayout());
+        setLayout(new BorderLayout());       
+            
         this.controlador = controlador;
         instance = this;
         datos = DB.getInstance();
-        
         boton = new ButtonTabComponent(this);
         boton.setBounds(this.getWidth()-20, 0, boton.getWidth(), boton.getHeight());
         
         graph.addAttribute("ui.stylesheet", "url('file:src/css/estiloPrincipal.css')");
+        
+        crearBotonesInicio();
         
         p.put("text.today", "Today");
         p.put("text.month", "Month");
@@ -76,7 +79,7 @@ public class AreaTrabajo extends JPanel
         
         barraSuperior.setSize(this.getWidth(), 25);
         barraSuperior.add(boton, "East");
-        barraSuperior.add(botonFecha);        
+        barraSuperior.add(botonFecha);   
     }
     
     public void valoresDiagrama() {
@@ -87,7 +90,7 @@ public class AreaTrabajo extends JPanel
                 
         view.setBounds(0, 60, getWidth()-10, getHeight()-40);
         viewer.enableAutoLayout();
-        
+        remove(panelBoton);
         int c, i=0, j=0;
         
         if(!diagramaCreado) {
@@ -140,7 +143,7 @@ public class AreaTrabajo extends JPanel
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        
+
         if (!diagramaActivo) {
             Image fondo;
             fondo = controlador.crearImagen("/images/inicio.png", "Fondo Inicial").getImage();
@@ -149,14 +152,9 @@ public class AreaTrabajo extends JPanel
             h = fondo.getHeight(null);
             x = (this.getWidth()/2)-(w/2);
             y = (this.getHeight()/5)-(h/2)+50;
+            
             g.drawImage(fondo, x, y, w, h, this);
-            
-            /*botonFormulario = botonIcon("Formulario", 250, 300, "formulario1");
-            botonDiagrama = botonIcon("Diagrama", 450, 300, "diagrama1");
-            botonUsuario = botonIcon("Usuario", 650, 300, "nuevo1");*/
-            
         }
-        
     }
     
     public JButton botonIcon(String nombre, int x, int y, String imagen){
@@ -167,9 +165,18 @@ public class AreaTrabajo extends JPanel
         boto.setBounds(x, y, img.getIconWidth(), img.getIconHeight());
         boto.setToolTipText(nombre);
         boto.addActionListener(controlador);
-        //boto.addMouseListener(controlador);
+        boto.addMouseListener(controlador);
         add(boto);
         return boto;
+    }
+    
+    public void crearBotonesInicio (){
+            add(panelBoton);
+            panelBoton.setSize(400,10000);
+            panelBoton.setLocation(300, 300);
+            panelBoton.add(botonFormulario = botonIcon("Registrar", 250, 300, "formulario1"));
+            panelBoton.add(botonDiagrama = botonIcon("Ver Diagrama", 450, 300, "diagrama1"));
+            panelBoton.add(botonUsuario = botonIcon("Nuevo Usuario", 650, 300, "nuevo1"));
     }
     
     public static synchronized AreaTrabajo getInstance() {

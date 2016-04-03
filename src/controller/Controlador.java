@@ -124,14 +124,20 @@ public class Controlador extends AbsControlador
                 case "DISPONIBILIDAD":
                     setEstado("Muestra un gráfico según los valores de disponibilidad en un rango de fechas.");
                     break;
-                case "MODIFICAR USUARIO":
+                case "COSTOS":
+                    setEstado("Muestra un gráfico según los valores de disponibilidad en un rango de fechas.");
+                    break;
+                case "INGRESOS":
+                    setEstado("Muestra un gráfico según los valores de disponibilidad en un rango de fechas.");
+                    break;
+                case "VER LISTA":
                     setEstado("Modificar Usuario");
                     break;
-                case "INFORMACIÓN":
-                    setEstado("Información");
+                case "AYUDA":
+                    setEstado("Ayuda");
                     break;
-                case "REPORTAR ERROR":
-                    setEstado("Reportar Error");
+                case "CERRAR SESIÓN":
+                    setEstado("Cerrar Sesión");
                     break;
 
                 default:
