@@ -25,8 +25,9 @@ public class Fecha extends javax.swing.JFrame {
      */
     
     UtilDateModel model = new UtilDateModel();
-    JDatePanelImpl datePanel;
-    JDatePickerImpl botonFecha;
+    UtilDateModel model1 = new UtilDateModel();
+    JDatePanelImpl datePanel,datePanel1;
+    JDatePickerImpl botonFecha, botonFecha1;
     Properties p = new Properties();
 
     JPanel panel = new JPanel();
@@ -41,11 +42,32 @@ public class Fecha extends javax.swing.JFrame {
         label1.setVisible(true);
         label2.setVisible(true);
         
-        for (int n=0; n<num; n++){
+        /*for (int n=0; n<num; n++){
             if(n==0) panel.add(label1);
             if(n==1) panel.add(label2);
             crearFechas();
-        }
+        }*/
+        
+        p.put("text.today", "Today");
+        p.put("text.month", "Month");
+        p.put("text.year", "Year");
+        
+        // 1 DATEPANEL
+        datePanel = new JDatePanelImpl(model, p);
+        botonFecha = new JDatePickerImpl(datePanel, new DateLabelFormatter());
+        panel.add(label1);
+        panel.add(botonFecha);
+        
+        
+        // 2 DATEPANEL
+        datePanel1 = new JDatePanelImpl(model1, p);
+        botonFecha1 = new JDatePickerImpl(datePanel1, new DateLabelFormatter());
+        panel.add(label2);
+        panel.add(botonFecha1);
+
+        add(panel);       
+        
+        panel.setSize(260, 100);
         setVisible(true);
         setLocationRelativeTo(null);
         setResizable(false);
@@ -62,7 +84,7 @@ public class Fecha extends javax.swing.JFrame {
         
         panel.setSize(260, 100);
         panel.add(botonFecha);
-       
+
         add(panel);
     }
 
@@ -90,6 +112,11 @@ public class Fecha extends javax.swing.JFrame {
         });
 
         cancelar.setText("Cancelar");
+        cancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -116,10 +143,23 @@ public class Fecha extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void aceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarActionPerformed
-        setVisible(false);
+        dispose();
         Grafico grafico = new Grafico();
+             
+        grafico.setDiaDesde(botonFecha.getModel().getDay());
+        grafico.setMesDesde(botonFecha.getModel().getMonth());
+        grafico.setAnioDesde(botonFecha.getModel().getYear());
+        
+        grafico.setDiaHasta(botonFecha1.getModel().getDay());
+        grafico.setMesHasta(botonFecha1.getModel().getMonth());
+        grafico.setAnioHasta(botonFecha1.getModel().getYear());
+        
         grafico.iniciar();
     }//GEN-LAST:event_aceptarActionPerformed
+
+    private void cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarActionPerformed
+        dispose();
+    }//GEN-LAST:event_cancelarActionPerformed
 
     /**
      * @param args the command line arguments

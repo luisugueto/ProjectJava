@@ -11,7 +11,9 @@ import javafx.stage.Stage;
  
  
 public class Grafico extends Application {
-    String desde = "", hasta = "";
+    int diaDesde, mesDesde, anioDesde, diaHasta, mesHasta, anioHasta;
+    String desde = ""+getDiaDesde()+"-"+getMesDesde()+"-"+getAnioDesde(), hasta = ""+getDiaHasta()+"-"+getMesHasta()+"-"+getAnioHasta();
+
     @Override 
     public void start(Stage stage) {
         stage.setTitle("Gráfico");
@@ -26,10 +28,11 @@ public class Grafico extends Application {
         series1.setName("Prueba");
         
         series1.getData().add(new XYChart.Data("", 0));
-        series1.getData().add(new XYChart.Data(desde, 30));
-        series1.getData().add(new XYChart.Data(hasta, 60));
-        
-        Scene scene  = new Scene(lineChart,500,400);       
+        series1.getData().add(new XYChart.Data(getDesde(), 30));
+        series1.getData().add(new XYChart.Data(getHasta(), 31));
+        series1.getData().add(new XYChart.Data("", 0));
+                   
+        Scene scene  = new Scene(lineChart,800,600);       
         lineChart.getData().add(series1);
        
         stage.setScene(scene);
@@ -37,11 +40,30 @@ public class Grafico extends Application {
     }
     
     public void iniciar(){
-        System.out.println(desde);  
-        System.out.println(hasta);
         launch();
     }
     
     public void setDesde(String des){ this.desde = des; }
-    public void setHasta(String has){ this.hasta = hasta; }
+    public void setHasta(String has){ this.hasta = has; }
+    
+    public String getDesde(){ return desde; }
+    public String getHasta(){ return hasta; }
+    
+    public void setDiaDesde(int n){ this.diaDesde = n; }
+    public void setMesDesde(int n){ this.mesDesde = n; }
+    public void setAnioDesde(int n){ this.anioDesde = n; }
+
+    public void setDiaHasta(int n){ this.diaHasta = n; }
+    public void setMesHasta(int n){ this.mesHasta = n; }
+    public void setAnioHasta(int n){ this.anioHasta = n; }
+    
+    
+    public int getDiaDesde(){ return diaDesde; }
+    public int getMesDesde(){ return mesDesde; }
+    public int getAnioDesde(){ return anioDesde; }
+
+    public int getDiaHasta(){ return diaHasta; }
+    public int getMesHasta(){ return mesHasta; }
+    public int getAnioHasta(){ return anioHasta; }
+
 }
