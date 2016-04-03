@@ -62,6 +62,7 @@ public class Fecha extends javax.swing.JFrame {
         
         panel.setSize(260, 100);
         panel.add(botonFecha);
+       
         add(panel);
     }
 
@@ -82,6 +83,11 @@ public class Fecha extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(250, 270));
 
         aceptar.setText("Aceptar");
+        aceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aceptarActionPerformed(evt);
+            }
+        });
 
         cancelar.setText("Cancelar");
 
@@ -108,6 +114,12 @@ public class Fecha extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void aceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarActionPerformed
+        setVisible(false);
+        Grafico grafico = new Grafico();
+        grafico.iniciar();
+    }//GEN-LAST:event_aceptarActionPerformed
 
     /**
      * @param args the command line arguments

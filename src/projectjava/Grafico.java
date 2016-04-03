@@ -11,34 +11,37 @@ import javafx.stage.Stage;
  
  
 public class Grafico extends Application {
- 
+    String desde = "", hasta = "";
     @Override 
     public void start(Stage stage) {
         stage.setTitle("Gráfico");
         final CategoryAxis xAxis = new CategoryAxis();
         final NumberAxis yAxis = new NumberAxis();
-         xAxis.setLabel("Comportamiento Térmico");
+         xAxis.setLabel("Prueba");
         final LineChart<String,Number> lineChart = new LineChart<String,Number>(xAxis,yAxis);
        
-        lineChart.setTitle("Comportamiento Térmico");
+        lineChart.setTitle("Prueba");
                           
         XYChart.Series series1 = new XYChart.Series();
-        series1.setName("Estados Térmicos");
+        series1.setName("Prueba");
         
-        series1.getData().add(new XYChart.Data("Primero", 0));
-        series1.getData().add(new XYChart.Data("Segundo", 30));
-        series1.getData().add(new XYChart.Data("Tercero", 31));
-        series1.getData().add(new XYChart.Data("Cuarto", 0));
-                   
-        Scene scene  = new Scene(lineChart,800,600);       
+        series1.getData().add(new XYChart.Data("", 0));
+        series1.getData().add(new XYChart.Data(desde, 30));
+        series1.getData().add(new XYChart.Data(hasta, 60));
+        
+        Scene scene  = new Scene(lineChart,500,400);       
         lineChart.getData().add(series1);
        
         stage.setScene(scene);
         stage.show();
     }
     
-    
-    public static void main(String[] args) {
-        launch(args);
+    public void iniciar(){
+        System.out.println(desde);  
+        System.out.println(hasta);
+        launch();
     }
+    
+    public void setDesde(String des){ this.desde = des; }
+    public void setHasta(String has){ this.hasta = hasta; }
 }
