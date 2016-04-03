@@ -16,7 +16,7 @@ import org.jdatepicker.impl.UtilDateModel;
 
 /**
  *
- * @author Ypsis
+ * @author Luis
  */
 public class Fecha extends javax.swing.JFrame {
 
