@@ -68,7 +68,7 @@ public final class AreaTrabajo extends JPanel
         
         graph.addAttribute("ui.stylesheet", "url('file:src/css/estiloPrincipal.css')");
         
-        add(panelBoton);
+        add(panelBoton, BorderLayout.SOUTH);
 
         p.put("text.today", "Today");
         p.put("text.month", "Month");
@@ -78,7 +78,7 @@ public final class AreaTrabajo extends JPanel
         
         crearBotonesInicio("Registrar", "formulario");
         crearBotonesInicio("Ver Diagrama", "diagrama");
-        crearBotonesInicio("Nuevo Usuario", "nuevo");
+        crearBotonesInicio("Gráfico", "nuevo");
         panelBoton.setSize(this.getWidth(), 80);
         panelBoton.setLocation(30, 300);
         
@@ -95,7 +95,7 @@ public final class AreaTrabajo extends JPanel
     
     public void dibujarDiagrama () {
                 
-        view.setBounds(0, 30, getWidth()-20, getHeight()-20);
+        view.setBounds(0, 30, getWidth(), getHeight()-20);
         viewer.enableAutoLayout();
         remove(panelBoton);
         int c, i=0, j=0, h, a;
@@ -113,7 +113,6 @@ public final class AreaTrabajo extends JPanel
                     n.addAttribute("linea", j);
                     n.addAttribute("ui.style", "fill-image: url('src/images/nodes/"+t+".png');");
                     n.addAttribute("ui.style", "size: "+a+"px, "+h+"px;");
-                    System.out.println(i+" "+j+" "+t);
                 }
                 j++;
             }
@@ -134,9 +133,11 @@ public final class AreaTrabajo extends JPanel
         
         for (Node n : graph.getEachNode()) {
             lineaActual = (int)n.getAttribute("linea");
-            if (lineaActual != lineaAnterior) i=1;
-            n.addAttribute("xy", x+((150*lineaActual)+20), (y*(++i))+20);
-            System.out.println("xy "+x+((150*lineaActual)+20)+" "+(y*(++i))+20);
+            if (lineaActual != lineaAnterior) { 
+                i=1;
+                lineaAnterior = lineaActual;
+            }
+            n.addAttribute("xy", x+((a*2*lineaActual)+20), (y*(++i))+20);
             //n.addAttribute("ui.label", (Object)n.getAttribute("titulo")); //+" "+n.getAttribute("valor"));
         }
         
@@ -167,7 +168,7 @@ public final class AreaTrabajo extends JPanel
             
             g.drawImage(fondo, x, y, w, h, this);
             
-            add(panelBoton);            
+            add(panelBoton, BorderLayout.SOUTH);            
         }
     }
     

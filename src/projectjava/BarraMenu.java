@@ -16,7 +16,7 @@ public class BarraMenu extends JMenuBar
 {
     int tipo;
     private KeyStroke accelerator;
-    String menuText[] = {"Datos", "Grafico", "Usuarios", "Sistema"};
+    String menuText[] = {"Datos", "Grafico", /*"Usuarios",*/ "Sistema"};
 
     JMenu menus[];
     
@@ -24,11 +24,11 @@ public class BarraMenu extends JMenuBar
             
            graficoText[] = {"Disponibilidad", "Costos", "Ingresos"},
             
-           usuarioText[] = {"Registrar", "Ver lista"},
+           //usuarioText[] = {"Registrar", "Ver lista"},
             
            ayudaText[]   = {"Ayuda", "Cerrar Sesión", "Salir"};
     
-    String textItems[][] = {archivoText, graficoText, usuarioText, ayudaText};
+    String textItems[][] = {archivoText, graficoText, /*usuarioText,*/ ayudaText};
     
     String toToggle [] = {"Registrar"};
     boolean menusActivos;

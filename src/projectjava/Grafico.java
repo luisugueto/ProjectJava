@@ -16,21 +16,25 @@ public class Grafico extends Application {
 
     @Override 
     public void start(Stage stage) {
-        stage.setTitle("Gráfico");
+        stage.setTitle("Gráfico de Disponibilidad");
         final CategoryAxis xAxis = new CategoryAxis();
         final NumberAxis yAxis = new NumberAxis();
-         xAxis.setLabel("Prueba");
+         xAxis.setLabel("Fechas");
         final LineChart<String,Number> lineChart = new LineChart<String,Number>(xAxis,yAxis);
        
-        lineChart.setTitle("Prueba");
+        lineChart.setTitle("Gráfico de Disponibilidad entre fechas");
                           
         XYChart.Series series1 = new XYChart.Series();
-        series1.setName("Prueba");
+        series1.setName("Disponibilidad");
         
-        series1.getData().add(new XYChart.Data("", 0));
-        series1.getData().add(new XYChart.Data(getDesde(), 30));
-        series1.getData().add(new XYChart.Data(getHasta(), 31));
-        series1.getData().add(new XYChart.Data("", 0));
+        //series1.getData().add(new XYChart.Data("", 0));
+        //series1.getData().add(new XYChart.Data(getDesde(), 30));
+        //series1.getData().add(new XYChart.Data(getHasta(), 31));
+        //series1.getData().add(new XYChart.Data("", 0));
+        
+        for (int i =0; i < 20 ; i++) {
+            series1.getData().add(new XYChart.Data((i+1)+"-03-16", (int)Math.floor(Math.random()*(200-30)+30)));
+        }
                    
         Scene scene  = new Scene(lineChart,800,600);       
         lineChart.getData().add(series1);
