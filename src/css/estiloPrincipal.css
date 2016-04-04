@@ -3,7 +3,6 @@ node {
     size-mode: normal;
     
     text-size: 12;
-    text-padding: 4px;
     fill-color: white;
     fill-mode: image-scaled;
     
@@ -11,7 +10,10 @@ node {
     stroke-mode: plain;
     stroke-width: 3;
         
-    /*shadow-mode: gradient-radial;*/
+    shadow-mode: gradient-radial;
+    shadow-width: 2px;
+    shadow-color: #999, white;
+    shadow-offset: 3px, -3px;
     
 }
 
@@ -21,4 +23,9 @@ node:clicked {
 
 edge {
     shape: cubic-curve;
+}
+
+graph { 
+    fill-mode: image-scaled-ratio-max;
+    fill-image: url('src/images/dbg.jpg');
 }

@@ -113,12 +113,15 @@ public final class AreaTrabajo extends JPanel
                     n.addAttribute("linea", j);
                     n.addAttribute("ui.style", "fill-image: url('src/images/nodes/"+t+".png');");
                     n.addAttribute("ui.style", "size: "+a+"px, "+h+"px;");
+                    n.addAttribute("ui.style", "text-offset: "+(a+5)+"px, -3px;");
                 }
                 j++;
             }
 
-            //graph.addEdge(titulos0[0]+titulos1[1], titulos0[0], titulos1[1]);
-
+            graph.addEdge(titulos[0][0]+titulos1[1], titulos[0][0], titulos[1][1]);
+            graph.addEdge(titulos[0][1]+titulos1[1], titulos[0][1], titulos[1][1]);
+            graph.addEdge(titulos[1][1]+titulos3[0], titulos[1][1], titulos[3][0]);
+            
             graph.addAttribute("ui.quality");
             graph.addAttribute("ui.antialias");
             diagramaCreado = true;
@@ -138,7 +141,7 @@ public final class AreaTrabajo extends JPanel
                 lineaAnterior = lineaActual;
             }
             n.addAttribute("xy", x+((a*2*lineaActual)+20), (y*(++i))+20);
-            //n.addAttribute("ui.label", (Object)n.getAttribute("titulo")); //+" "+n.getAttribute("valor"));
+            n.addAttribute("ui.label", "Valor"); //+" "+n.getAttribute("valor"));
         }
         
         add(barraSuperior, BorderLayout.NORTH);
