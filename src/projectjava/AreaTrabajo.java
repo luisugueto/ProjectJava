@@ -39,9 +39,13 @@ public final class AreaTrabajo extends JPanel
     String[] titulos6 = {"EVA"};
     String[][] titulos = {titulos0, titulos1, titulos2, titulos3, titulos4, titulos5, titulos6};
             
-    Graph graph = new SingleGraph("TITULO");
-    Viewer viewer = new Viewer(graph, Viewer.ThreadingModel.GRAPH_IN_ANOTHER_THREAD);
-    View view = viewer.addDefaultView(false);
+    //Graph graph = new SingleGraph("TITULO");
+    //Viewer viewer = new Viewer(graph, Viewer.ThreadingModel.GRAPH_IN_ANOTHER_THREAD);
+    //View view = viewer.addDefaultView(false);
+    
+    //Variables de Clases para el Diagrama
+    mxGraph graph = new mxGraph(); 
+    mxGraphComponent graphComponent = new mxGraphComponent(graph);
     
     ButtonTabComponent boton;
     UtilDateModel model = new UtilDateModel();
@@ -68,7 +72,7 @@ public final class AreaTrabajo extends JPanel
         boton = new ButtonTabComponent(this);
         boton.setBounds(5, 0, boton.getWidth(), boton.getHeight());
         
-        graph.addAttribute("ui.stylesheet", "url('file:src/css/estiloPrincipal.css')");
+       // graph.addAttribute("ui.stylesheet", "url('file:src/css/estiloPrincipal.css')");
         
         add(panelBoton, BorderLayout.SOUTH);
 
@@ -103,7 +107,6 @@ public final class AreaTrabajo extends JPanel
         int x = 20, y = 60, i=0, a = 0, j = 0;
         int lineaActual = 0, lineaAnterior = 1;
                 
-        mxGraph graph = new mxGraph();
 		Object parent = graph.getDefaultParent();
 
 		graph.getModel().beginUpdate();
@@ -127,9 +130,7 @@ public final class AreaTrabajo extends JPanel
 			graph.getModel().endUpdate();
 		}
 
-		mxGraphComponent graphComponent = new mxGraphComponent(graph);
 		add(graphComponent);
-        
         add(barraSuperior, BorderLayout.NORTH);
         barraSuperior.repaint();
         repaint();
@@ -137,7 +138,7 @@ public final class AreaTrabajo extends JPanel
     
     public void cerrarDiagrama() {
         diagramaActivo = false;
-        remove(view);
+        remove(graphComponent);
         remove(barraSuperior);
         paintComponent(getGraphics());
     }
