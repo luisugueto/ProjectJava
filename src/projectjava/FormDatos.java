@@ -96,9 +96,7 @@ public class FormDatos extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("EVA");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        setMaximumSize(getPreferredSize());
         setMinimumSize(getMaximumSize());
-        setSize(getMaximumSize());
         getContentPane().setLayout(null);
 
         procesar.setText("Procesar");
@@ -108,7 +106,7 @@ public class FormDatos extends javax.swing.JFrame {
             }
         });
         getContentPane().add(procesar);
-        procesar.setBounds(140, 450, 97, 25);
+        procesar.setBounds(140, 450, 75, 23);
 
         tiempoMedioReparar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -138,7 +136,7 @@ public class FormDatos extends javax.swing.JFrame {
 
         jLabel6.setText("<html>Tiempo total<br>de funcionamiento:");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(12, 98, 137, 30);
+        jLabel6.setBounds(12, 98, 92, 28);
 
         jLabel7.setText("<html>Tiempo de indisponiblidad<br>por manten.:");
         getContentPane().add(jLabel7);
@@ -146,11 +144,11 @@ public class FormDatos extends javax.swing.JFrame {
 
         jLabel8.setText("<html>Valor Total<br>del Inventario:");
         getContentPane().add(jLabel8);
-        jLabel8.setBounds(300, 60, 103, 30);
+        jLabel8.setBounds(300, 60, 71, 28);
 
         jLabel9.setText("<html>Valor Total de los<br>Inventarios para<br>Mantenimiento:");
         getContentPane().add(jLabel9);
-        jLabel9.setBounds(300, 100, 124, 45);
+        jLabel9.setBounds(300, 100, 82, 42);
 
         jLabel10.setText("<html>Valor Total de los Activos Operacionales:");
         getContentPane().add(jLabel10);
@@ -221,7 +219,7 @@ public class FormDatos extends javax.swing.JFrame {
             }
         });
         getContentPane().add(cancelar);
-        cancelar.setBounds(320, 450, 96, 25);
+        cancelar.setBounds(320, 450, 75, 23);
 
         fecha.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
         fecha.setText("1/1/2016");
@@ -231,7 +229,7 @@ public class FormDatos extends javax.swing.JFrame {
 
         jLabel16.setText("Fecha:");
         getContentPane().add(jLabel16);
-        jLabel16.setBounds(380, 10, 47, 22);
+        jLabel16.setBounds(380, 10, 33, 22);
 
         check.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

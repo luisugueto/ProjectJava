@@ -1,5 +1,7 @@
 package projectjava;
 
+import com.mxgraph.swing.mxGraphComponent;
+import com.mxgraph.view.mxGraph;
 import controller.Controlador;
 import javax.swing.*;
 import java.awt.*;
@@ -95,54 +97,38 @@ public final class AreaTrabajo extends JPanel
     
     public void dibujarDiagrama () {
                 
-        view.setBounds(0, 30, getWidth(), getHeight()-20);
-        viewer.enableAutoLayout();
-        remove(panelBoton);
-        int c, i=0, j=0, h, a;
-        h = Math.round(this.getHeight()/14);
-        a = Math.round((float)h*(float)2.5);
-        
-        if(!diagramaCreado) {
-            
-            c = titulos0.length;
-
-            for (String[] tts : titulos) {
-                for (String t : tts) {
-                    Node n = graph.addNode(t);
-                    n.addAttribute("titulo", t);
-                    n.addAttribute("linea", j);
-                    n.addAttribute("ui.style", "fill-image: url('src/images/nodes/"+t+".png');");
-                    n.addAttribute("ui.style", "size: "+a+"px, "+h+"px;");
-                    n.addAttribute("ui.style", "text-offset: "+(a+5)+"px, -3px;");
-                }
-                j++;
-            }
-
-            graph.addEdge(titulos[0][0]+titulos1[1], titulos[0][0], titulos[1][1]);
-            graph.addEdge(titulos[0][1]+titulos1[1], titulos[0][1], titulos[1][1]);
-            graph.addEdge(titulos[1][1]+titulos3[0], titulos[1][1], titulos[3][0]);
-            
-            graph.addAttribute("ui.quality");
-            graph.addAttribute("ui.antialias");
-            diagramaCreado = true;
-        }
-        int x,y, lineaActual, lineaAnterior;
-        lineaAnterior = 0;
-        x = 20; y = 60; i=0;
-        
+        remove(panelBoton);        
         diagramaActivo = true;
         
-        add(view, BorderLayout.CENTER);
-        
-        for (Node n : graph.getEachNode()) {
-            lineaActual = (int)n.getAttribute("linea");
-            if (lineaActual != lineaAnterior) { 
-                i=1;
-                lineaAnterior = lineaActual;
-            }
-            n.addAttribute("xy", x+((a*2*lineaActual)+20), (y*(++i))+20);
-            n.addAttribute("ui.label", "Valor"); //+" "+n.getAttribute("valor"));
-        }
+        int x = 20, y = 60, i=0, a = 0, j = 0;
+        int lineaActual = 0, lineaAnterior = 1;
+                
+        mxGraph graph = new mxGraph();
+		Object parent = graph.getDefaultParent();
+
+		graph.getModel().beginUpdate();
+		try
+		{           
+           lineaActual = 1;
+           for (String[] tts : titulos) {
+                for (String t : tts) {
+                     Object v1 = graph.insertVertex(parent, null, t, x+((lineaActual*2)+a), y*(++i)+20, 100, 40);
+                }
+                lineaActual++;
+                a +=140;
+                i = 0;
+           } 
+           
+			//graph.insertEdge(parent, null, "Edge", v1, v2);
+            
+		}
+		finally
+		{
+			graph.getModel().endUpdate();
+		}
+
+		mxGraphComponent graphComponent = new mxGraphComponent(graph);
+		add(graphComponent);
         
         add(barraSuperior, BorderLayout.NORTH);
         barraSuperior.repaint();
