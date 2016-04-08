@@ -104,7 +104,7 @@ public final class AreaTrabajo extends JPanel
         remove(panelBoton);        
         diagramaActivo = true;
         
-        int x = 20, y = 60, i=0, a = 0, j = 0;
+        int x = 20, y = 60, i=0, a = 0, b = 0, c = 0;
         int lineaActual = 0, lineaAnterior = 1;
                 
 		Object parent = graph.getDefaultParent();
@@ -118,7 +118,9 @@ public final class AreaTrabajo extends JPanel
                      Object v1 = graph.insertVertex(parent, null, t, x+((lineaActual*2)+a), y*(++i)+20, 100, 40);
                 }
                 lineaActual++;
-                a +=140;
+                a += 140;
+                b = 150;
+                c += 20;
                 i = 0;
            } 
            
