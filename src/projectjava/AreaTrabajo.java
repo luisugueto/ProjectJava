@@ -5,6 +5,7 @@ import com.mxgraph.view.mxGraph;
 import controller.Controlador;
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.Properties;
 import model.DB;
 import org.graphstream.graph.Graph;
@@ -26,12 +27,12 @@ public final class AreaTrabajo extends JPanel
     String eol = "<br>"; //System.getProperty("line.separator");
     
     String[] titulos0 = 
-        { "Mantenimiento predictivo", "Mantenimiento preventivo",
-        "Planificación", "Programación", "Ejecución", "Gestión de las paradas de planta",
-        "Punto de pedido", "Cantidad de pedido", "Materiales obsoletos"};
+        { "Mantenimiento \npredictivo", "Mantenimiento \npreventivo",
+        "Planificación", "Programación", "Ejecución", "Gestión de las \nparadas de planta",
+        "Punto de pedido", "Cantidad de pedido", "Materiales \nobsoletos"};
     String[] titulos1 =
-        {"ACR", "Mantenimiento planificado", "Inventarios",
-         "Factor de utilización de la capacidad instalada"};
+        {"ACR", "Mantenimiento \nplanificado", "Inventarios",
+         "Factor de utilización de \nla capacidad instalada"};
     String[] titulos2 = {"Confiabilidad", "MTTR"};
     String[] titulos3 = {"Disponibilidad", "Costos"};
     String[] titulos4 = {"Ingresos", "AO"};
@@ -105,8 +106,11 @@ public final class AreaTrabajo extends JPanel
         diagramaActivo = true;
         
         int x = 20, y = 60, i=0, a = 0, b = 0, c = 0;
-        int lineaActual = 0, lineaAnterior = 1;
+        int lineaActual = 0;
                 
+        ArrayList<Object> v = new ArrayList<Object>();
+        Object v1;
+        
 		Object parent = graph.getDefaultParent();
 
 		graph.getModel().beginUpdate();
@@ -114,17 +118,21 @@ public final class AreaTrabajo extends JPanel
 		{           
            lineaActual = 1;
            for (String[] tts : titulos) {
+                i = 0;
                 for (String t : tts) {
-                     Object v1 = graph.insertVertex(parent, null, t, x+((lineaActual*2)+a), y*(++i)+20, 100, 40);
+                    v1 = graph.insertVertex(parent, null, t, x+((lineaActual*2)+a), y*(++i)+b+c, 100, 40);                     
+                    v.add(v1);
                 }
+                
+                if (lineaActual == 2 || lineaActual == 3 || lineaActual == 4){ c = 50;}
+                if (lineaActual == 5 || lineaActual == 6){ c = 70;}
+                
                 lineaActual++;
                 a += 140;
                 b = 150;
-                c += 20;
-                i = 0;
            } 
            
-			//graph.insertEdge(parent, null, "Edge", v1, v2);
+            graph.insertEdge(parent, null, "Edge", v.get(1), v.get(2));
             
 		}
 		finally
