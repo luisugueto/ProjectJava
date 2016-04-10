@@ -1,5 +1,6 @@
 package projectjava;
 
+import com.mxgraph.model.mxCell;
 import com.mxgraph.swing.mxGraphComponent;
 import com.mxgraph.util.mxConstants;
 import com.mxgraph.view.mxEdgeStyle;
@@ -7,6 +8,8 @@ import com.mxgraph.view.mxGraph;
 import controller.Controlador;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Properties;
@@ -170,6 +173,32 @@ public final class AreaTrabajo extends JPanel
 		{
 			graph.getModel().endUpdate();
 		}
+        
+        graphComponent.getGraphControl().addMouseListener(new MouseAdapter() {
+            @Override 
+            public void mousePressed(MouseEvent e)
+            {
+                String name;
+                Object cell = graphComponent.getCellAt(e.getX(), e.getY());
+                if (cell instanceof mxCell)
+                {
+                    name = (String)(((mxCell) cell).getValue());
+                    System.out.println(name);
+                    switch (name)
+                    {
+                        case "Mantenimiento \npredictivo":
+                            System.out.println("Mantenimiento Predictivo");
+                        break;
+                        
+                        default:
+                            
+                        break;
+                    
+                    }
+                            
+                }
+            }
+        });
 
 		add(graphComponent);
         add(barraSuperior, BorderLayout.NORTH);
