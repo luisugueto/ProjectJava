@@ -1,11 +1,14 @@
 package projectjava;
 
 import com.mxgraph.swing.mxGraphComponent;
+import com.mxgraph.util.mxConstants;
+import com.mxgraph.view.mxEdgeStyle;
 import com.mxgraph.view.mxGraph;
 import controller.Controlador;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.Properties;
 import model.DB;
 import org.graphstream.graph.Graph;
@@ -112,6 +115,12 @@ public final class AreaTrabajo extends JPanel
         Object v1;
         
 		Object parent = graph.getDefaultParent();
+        
+        Map<String, Object> style = graph.getStylesheet().getDefaultEdgeStyle();
+        style.put(mxConstants.STYLE_EDGE, mxEdgeStyle.EntityRelation);
+        style.put(mxConstants.STYLE_FONTCOLOR, "#774400");
+        style.put(mxConstants.STYLE_OPACITY, 50);
+        style.put(mxConstants.STYLE_FONTCOLOR, "#774400");
 
 		graph.getModel().beginUpdate();
 		try
