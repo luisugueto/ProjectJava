@@ -132,8 +132,30 @@ public final class AreaTrabajo extends JPanel
                 b = 150;
            } 
            
-            graph.insertEdge(parent, null, "Edge", v.get(1), v.get(2));
-            
+            graph.insertEdge(parent, null, " ", v.get(0), v.get(10));
+            graph.insertEdge(parent, null, " ", v.get(1), v.get(10));
+			graph.insertEdge(parent, null, " " , v.get(2), v.get(14));
+			graph.insertEdge(parent, null, " "  , v.get(3), v.get(14));
+            graph.insertEdge(parent, null, " " , v.get(4), v.get(14));
+            graph.insertEdge(parent, null, " " , v.get(5), v.get(15));
+            graph.insertEdge(parent, null, " " , v.get(2), v.get(16));
+			graph.insertEdge(parent, null, " " , v.get(3), v.get(16));
+            graph.insertEdge(parent, null, " " , v.get(4), v.get(16));
+            graph.insertEdge(parent, null, " " , v.get(5), v.get(16));
+            graph.insertEdge(parent, null, " " , v.get(6), v.get(11));
+            graph.insertEdge(parent, null, " " , v.get(7), v.get(11));
+            graph.insertEdge(parent, null, " " , v.get(8), v.get(11));
+            graph.insertEdge(parent, null, " " , v.get(9), v.get(13));
+            graph.insertEdge(parent, null, " " , v.get(10), v.get(13));
+            graph.insertEdge(parent, null, " " , v.get(11), v.get(16));
+            graph.insertEdge(parent, null, " " , v.get(11), v.get(18));
+            graph.insertEdge(parent, null, " " , v.get(12), v.get(18));
+            graph.insertEdge(parent, null, " " , v.get(13), v.get(15));
+            graph.insertEdge(parent, null, " " , v.get(14), v.get(15));
+            graph.insertEdge(parent, null, " " , v.get(15), v.get(17));
+            graph.insertEdge(parent, null, " " , v.get(16), v.get(19));
+            graph.insertEdge(parent, null, " " , v.get(17), v.get(19));
+            graph.insertEdge(parent, null, " " , v.get(19), v.get(20));
 		}
 		finally
 		{
