@@ -13,7 +13,7 @@ import projectjava.Ventana;
 import projectjava.BarraHerramientas;
 import projectjava.CrearUsuario;
 import projectjava.Fecha;
-import projectjava.FormDatos;
+import projectjava.FormuDatos;
 
 public class Controlador extends AbsControlador
 {
@@ -38,8 +38,7 @@ public class Controlador extends AbsControlador
         switch (fuente)
         {
             case "REGISTRAR":
-                FormDatos form = new FormDatos();
-                form.setId(ventana.getId());
+                FormuDatos form = new FormuDatos();
                 form.setVisible(true);
                 break;
             case "NUEVO USUARIO":

@@ -8,24 +8,19 @@ package projectjava;
 import java.sql.ResultSet;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import java.util.Properties;
-import javax.swing.JPanel;
+import javax.swing.JOptionPane;
 import model.DB;
-import org.jdatepicker.impl.JDatePanelImpl;
-import org.jdatepicker.impl.JDatePickerImpl;
-import org.jdatepicker.impl.UtilDateModel;
 
 /**
  *
- * @author Luis
+ * @author Ypsis
  */
-public class FormDatos extends javax.swing.JFrame {
+public class FormuDatos extends javax.swing.JFrame {
 
     /**
-     * Creates new form FormDatos
+     * Creates new form FormuDatos
      */
-    
-    DB datos = DB.getInstance();
+      DB datos = DB.getInstance();
     ResultSet resultados = null;
 
     int num, id;
@@ -34,14 +29,14 @@ public class FormDatos extends javax.swing.JFrame {
     int dia, mes, anio;
     String mess = " ", diaa = " ";
     
-    public FormDatos() {
+    public FormuDatos() {
         initComponents();
-        setExtendedState(3);
+        setSize(584, 520);
         setLocationRelativeTo(null);
         dia = calendario.get(Calendar.DAY_OF_MONTH);
         mes = calendario.get(Calendar.MONTH)+1;
-        if (mes <= 10) mess = "0"+mes; else mess = ""+mes;
-        if (dia <= 10) diaa = "0"+dia; else diaa = ""+dia;
+        if (mes < 10) mess = "0"+mes; else mess = ""+mes;
+        if (dia < 10) diaa = "0"+dia; else diaa = ""+dia;
         anio = calendario.get(Calendar.YEAR);
         fecha.setText(""+diaa+"/"+mess+"/"+anio);
         
@@ -62,7 +57,6 @@ public class FormDatos extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -93,10 +87,8 @@ public class FormDatos extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("EVA");
-        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        setMinimumSize(getMaximumSize());
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
         getContentPane().setLayout(null);
 
         procesar.setText("Procesar");
@@ -106,7 +98,7 @@ public class FormDatos extends javax.swing.JFrame {
             }
         });
         getContentPane().add(procesar);
-        procesar.setBounds(140, 450, 75, 23);
+        procesar.setBounds(140, 450, 90, 23);
 
         tiempoMedioReparar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -116,69 +108,67 @@ public class FormDatos extends javax.swing.JFrame {
         getContentPane().add(tiempoMedioReparar);
         tiempoMedioReparar.setBounds(161, 57, 113, 29);
 
-        jLabel1.setText("<html>Nº de Items por<br>Punto de Pedido<br>vigente:");
+        jLabel1.setText("<html>Nº de Items por<br>Punto de Pedido vigente:");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(10, 200, 120, 50);
+        jLabel1.setBounds(10, 200, 140, 50);
 
         jLabel2.setText("<html>Tiempo medio<br>para reparar:");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(12, 51, 107, 44);
+        jLabel2.setBounds(12, 51, 140, 40);
 
         jLabel3.setText("<html>Nº Total de items<br>en inventario:");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(10, 260, 130, 40);
+        jLabel3.setBounds(10, 270, 140, 50);
 
         jLabel4.setText("<html>Nº  de Items con cantidad de Pedido vigente:");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(10, 310, 130, 50);
-        getContentPane().add(jLabel5);
-        jLabel5.setBounds(0, 416, 216, 0);
+        jLabel4.setBounds(10, 330, 140, 50);
 
         jLabel6.setText("<html>Tiempo total<br>de funcionamiento:");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(12, 98, 92, 28);
+        jLabel6.setBounds(10, 110, 140, 28);
 
         jLabel7.setText("<html>Tiempo de indisponiblidad<br>por manten.:");
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(10, 140, 120, 50);
+        jLabel7.setBounds(10, 150, 140, 50);
 
         jLabel8.setText("<html>Valor Total<br>del Inventario:");
         getContentPane().add(jLabel8);
-        jLabel8.setBounds(300, 60, 71, 28);
+        jLabel8.setBounds(300, 60, 140, 28);
 
-        jLabel9.setText("<html>Valor Total de los<br>Inventarios para<br>Mantenimiento:");
+        jLabel9.setText("<html>Valor Total de los Inventarios para Mantenimiento:");
         getContentPane().add(jLabel9);
-        jLabel9.setBounds(300, 100, 82, 42);
+        jLabel9.setBounds(300, 100, 150, 40);
 
-        jLabel10.setText("<html>Valor Total de los Activos Operacionales:");
+        jLabel10.setText("<html>Valor Total de los Activos <br>Operacionales:");
         getContentPane().add(jLabel10);
-        jLabel10.setBounds(300, 160, 130, 40);
+        jLabel10.setBounds(300, 150, 130, 50);
 
         jLabel11.setText("<html>Costo Total del Mantenimiento:");
         getContentPane().add(jLabel11);
-        jLabel11.setBounds(300, 210, 120, 40);
+        jLabel11.setBounds(300, 220, 140, 30);
 
         jLabel12.setText("<html>Cantidad Total de las Unidades Producidas:");
         getContentPane().add(jLabel12);
-        jLabel12.setBounds(300, 260, 120, 60);
+        jLabel12.setBounds(300, 280, 140, 30);
 
         jLabel13.setText("<html>Tiempo Total Operativo:");
         getContentPane().add(jLabel13);
-        jLabel13.setBounds(300, 320, 100, 40);
+        jLabel13.setBounds(300, 330, 100, 30);
 
         jLabel14.setText("<html>Tiempo Total Disponible:");
         getContentPane().add(jLabel14);
-        jLabel14.setBounds(300, 370, 110, 40);
+        jLabel14.setBounds(300, 390, 110, 30);
         getContentPane().add(tiempoTotalFunc);
-        tiempoTotalFunc.setBounds(160, 150, 113, 30);
+        tiempoTotalFunc.setBounds(160, 170, 113, 30);
         getContentPane().add(tiempoIndisManten);
-        tiempoIndisManten.setBounds(160, 100, 113, 30);
+        tiempoIndisManten.setBounds(160, 110, 113, 30);
         getContentPane().add(nTotalItemsInvent);
-        nTotalItemsInvent.setBounds(160, 270, 110, 30);
+        nTotalItemsInvent.setBounds(160, 280, 110, 30);
         getContentPane().add(nItemsPtPedidoVigente);
-        nItemsPtPedidoVigente.setBounds(160, 210, 110, 30);
+        nItemsPtPedidoVigente.setBounds(160, 220, 110, 30);
         getContentPane().add(nItemsCantPedidoVigente);
-        nItemsCantPedidoVigente.setBounds(160, 320, 110, 30);
+        nItemsCantPedidoVigente.setBounds(160, 340, 110, 30);
         getContentPane().add(valorTotalInvent);
         valorTotalInvent.setBounds(450, 60, 111, 30);
 
@@ -196,7 +186,7 @@ public class FormDatos extends javax.swing.JFrame {
         getContentPane().add(cantidadTotalUnidProduc);
         cantidadTotalUnidProduc.setBounds(450, 280, 110, 30);
         getContentPane().add(tiempoTotalDisp);
-        tiempoTotalDisp.setBounds(450, 380, 110, 30);
+        tiempoTotalDisp.setBounds(450, 390, 110, 30);
         getContentPane().add(tiempoTotalOper);
         tiempoTotalOper.setBounds(450, 330, 110, 30);
 
@@ -206,11 +196,11 @@ public class FormDatos extends javax.swing.JFrame {
             }
         });
         getContentPane().add(valorInventMatObs);
-        valorInventMatObs.setBounds(160, 380, 110, 30);
+        valorInventMatObs.setBounds(160, 390, 110, 30);
 
         jLabel15.setText("<html>Valor del Inventario de Materiales Obsoletos:");
         getContentPane().add(jLabel15);
-        jLabel15.setBounds(10, 370, 140, 60);
+        jLabel15.setBounds(10, 380, 140, 50);
 
         cancelar.setText("Cancelar");
         cancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -219,7 +209,7 @@ public class FormDatos extends javax.swing.JFrame {
             }
         });
         getContentPane().add(cancelar);
-        cancelar.setBounds(320, 450, 75, 23);
+        cancelar.setBounds(320, 450, 90, 23);
 
         fecha.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
         fecha.setText("1/1/2016");
@@ -229,7 +219,7 @@ public class FormDatos extends javax.swing.JFrame {
 
         jLabel16.setText("Fecha:");
         getContentPane().add(jLabel16);
-        jLabel16.setBounds(380, 10, 33, 22);
+        jLabel16.setBounds(380, 10, 60, 22);
 
         check.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -251,29 +241,18 @@ public class FormDatos extends javax.swing.JFrame {
     private void procesarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_procesarActionPerformed
         // TODO add your handling code here:
         try { resultados = datos.getId();
-                while (resultados.next()) { num = resultados.getInt(1); }
-            } catch (Exception e) {   
-            }
-            num++;
-            
-         datos.insertGeneral("datos", ""+num, ""+id, ""+tiempoMedioReparar.getText(), ""+tiempoTotalFunc.getText(),
-         ""+tiempoIndisManten.getText(),""+nTotalItemsInvent.getText(), ""+nItemsCantPedidoVigente.getText(), ""+valorInventMatObs.getText(),
-         ""+valorTotalInvent.getText(), ""+valorTotalInventManten.getText(), ""+valorTotalActivosOperac.getText(), ""+costoTotalManten.getText(),
-         ""+cantidadTotalUnidProduc.getText(), ""+tiempoTotalOper.getText(), ""+tiempoTotalDisp.getText(), ""+fecha.getText());
-         
-         dispose();
-    }//GEN-LAST:event_procesarActionPerformed
+            while (resultados.next()) { num = resultados.getInt(1); }
+        } catch (Exception e) {
+        }
+        num++;
 
-    private void cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarActionPerformed
-        // TODO add your handling code here:
+        datos.insertGeneral("datos", ""+num, ""+id, ""+fecha.getText(),""+tiempoMedioReparar.getText(), ""+tiempoTotalFunc.getText(),
+            ""+tiempoIndisManten.getText(),""+nItemsCantPedidoVigente.getText(),""+nTotalItemsInvent.getText(), ""+valorInventMatObs.getText(),
+            ""+valorTotalInvent.getText(), ""+valorTotalInventManten.getText(), ""+valorTotalActivosOperac.getText(), ""+costoTotalManten.getText(),
+            ""+cantidadTotalUnidProduc.getText(), ""+tiempoTotalOper.getText(), ""+tiempoTotalDisp.getText());
+        JOptionPane.showMessageDialog(null, "Registro Exitoso.");
         dispose();
-    }//GEN-LAST:event_cancelarActionPerformed
-
-    private void checkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkActionPerformed
-        // TODO add your handling code here:
-        if(!check.isSelected()) fecha.setEditable(true);
-        if(check.isSelected()) fecha.setEditable(false);
-    }//GEN-LAST:event_checkActionPerformed
+    }//GEN-LAST:event_procesarActionPerformed
 
     private void tiempoMedioRepararActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tiempoMedioRepararActionPerformed
         // TODO add your handling code here:
@@ -286,6 +265,17 @@ public class FormDatos extends javax.swing.JFrame {
     private void valorInventMatObsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valorInventMatObsActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_valorInventMatObsActionPerformed
+
+    private void cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_cancelarActionPerformed
+
+    private void checkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkActionPerformed
+        // TODO add your handling code here:
+        if(!check.isSelected()) fecha.setEditable(true);
+        if(check.isSelected()) fecha.setEditable(false);
+    }//GEN-LAST:event_checkActionPerformed
 
     /**
      * @param args the command line arguments
@@ -304,20 +294,20 @@ public class FormDatos extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FormDatos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormuDatos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FormDatos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormuDatos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FormDatos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormuDatos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FormDatos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormuDatos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                //new FormDatos().setVisible(true);
+           //     new FormuDatos().setVisible(true);
             }
         });
     }
@@ -343,7 +333,6 @@ public class FormDatos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
