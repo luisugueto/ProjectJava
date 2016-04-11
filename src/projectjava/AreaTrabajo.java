@@ -291,6 +291,7 @@ public final class AreaTrabajo extends JPanel
 		add(graphComponent);
         add(barraSuperior, BorderLayout.NORTH);
         barraSuperior.repaint();
+        controlador.setEstado("");
         repaint();
     }
     
@@ -298,7 +299,7 @@ public final class AreaTrabajo extends JPanel
         diagramaActivo = false;
         remove(graphComponent);
         remove(barraSuperior);
-        paintComponent(getGraphics());
+        repaint();
     }
     
     @Override
