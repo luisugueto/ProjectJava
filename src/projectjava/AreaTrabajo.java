@@ -115,7 +115,7 @@ public final class AreaTrabajo extends JPanel
         int lineaActual = 0;
                 
         ArrayList<Object> v = new ArrayList<Object>();
-        Object v1;
+        Object v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13;
         
 		Object parent = graph.getDefaultParent();
         
@@ -128,7 +128,7 @@ public final class AreaTrabajo extends JPanel
 		graph.getModel().beginUpdate();
 		try
 		{           
-           lineaActual = 1;
+          /* lineaActual = 1;
            for (String[] tts : titulos) {
                 i = 0;
                 for (String t : tts) {
@@ -143,36 +143,64 @@ public final class AreaTrabajo extends JPanel
                 a += 140;
                 b = 150;
            } 
+           */
+            for (String t : titulos0) {
+                    v1 = graph.insertVertex(parent, null, t, x+((lineaActual*2)+a), y*(++i)+b+c, 100, 40);                     
+                    v.add(v1);
+                }
+                
+                v2 = graph.insertVertex(parent, null, "ACR", 170, 50, 100, 40); 
+                v3 = graph.insertVertex(parent, null, "Mantenimiento \nplanificado", 170, 120, 100, 40);                     
+                v4 = graph.insertVertex(parent, null, "Inventarios", 170, 500, 100, 40);                     
+                v5 = graph.insertVertex(parent, null, "Factor de utilización de \nla capacidad instalada", 170, 600, 100, 40);                     
+                v6 = graph.insertVertex(parent, null, "Confiabilidad", 350, 70, 100, 40);   
+                v7 = graph.insertVertex(parent, null, "MTR", 350, 250, 100, 40);                     
+                v8 = graph.insertVertex(parent, null, "Disponibilidad", 460, 150, 100, 40);                     
+                v9 = graph.insertVertex(parent, null, "Costos", 490, 350, 100, 40);                     
+                v10 = graph.insertVertex(parent, null, "Ingresos", 630, 150, 100, 40);                     
+                v11 = graph.insertVertex(parent, null, "AO", 690, 500, 100, 40);                     
+                v12 = graph.insertVertex(parent, null, "EBIT", 700, 260, 100, 40);                     
+                v13 = graph.insertVertex(parent, null, "EVA", 790, 350, 100, 40);                     
+
+
+
+                
+                
+               // if (lineaActual == 2 || lineaActual == 3 || lineaActual == 4){ c = 50;}
+               // if (lineaActual == 5 || lineaActual == 6){ c = 70;}          
            
-            graph.insertEdge(parent, null, " ", v.get(0), v.get(10));
-            graph.insertEdge(parent, null, " ", v.get(1), v.get(10));
-			graph.insertEdge(parent, null, " " , v.get(2), v.get(14));
-			graph.insertEdge(parent, null, " "  , v.get(3), v.get(14));
-            graph.insertEdge(parent, null, " " , v.get(4), v.get(14));
-            graph.insertEdge(parent, null, " " , v.get(5), v.get(15));
-            graph.insertEdge(parent, null, " " , v.get(2), v.get(16));
-			graph.insertEdge(parent, null, " " , v.get(3), v.get(16));
-            graph.insertEdge(parent, null, " " , v.get(4), v.get(16));
-            graph.insertEdge(parent, null, " " , v.get(5), v.get(16));
-            graph.insertEdge(parent, null, " " , v.get(6), v.get(11));
-            graph.insertEdge(parent, null, " " , v.get(7), v.get(11));
-            graph.insertEdge(parent, null, " " , v.get(8), v.get(11));
-            graph.insertEdge(parent, null, " " , v.get(9), v.get(13));
-            graph.insertEdge(parent, null, " " , v.get(10), v.get(13));
-            graph.insertEdge(parent, null, " " , v.get(11), v.get(16));
-            graph.insertEdge(parent, null, " " , v.get(11), v.get(18));
-            graph.insertEdge(parent, null, " " , v.get(12), v.get(18));
-            graph.insertEdge(parent, null, " " , v.get(13), v.get(15));
-            graph.insertEdge(parent, null, " " , v.get(14), v.get(15));
-            graph.insertEdge(parent, null, " " , v.get(15), v.get(17));
-            graph.insertEdge(parent, null, " " , v.get(16), v.get(19));
-            graph.insertEdge(parent, null, " " , v.get(17), v.get(19));
-            graph.insertEdge(parent, null, " " , v.get(19), v.get(20));
+			graph.insertEdge(parent, null, " ", v.get(0), v3);
+            graph.insertEdge(parent, null, " ", v.get(1), v3);
+            graph.insertEdge(parent, null, " ", v.get(2), v7);
+            graph.insertEdge(parent, null, " ", v.get(3), v7);
+            graph.insertEdge(parent, null, " ", v.get(4), v7);
+            graph.insertEdge(parent, null, " ", v.get(6), v4);
+            graph.insertEdge(parent, null, " ", v.get(7), v4);
+            graph.insertEdge(parent, null, " ", v.get(8), v4);
+            graph.insertEdge(parent, null, " ", v2, v6);
+            graph.insertEdge(parent, null, " ", v3, v6);
+            graph.insertEdge(parent, null, " ", v4, v11);
+            graph.insertEdge(parent, null, " ", v4, v9);
+            graph.insertEdge(parent, null, " ", v5, v11);
+            graph.insertEdge(parent, null, " ", v.get(2), v9);
+            graph.insertEdge(parent, null, " ", v.get(3), v9);
+            graph.insertEdge(parent, null, " ", v.get(4), v9);
+            graph.insertEdge(parent, null, " ", v.get(5), v8);
+            graph.insertEdge(parent, null, " ", v.get(5), v9);
+            graph.insertEdge(parent, null, " ", v6, v8);
+            graph.insertEdge(parent, null, " ", v7, v8);
+            graph.insertEdge(parent, null, " ", v8, v10);
+            graph.insertEdge(parent, null, " ", v9, v12);
+            graph.insertEdge(parent, null, " ", v10, v12);
+            graph.insertEdge(parent, null, " ", v11, v13);
+            graph.insertEdge(parent, null, " ", v12, v13);
 		}
 		finally
 		{
 			graph.getModel().endUpdate();
 		}
+        
+        //graphComponent.getGraphControl().addMouseListener(new PopClickListener());
         
         graphComponent.getGraphControl().addMouseListener(new MouseAdapter() {
             @Override 
@@ -183,22 +211,82 @@ public final class AreaTrabajo extends JPanel
                 if (cell instanceof mxCell)
                 {
                     name = (String)(((mxCell) cell).getValue());
-                    System.out.println(name);
+                    
                     switch (name)
                     {
                         case "Mantenimiento \npredictivo":
-                            System.out.println("Mantenimiento Predictivo");
+                          new PopClickListener(e, name);
                         break;
-                        
+                        case "Mantenimiento \npreventivo":
+                           new PopClickListener(e,name);
+                            break;
+                        case "Planificación":
+                            new PopClickListener(e,name);
+                            break;
+                        case "Programación":
+                            new PopClickListener(e,name);
+                            break;
+                        case "Ejecución":
+                            new PopClickListener(e,name);
+                            break;
+                        case "Gestión de las \nparadas de planta":
+                            new PopClickListener(e,name);
+                            break;
+                        case "Punto de pedido":
+                            new PopClickListener(e,name);
+                            break;
+                        case "Cantidad de pedido":
+                            new PopClickListener(e,name);
+                            break;
+                        case "Materiales \nobsoletos":
+                            new PopClickListener(e,name);
+                            break;
+                        case "ACR":
+                            new PopClickListener(e,name);
+                            break;
+                        case "Mantenimiento \nplanificado":
+                            new PopClickListener(e,name);
+                            break;
+                        case "Inventarios":
+                            new PopClickListener(e,name);
+                            break;
+                        case "Factor de utilización de \nla capacidad instalada":
+                            new PopClickListener(e,name);
+                            break;
+                        case "Confiabilidad":
+                            new PopClickListener(e,name);
+                            break;
+                        case "MTTR":
+                            new PopClickListener(e,name);
+                            break;
+                        case "Disponibilidad":
+                            new PopClickListener(e,name);
+                            break;
+                        case "Costos":
+                            new PopClickListener(e,name);
+                            break;
+                        case "Ingresos":
+                            new PopClickListener(e,name);
+                            break;
+                        case "AO":
+                            new PopClickListener(e,name);
+                            break;
+                        case "EBIT":
+                            new PopClickListener(e,name);
+                            break;
+                        case "EVA":
+                            new PopClickListener(e,name);
+                            break;
+                          
                         default:
-                            
+                            System.out.println("No Existente.");
                         break;
                     
                     }
                             
                 }
             }
-        });
+        }); 
 
 		add(graphComponent);
         add(barraSuperior, BorderLayout.NORTH);
