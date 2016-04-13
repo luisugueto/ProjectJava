@@ -119,7 +119,7 @@ public class FormuDatos extends javax.swing.JFrame {
         jLabel33 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
         getContentPane().setLayout(null);
 
@@ -145,11 +145,11 @@ public class FormuDatos extends javax.swing.JFrame {
         fecha.setText("1/1/2016");
         fecha.setToolTipText("Formato Correcto. Ejm: 14/04/2016");
         getContentPane().add(fecha);
-        fecha.setBounds(470, 10, 103, 22);
+        fecha.setBounds(440, 10, 103, 22);
 
         jLabel16.setText("Fecha:");
         getContentPane().add(jLabel16);
-        jLabel16.setBounds(410, 10, 60, 22);
+        jLabel16.setBounds(380, 10, 60, 22);
 
         check.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -157,7 +157,7 @@ public class FormuDatos extends javax.swing.JFrame {
             }
         });
         getContentPane().add(check);
-        check.setBounds(570, 10, 21, 21);
+        check.setBounds(540, 10, 21, 21);
 
         jPanel2.setLayout(null);
 
