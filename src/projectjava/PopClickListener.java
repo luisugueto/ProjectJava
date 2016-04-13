@@ -20,11 +20,13 @@ public class PopClickListener extends MouseAdapter{
         
         switch (name){
             case "Mantenimiento \npredictivo":
+                menu.agregarItem("Mostrar Formula");
                 menu.agregarItem("Prueba");
                 menu.show(e.getComponent(), e.getX(), e.getY());  
                 break;
             case "Mantenimiento \npreventivo":
-                menu.agregarItem("Hola");
+                menu.agregarItem("Mostrar Formula");
+                menu.agregarItem("Mostrar Gráfico");
                 menu.show(e.getComponent(), e.getX(), e.getY());
                 break;
             case "Planificación":

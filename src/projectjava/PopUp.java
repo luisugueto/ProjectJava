@@ -18,16 +18,7 @@ import javax.swing.JPopupMenu;
  */
 public class PopUp extends JPopupMenu implements ActionListener{
     JMenuItem item;
-    
-    
-    public PopUp(){
-        item = new JMenuItem("Mostrar Formula");
-        item.setName("Mostrar Formula");
-        item.addActionListener(this);
-        add(item);
-        
-    }
-    
+       
     public void agregarItem(String name){
         item = new JMenuItem(name);
         item.setName(name);
@@ -42,7 +33,9 @@ public class PopUp extends JPopupMenu implements ActionListener{
         switch (fuente){
             case "Mostrar Formula":
                 JOptionPane.showMessageDialog(this, "Prueba");
-               
+                break;
+            case "Mostrar Gráfico":
+                JOptionPane.showMessageDialog(this, "Prueba");
                 break;
                 
             default:              

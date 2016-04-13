@@ -160,11 +160,7 @@ public final class AreaTrabajo extends JPanel
                 v10 = graph.insertVertex(parent, null, "Ingresos", 630, 150, 100, 40);                     
                 v11 = graph.insertVertex(parent, null, "AO", 690, 500, 100, 40);                     
                 v12 = graph.insertVertex(parent, null, "EBIT", 700, 260, 100, 40);                     
-                v13 = graph.insertVertex(parent, null, "EVA", 790, 350, 100, 40);                     
-
-
-
-                
+                v13 = graph.insertVertex(parent, null, "EVA", 790, 350, 100, 40);                                    
                 
                // if (lineaActual == 2 || lineaActual == 3 || lineaActual == 4){ c = 50;}
                // if (lineaActual == 5 || lineaActual == 6){ c = 70;}          
