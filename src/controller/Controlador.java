@@ -21,6 +21,7 @@ public class Controlador extends AbsControlador
     
     private BarraDeEstado be;
     private AreaTrabajo area;
+    private Fecha fe;
     private Ventana ventana;
     private BarraHerramientas bh;
     private StringBuffer log = new StringBuffer();
@@ -52,14 +53,16 @@ public class Controlador extends AbsControlador
                 ventana.dispatchEvent(new WindowEvent(ventana, WindowEvent.WINDOW_CLOSING));
                 break;
             case "VER DIAGRAMA":
-                area.dibujarDiagrama();
+               fe = new Fecha(this);
+               fe.setVisible(true);
                 break;
             default:
                 System.out.println(fuente+" no tiene una accion asignada. AP.");
                 break;
         }
     }
-    
+    public void mamalo(){System.out.println("mamalo");}
+    public void dibujar(){ area.dibujarDiagrama(); }
     
     // Añade un texto al registro de Eventos (Variable log)
     public void insertLog (String line) {

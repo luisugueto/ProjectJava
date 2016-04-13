@@ -5,6 +5,7 @@
  */
 package projectjava;
 
+import controller.Controlador;
 import java.util.Properties;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -23,7 +24,8 @@ public class Fecha extends javax.swing.JFrame {
     /**
      * Creates new form Fecha
      */
-    
+    Controlador control;
+    AreaTrabajo area;
     UtilDateModel model = new UtilDateModel();
     UtilDateModel model1 = new UtilDateModel();
     JDatePanelImpl datePanel,datePanel1;
@@ -34,9 +36,36 @@ public class Fecha extends javax.swing.JFrame {
     
     JLabel label1 = new JLabel("Desde");
     JLabel label2 = new JLabel("Hasta");
+    JLabel label3 = new JLabel("Fecha");    
+    
+    public Fecha(Controlador controlador){
+        initComponents();
+        ButtonTabComponent boton;
+        this.control = controlador;
+        
+        p.put("text.today", "Today");
+        p.put("text.month", "Month");
+        p.put("text.year", "Year");
+        
+        // 1 DATEPANEL
+        datePanel = new JDatePanelImpl(model, p);
+        botonFecha = new JDatePickerImpl(datePanel, new DateLabelFormatter());
+        panel.add(label3);
+        panel.add(botonFecha);
+        
+        add(panel);       
+        
+        panel.setSize(260, 100);
+        setVisible(true);
+        setLocationRelativeTo(null);
+        setResizable(false);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        setSize(260, 140);      
+    }   
     
     public Fecha(int num) {
         initComponents();
+        
         ButtonTabComponent boton;
     
         label1.setVisible(true);
@@ -75,6 +104,7 @@ public class Fecha extends javax.swing.JFrame {
         setSize(260, 140);      
     }
     
+    
     public void crearFechas(){
         p.put("text.today", "Today");
         p.put("text.month", "Month");
@@ -101,10 +131,15 @@ public class Fecha extends javax.swing.JFrame {
         cancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Ingrese fechas:");
+        setTitle("Ingrese fecha:");
         setPreferredSize(new java.awt.Dimension(250, 270));
 
         aceptar.setText("Aceptar");
+        aceptar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                aceptarMouseClicked(evt);
+            }
+        });
         aceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 aceptarActionPerformed(evt);
@@ -144,7 +179,9 @@ public class Fecha extends javax.swing.JFrame {
 
     private void aceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarActionPerformed
         dispose();
-        Grafico grafico = new Grafico();
+        control.dibujar();
+        
+       /* Grafico grafico = new Grafico();
              
         grafico.setDiaDesde(botonFecha.getModel().getDay());
         grafico.setMesDesde(botonFecha.getModel().getMonth());
@@ -155,11 +192,16 @@ public class Fecha extends javax.swing.JFrame {
         grafico.setAnioHasta(botonFecha1.getModel().getYear());
         
         grafico.iniciar();
+        */
     }//GEN-LAST:event_aceptarActionPerformed
 
     private void cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarActionPerformed
         dispose();
     }//GEN-LAST:event_cancelarActionPerformed
+
+    private void aceptarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_aceptarMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_aceptarMouseClicked
 
     /**
      * @param args the command line arguments
