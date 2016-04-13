@@ -63,7 +63,6 @@ public class FormuDatos extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
@@ -77,7 +76,6 @@ public class FormuDatos extends javax.swing.JFrame {
         tiemIndMan = new javax.swing.JTextField();
         nItPtPdV = new javax.swing.JTextField();
         nTotItInv = new javax.swing.JTextField();
-        nItCantPedV = new javax.swing.JTextField();
         vValInvMatOb = new javax.swing.JTextField();
         valTotInv = new javax.swing.JTextField();
         valTotInvMant = new javax.swing.JTextField();
@@ -87,9 +85,11 @@ public class FormuDatos extends javax.swing.JFrame {
         tiemTotOper = new javax.swing.JTextField();
         tiemTotDis = new javax.swing.JTextField();
         jLabel26 = new javax.swing.JLabel();
-        nSisCubSisCRaiz1 = new javax.swing.JTextField();
+        nSisCubSisCRaiz = new javax.swing.JTextField();
         jLabel27 = new javax.swing.JLabel();
-        nTotSis1 = new javax.swing.JTextField();
+        nTotSis = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
+        cosTotUnPro = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         nTotalOTeje = new javax.swing.JTextField();
         jLabel20 = new javax.swing.JLabel();
@@ -163,11 +163,11 @@ public class FormuDatos extends javax.swing.JFrame {
 
         jLabel3.setText("<html>Nº Total de items<br>en inventario:");
         jPanel2.add(jLabel3);
-        jLabel3.setBounds(10, 220, 140, 50);
+        jLabel3.setBounds(10, 210, 140, 50);
 
         jLabel8.setText("<html>Valor Total<br>del Inventario:");
         jPanel2.add(jLabel8);
-        jLabel8.setBounds(10, 380, 140, 28);
+        jLabel8.setBounds(10, 330, 140, 28);
 
         jLabel5.setText("<html>Tiempo medio<br>para reparar:");
         jPanel2.add(jLabel5);
@@ -175,47 +175,43 @@ public class FormuDatos extends javax.swing.JFrame {
 
         jLabel10.setText("<html>Valor Total de los Activos <br>Operacionales:");
         jPanel2.add(jLabel10);
-        jLabel10.setBounds(300, 60, 130, 50);
+        jLabel10.setBounds(310, 0, 130, 50);
 
         jLabel6.setText("<html>Tiempo total<br>de funcionamiento:");
         jPanel2.add(jLabel6);
         jLabel6.setBounds(10, 60, 140, 28);
 
-        jLabel4.setText("<html>Nº  de Items con cantidad de Pedido vigente:");
-        jPanel2.add(jLabel4);
-        jLabel4.setBounds(10, 270, 140, 50);
-
         jLabel11.setText("<html>Costo Total del Mantenimiento:");
         jPanel2.add(jLabel11);
-        jLabel11.setBounds(300, 130, 140, 30);
+        jLabel11.setBounds(310, 70, 140, 30);
 
         jLabel13.setText("<html>Tiempo Total Operativo:");
         jPanel2.add(jLabel13);
-        jLabel13.setBounds(300, 240, 100, 30);
+        jLabel13.setBounds(310, 230, 100, 30);
 
         jLabel12.setText("<html>Cantidad Total de las Unidades Producidas:");
         jPanel2.add(jLabel12);
-        jLabel12.setBounds(300, 190, 140, 30);
+        jLabel12.setBounds(310, 130, 140, 30);
 
         jLabel9.setText("<html>Valor Total de los Inventarios para Mantenimiento:");
         jPanel2.add(jLabel9);
-        jLabel9.setBounds(300, 10, 150, 40);
+        jLabel9.setBounds(10, 370, 150, 40);
 
         jLabel7.setText("<html>Tiempo de indisponiblidad<br>por manten.:");
         jPanel2.add(jLabel7);
         jLabel7.setBounds(10, 100, 140, 50);
 
-        jLabel2.setText("<html>Nº de Items por<br>Punto de Pedido vigente:");
+        jLabel2.setText("<html>Nº de Items con<br>Punto de Pedido vigente:");
         jPanel2.add(jLabel2);
         jLabel2.setBounds(10, 150, 140, 50);
 
         jLabel18.setText("<html>Tiempo Total Disponible:");
         jPanel2.add(jLabel18);
-        jLabel18.setBounds(300, 290, 110, 30);
+        jLabel18.setBounds(310, 280, 110, 30);
 
         jLabel19.setText("<html>Valor del Inventario de Materiales Obsoletos:");
         jPanel2.add(jLabel19);
-        jLabel19.setBounds(10, 320, 140, 50);
+        jLabel19.setBounds(10, 270, 140, 50);
         jPanel2.add(tiemMedRep);
         tiemMedRep.setBounds(160, 10, 110, 30);
 
@@ -232,42 +228,46 @@ public class FormuDatos extends javax.swing.JFrame {
         nItPtPdV.setBounds(160, 170, 110, 30);
         jPanel2.add(nTotItInv);
         nTotItInv.setBounds(160, 230, 110, 30);
-        jPanel2.add(nItCantPedV);
-        nItCantPedV.setBounds(160, 280, 110, 30);
         jPanel2.add(vValInvMatOb);
-        vValInvMatOb.setBounds(160, 330, 110, 30);
+        vValInvMatOb.setBounds(160, 280, 110, 30);
         jPanel2.add(valTotInv);
-        valTotInv.setBounds(160, 380, 110, 30);
+        valTotInv.setBounds(160, 330, 110, 30);
         jPanel2.add(valTotInvMant);
-        valTotInvMant.setBounds(450, 20, 110, 30);
+        valTotInvMant.setBounds(160, 380, 110, 30);
         jPanel2.add(valTotAcOp);
-        valTotAcOp.setBounds(450, 70, 110, 30);
+        valTotAcOp.setBounds(460, 10, 110, 30);
         jPanel2.add(cosTotMan);
-        cosTotMan.setBounds(450, 130, 110, 30);
+        cosTotMan.setBounds(460, 70, 110, 30);
         jPanel2.add(canTotUnPro);
-        canTotUnPro.setBounds(450, 190, 110, 30);
+        canTotUnPro.setBounds(460, 130, 110, 30);
         jPanel2.add(tiemTotOper);
-        tiemTotOper.setBounds(450, 240, 110, 30);
+        tiemTotOper.setBounds(460, 230, 110, 30);
         jPanel2.add(tiemTotDis);
-        tiemTotDis.setBounds(450, 290, 110, 30);
+        tiemTotDis.setBounds(460, 280, 110, 30);
 
         jLabel26.setText("<html>Nº de Sistemas<br>Cubiertos por un<br>Sistema Causa Raiz:");
         jPanel2.add(jLabel26);
-        jLabel26.setBounds(300, 330, 140, 40);
+        jLabel26.setBounds(310, 320, 140, 40);
 
-        nSisCubSisCRaiz1.addActionListener(new java.awt.event.ActionListener() {
+        nSisCubSisCRaiz.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nSisCubSisCRaiz1ActionPerformed(evt);
+                nSisCubSisCRaizActionPerformed(evt);
             }
         });
-        jPanel2.add(nSisCubSisCRaiz1);
-        nSisCubSisCRaiz1.setBounds(450, 340, 113, 30);
+        jPanel2.add(nSisCubSisCRaiz);
+        nSisCubSisCRaiz.setBounds(460, 330, 113, 30);
 
         jLabel27.setText("<html>Nº Total de<br>Sistemas:");
         jPanel2.add(jLabel27);
-        jLabel27.setBounds(300, 380, 140, 30);
-        jPanel2.add(nTotSis1);
-        nTotSis1.setBounds(450, 380, 113, 30);
+        jLabel27.setBounds(310, 370, 140, 30);
+        jPanel2.add(nTotSis);
+        nTotSis.setBounds(460, 370, 113, 30);
+
+        jLabel14.setText("<html>Costo Total de Unidades Producidas:");
+        jPanel2.add(jLabel14);
+        jLabel14.setBounds(310, 180, 140, 30);
+        jPanel2.add(cosTotUnPro);
+        cosTotUnPro.setBounds(460, 180, 110, 30);
 
         jTabbedPane1.addTab("R.- 1", jPanel2);
 
@@ -387,13 +387,20 @@ public class FormuDatos extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelarActionPerformed
 
     private void procesarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_procesarActionPerformed
-      try { resultados = datos.getId();
+      
+        try { resultados = datos.getId();
             while (resultados.next()) { num = resultados.getInt(1); }
         } catch (Exception e) {
         }
         num++;
-
-        datos.insertGeneral("datos", ""+num, ""+id, ""+fecha.getText());
+        
+        datos.insertGeneral("datos", ""+num, ""+id, ""+fecha.getText(), ""+tiemMedRep.getText(), ""+tiemTotFunc.getText(), ""+tiemIndMan.getText(), ""+nItPtPdV.getText(),
+        ""+nTotItInv.getText(), ""+vValInvMatOb.getText(), ""+valTotInv.getText(), ""+valTotInvMant.getText(),
+        ""+valTotAcOp.getText(), ""+cosTotMan.getText(), ""+canTotUnPro.getText(), ""+cosTotUnPro.getText() ,""+tiemTotOper.getText(),
+        ""+tiemTotDis.getText(), ""+nSisCubSisCRaiz.getText(), ""+nTotSis.getText(), ""+hHManPred.getText(),
+        ""+hHTotMan.getText(), ""+hHManPlPr.getText(), ""+hHManPre.getText(), ""+hHTotManDis.getText(),
+        ""+nOTejeCosPl.getText(), ""+nTotalOTeje.getText(), ""+nTotOTpro.getText(), ""+canOTret.getText(),
+        ""+nProEjePl.getText(), ""+nTotProyEje.getText(), ""+sumTiemRep.getText(), ""+nTotRep.getText());
         JOptionPane.showMessageDialog(null, "Registro Exitoso.");
         dispose();
     }//GEN-LAST:event_procesarActionPerformed
@@ -410,9 +417,9 @@ public class FormuDatos extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tiemTotFuncActionPerformed
 
-    private void nSisCubSisCRaiz1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nSisCubSisCRaiz1ActionPerformed
+    private void nSisCubSisCRaizActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nSisCubSisCRaizActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_nSisCubSisCRaiz1ActionPerformed
+    }//GEN-LAST:event_nSisCubSisCRaizActionPerformed
 
     /**
      * @param args the command line arguments
@@ -458,6 +465,7 @@ public class FormuDatos extends javax.swing.JFrame {
     private javax.swing.JButton cancelar;
     private javax.swing.JCheckBox check;
     private javax.swing.JTextField cosTotMan;
+    private javax.swing.JTextField cosTotUnPro;
     private javax.swing.JFormattedTextField fecha;
     private javax.swing.JTextField hHManPlPr;
     private javax.swing.JTextField hHManPre;
@@ -468,6 +476,7 @@ public class FormuDatos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
@@ -483,7 +492,6 @@ public class FormuDatos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel33;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -498,16 +506,15 @@ public class FormuDatos extends javax.swing.JFrame {
     private javax.swing.JLabel label26;
     private javax.swing.JLabel label27;
     private javax.swing.JLabel label28;
-    private javax.swing.JTextField nItCantPedV;
     private javax.swing.JTextField nItPtPdV;
     private javax.swing.JTextField nOTejeCosPl;
     private javax.swing.JTextField nProEjePl;
-    private javax.swing.JTextField nSisCubSisCRaiz1;
+    private javax.swing.JTextField nSisCubSisCRaiz;
     private javax.swing.JTextField nTotItInv;
     private javax.swing.JTextField nTotOTpro;
     private javax.swing.JTextField nTotProyEje;
     private javax.swing.JTextField nTotRep;
-    private javax.swing.JTextField nTotSis1;
+    private javax.swing.JTextField nTotSis;
     private javax.swing.JTextField nTotalOTeje;
     private javax.swing.JButton procesar;
     private javax.swing.JTextField sumTiemRep;
