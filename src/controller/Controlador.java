@@ -25,6 +25,7 @@ public class Controlador extends AbsControlador
     private Ventana ventana;
     private BarraHerramientas bh;
     private StringBuffer log = new StringBuffer();
+    String name;
   
     private final DB datos = DB.getInstance();
     
@@ -61,9 +62,8 @@ public class Controlador extends AbsControlador
                 break;
         }
     }
-    public void mamalo(){System.out.println("mamalo");}
     public void dibujar(){ area.dibujarDiagrama(); }
-    
+
     // Añade un texto al registro de Eventos (Variable log)
     public void insertLog (String line) {
         log.append(line);

@@ -5,6 +5,7 @@
  */
 package projectjava;
 
+import controller.Controlador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JComponent;
@@ -32,7 +33,9 @@ public class PopUp extends JPopupMenu implements ActionListener{
     public void setNombrecampo(String name){
         this.nombreCampo = name;
     }
-
+    
+    public String getNombreCampo(){ return nombreCampo; }
+    
     @Override
     public void actionPerformed(ActionEvent ae) {
         String fuente = ((JComponent)ae.getSource()).getName();
