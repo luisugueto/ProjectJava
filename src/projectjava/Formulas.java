@@ -10,7 +10,7 @@ package projectjava;
  * @author Luis
  */
 public class Formulas {
-    
+    String formDisponibilidad = "Formula: Tiempo total de Funcionamiento/Tiempo Total de Funcionamiento  \n+  Tiempo Indisponibilidad por Mantenimiento";  
     float disponibilidad, puntoDePedido, cantidadDePedido, materialesObsoletos, inventarios, costos,
           factorDeUtilización,tiempoTotaldeFuncionamiento, TiempoIndisponibilidadxManten, costoTotalManten,
           tiempoTotalOperativo, tiempoTotalDisponible;
@@ -18,6 +18,9 @@ public class Formulas {
         valorInventarioMaterialesObsoletos, valorTotalInventario, valorTotalInventarioManten, 
         valorTotalActivosOperacionales, cantidadTotalUnidadesProducidas;
     
+     public String getFormulaDisponibilidad(){
+            return formDisponibilidad;
+     }
     public float disponibilidad(){
         disponibilidad = tiempoTotaldeFuncionamiento/tiempoTotaldeFuncionamiento+TiempoIndisponibilidadxManten;
         return disponibilidad;

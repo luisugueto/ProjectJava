@@ -18,12 +18,19 @@ import javax.swing.JPopupMenu;
  */
 public class PopUp extends JPopupMenu implements ActionListener{
     JMenuItem item;
+    String nombreCampo;
+    Formulas form = new Formulas();
+    Grafico grafico = new Grafico();
        
     public void agregarItem(String name){
         item = new JMenuItem(name);
         item.setName(name);
         item.addActionListener(this);
         add(item);
+    }
+    
+    public void setNombrecampo(String name){
+        this.nombreCampo = name;
     }
 
     @Override
@@ -32,10 +39,13 @@ public class PopUp extends JPopupMenu implements ActionListener{
         
         switch (fuente){
             case "Mostrar Formula":
-                JOptionPane.showMessageDialog(this, "Prueba");
+                if(nombreCampo.equals("Disponibilidad"))
+                    JOptionPane.showMessageDialog(this, form.getFormulaDisponibilidad());
+                
                 break;
             case "Mostrar Gráfico":
-                JOptionPane.showMessageDialog(this, "Prueba");
+                grafico.setName(nombreCampo);
+                grafico.iniciar();
                 break;
                 
             default:              
