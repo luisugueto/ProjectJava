@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
+import model.DB;
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
@@ -36,7 +37,9 @@ public class Fecha extends javax.swing.JFrame {
     
     JLabel label1 = new JLabel("Desde");
     JLabel label2 = new JLabel("Hasta");
-    JLabel label3 = new JLabel("Fecha");    
+    JLabel label3 = new JLabel("Fecha");  
+    String mess = "";
+    String diaa = "";
     
     public Fecha(Controlador controlador){
         initComponents();
@@ -179,6 +182,13 @@ public class Fecha extends javax.swing.JFrame {
 
     private void aceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarActionPerformed
         dispose();
+        DB datos = DB.getInstance();
+        int mes = botonFecha.getModel().getMonth()+1;
+        int dia = botonFecha.getModel().getDay();
+        if(dia<10) diaa = "0"+dia;
+        if (mes<10) mess = "0"+mes;
+        
+        datos.getId(botonFecha.getModel().getDay()+"-"+mess+"-"+botonFecha.getModel().getYear());
         control.dibujar();
         
        /* Grafico grafico = new Grafico();

@@ -388,7 +388,7 @@ public class FormuDatos extends javax.swing.JFrame {
 
     private void procesarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_procesarActionPerformed
       
-        try { resultados = datos.getId();
+        try { resultados = datos.getDatos();
             while (resultados.next()) { num = resultados.getInt(1); }
         } catch (Exception e) {
         }

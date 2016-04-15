@@ -27,6 +27,7 @@ public final class DB
     
     // Variable general para resultados
     ResultSet res = null;
+    String resultado;
     
     private DB () {
                
@@ -58,6 +59,21 @@ public final class DB
             return query.getGeneratedKeys().getInt(1);
         } catch (Exception e) { imprimirExcepcion(e, strQuery); return -1; }
     }
+    
+    public String getResultado(){ return resultado; }
+    
+    public void getId(String dato){
+        System.out.println(dato);
+    try { res = getDatos(); 
+        while (res.next()) {
+               String temp = res.getString(3);
+                if(dato.equals(temp)){// Asignar temp a alguna variable
+                   this.resultado = temp;
+                   break;
+                }
+        }
+        } catch (SQLException ex) { System.out.println(ex.getMessage()); }
+    }
        
     public ResultSet getUser () {
         try {
@@ -66,7 +82,7 @@ public final class DB
         return res;
     }
     
-    public ResultSet getId () {
+    public ResultSet getDatos () {
         try {
             res = query.executeQuery("SELECT * FROM `datos`");
         } catch (Exception e) { imprimirExcepcion(e); }
