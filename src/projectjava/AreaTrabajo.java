@@ -30,7 +30,7 @@ public final class AreaTrabajo extends JPanel
     Controlador controlador;
     Cursor pt;
     
-    String valor;
+    String fecha, valor;
     
     String eol = "<br>"; //System.getProperty("line.separator");
     
@@ -69,7 +69,7 @@ public final class AreaTrabajo extends JPanel
     
     boolean diagramaActivo = false;
     boolean diagramaCreado = false;
-    DB datos;
+    DB datos = DB.getInstance();
     
     AreaTrabajo (Controlador controlador) {
         super();
@@ -209,7 +209,80 @@ public final class AreaTrabajo extends JPanel
                 if (cell instanceof mxCell)
                 {
                     name = (String)(((mxCell) cell).getValue());
-                    new PopClickListener(e, name, valor);                            
+                    switch (name){
+                    case "Mantenimiento \npredictivo":
+                        datos.getId(getFecha(), 1);
+                        setValor(datos.getResultado());
+                        new PopClickListener(e, name, valor);      
+                        break;
+                    case "Mantenimiento \npreventivo": 
+                        datos.getId(getFecha(), 3);
+                        setValor(datos.getResultado());   
+                        new PopClickListener(e, name, valor);      
+                        break;
+                    case "Planificación":
+                        new PopClickListener(e, name, valor);      
+                        break;
+                    case "Programación":
+                        new PopClickListener(e, name, valor);      
+                        break;
+                    case "Ejecución":
+                        new PopClickListener(e, name, valor);      
+                        break;
+                    case "Gestión de las \nparadas de planta":
+                        new PopClickListener(e, name, valor);      
+                        break;
+                    case "Punto de pedido":
+                        new PopClickListener(e, name, valor);      
+                        break;
+                    case "Cantidad de pedido":
+                        new PopClickListener(e, name, valor);      
+                        break;
+                    case "Materiales \nobsoletos":
+                        new PopClickListener(e, name, valor);      
+                        break;
+                    case "ACR":
+                        new PopClickListener(e, name, valor);      
+                        break;
+                    case "Mantenimiento \nplanificado":
+                        new PopClickListener(e, name, valor);      
+                        break;
+                    case "Inventarios":
+                        new PopClickListener(e, name, valor);      
+                        break;
+                    case "Factor de utilización de \nla capacidad instalada":
+                        new PopClickListener(e, name, valor);      
+                        break;
+                    case "Confiabilidad":
+                        new PopClickListener(e, name, valor);      
+                        break;
+                    case "MTTR":
+                        new PopClickListener(e, name, valor);      
+                        break;
+                    case "Disponibilidad":
+                        new PopClickListener(e, name, valor);      
+                        break;
+                    case "Costos":
+                        new PopClickListener(e, name, valor);      
+                        break;
+                    case "Ingresos":
+                        new PopClickListener(e, name, valor);      
+                        break;
+                    case "AO":
+                        new PopClickListener(e, name, valor);      
+                        break;
+                    case "EBIT":
+                        new PopClickListener(e, name, valor);      
+                        break;
+                    case "EVA":
+                        new PopClickListener(e, name, valor);      
+                        break;
+
+                    default:
+                        System.out.println("No existente.");
+                        break;
+        
+                    }                       
                 }
             }
         }); 
@@ -276,7 +349,10 @@ public final class AreaTrabajo extends JPanel
         panelBoton.add(botonn = botonIcon(toolTipText, 250, 300, nombreImagen));
     }
     
-    public void setValor(String val){ this.valor = val;}
+    public void setFecha(String val){ this.fecha = val;}
+    public String getFecha(){ return fecha; }
+    
+    public void setValor(String val) { this.valor = val;}
     
     public static synchronized AreaTrabajo getInstance() {
         if (instance == null) instance = new AreaTrabajo(Controlador.getInstance());

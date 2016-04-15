@@ -62,12 +62,12 @@ public final class DB
     
     public String getResultado(){ return resultado; }
     
-    public void getId(String dato){
+    public void getId(String fecha, int pos){
     try { res = getDatos(); 
         while (res.next()) {
                String temp = res.getString(3);
-                if(dato.equals(temp)){// Asignar temp a alguna variable
-                   this.resultado = temp;
+                if(fecha.equals(temp)){// Asignar temp a alguna variable
+                   this.resultado = res.getString(pos);
                    break;
                 }
         }

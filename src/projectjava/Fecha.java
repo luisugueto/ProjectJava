@@ -188,9 +188,9 @@ public class Fecha extends javax.swing.JFrame {
         if(dia<10) diaa = "0"+dia;
         if (mes<10) mess = "0"+mes;
         
-        datos.getId(botonFecha.getModel().getDay()+"-"+mess+"-"+botonFecha.getModel().getYear());
+        datos.getId(botonFecha.getModel().getDay()+"-"+mess+"-"+botonFecha.getModel().getYear(), 3);
         control.dibujar();
-        control.setValor(datos.getResultado());
+        control.setFecha(datos.getResultado());
         
        /* Grafico grafico = new Grafico();
              

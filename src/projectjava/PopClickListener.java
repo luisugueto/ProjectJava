@@ -27,6 +27,8 @@ public class PopClickListener extends MouseAdapter{
                 menu.show(e.getComponent(), e.getX(), e.getY());  
                 break;
             case "Mantenimiento \npreventivo":
+                menu.agregarItem("Valor");
+                menu.setValor(valor);
                 menu.agregarItem("Mostrar Formula");
                 menu.agregarItem("Mostrar Gráfico");
                 menu.setNombrecampo("Mantenimiento \npreventivo");
