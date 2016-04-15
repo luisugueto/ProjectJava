@@ -205,6 +205,7 @@ public final class AreaTrabajo extends JPanel
             public void mousePressed(MouseEvent e)
             {
                 String name;
+                float num;
                 Object cell = graphComponent.getCellAt(e.getX(), e.getY());
                 if (cell instanceof mxCell)
                 {
@@ -218,7 +219,7 @@ public final class AreaTrabajo extends JPanel
                                 break;
                             case "Mantenimiento \npreventivo": 
                                 datos.getId(getFecha(), 3);
-                                setValor(datos.getResultado());   
+                                setValor(datos.getResultado()); 
                                 new PopClickListener(e, name, valor);      
                                 break;
                             case "Planificación":
