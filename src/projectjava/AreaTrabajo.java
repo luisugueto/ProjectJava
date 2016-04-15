@@ -30,6 +30,8 @@ public final class AreaTrabajo extends JPanel
     Controlador controlador;
     Cursor pt;
     
+    String valor;
+    
     String eol = "<br>"; //System.getProperty("line.separator");
     
     String[] titulos0 = 
@@ -207,7 +209,7 @@ public final class AreaTrabajo extends JPanel
                 if (cell instanceof mxCell)
                 {
                     name = (String)(((mxCell) cell).getValue());
-                    new PopClickListener(e, name);                            
+                    new PopClickListener(e, name, valor);                            
                 }
             }
         }); 
@@ -273,6 +275,8 @@ public final class AreaTrabajo extends JPanel
     public void crearBotonesInicio (String toolTipText, String nombreImagen){
         panelBoton.add(botonn = botonIcon(toolTipText, 250, 300, nombreImagen));
     }
+    
+    public void setValor(String val){ this.valor = val;}
     
     public static synchronized AreaTrabajo getInstance() {
         if (instance == null) instance = new AreaTrabajo(Controlador.getInstance());

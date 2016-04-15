@@ -16,10 +16,11 @@ public class PopClickListener extends MouseAdapter{
     
     PopUp menu = new PopUp();
     
-    PopClickListener(MouseEvent e, String name){
-        
+    PopClickListener(MouseEvent e, String name, String valor){
         switch (name){
             case "Mantenimiento \npredictivo":
+                menu.agregarItem("Valor");
+                menu.setValor(valor);
                 menu.agregarItem("Mostrar Formula");
                 menu.agregarItem("Mostrar Gráfico");
                 menu.setNombrecampo("Mantenimiento \npredictivo");

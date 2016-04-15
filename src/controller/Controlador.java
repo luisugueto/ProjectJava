@@ -62,6 +62,7 @@ public class Controlador extends AbsControlador
                 break;
         }
     }
+    public void setValor(String val) { area.setValor(val);}
     public void dibujar(){ area.dibujarDiagrama(); }
 
     // Añade un texto al registro de Eventos (Variable log)

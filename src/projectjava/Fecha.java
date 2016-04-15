@@ -190,6 +190,7 @@ public class Fecha extends javax.swing.JFrame {
         
         datos.getId(botonFecha.getModel().getDay()+"-"+mess+"-"+botonFecha.getModel().getYear());
         control.dibujar();
+        control.setValor(datos.getResultado());
         
        /* Grafico grafico = new Grafico();
              

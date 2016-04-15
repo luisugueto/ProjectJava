@@ -19,7 +19,7 @@ import javax.swing.JPopupMenu;
  */
 public class PopUp extends JPopupMenu implements ActionListener{
     JMenuItem item;
-    String nombreCampo;
+    String nombreCampo, valor;
     Formulas form = new Formulas();
     Grafico grafico = new Grafico();
        
@@ -50,11 +50,16 @@ public class PopUp extends JPopupMenu implements ActionListener{
                 grafico.setName(nombreCampo);
                 grafico.iniciar();
                 break;
+            case "Valor":
+                    JOptionPane.showMessageDialog(this, valor);
+                 break;
                 
             default:              
                 System.out.println("No existente.");
                 break;
         }
     }
+    
+    public void setValor(String val){ this.valor = val; }
     
 }

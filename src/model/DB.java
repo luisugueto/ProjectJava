@@ -63,7 +63,6 @@ public final class DB
     public String getResultado(){ return resultado; }
     
     public void getId(String dato){
-        System.out.println(dato);
     try { res = getDatos(); 
         while (res.next()) {
                String temp = res.getString(3);
