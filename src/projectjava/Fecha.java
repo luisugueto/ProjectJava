@@ -9,6 +9,7 @@ import controller.Controlador;
 import java.util.Properties;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import model.DB;
@@ -189,9 +190,9 @@ public class Fecha extends javax.swing.JFrame {
         if (mes<10) mess = "0"+mes;
         
         datos.getId(botonFecha.getModel().getDay()+"-"+mess+"-"+botonFecha.getModel().getYear(), 3);
-        control.dibujar();
         control.setFecha(datos.getResultado());
-        
+        if(datos.getResultado()!=null) control.dibujar();
+        else JOptionPane.showMessageDialog(this, "Fecha no registrada.");
        /* Grafico grafico = new Grafico();
              
         grafico.setDiaDesde(botonFecha.getModel().getDay());

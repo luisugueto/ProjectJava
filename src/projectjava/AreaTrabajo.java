@@ -209,80 +209,82 @@ public final class AreaTrabajo extends JPanel
                 if (cell instanceof mxCell)
                 {
                     name = (String)(((mxCell) cell).getValue());
-                    switch (name){
-                    case "Mantenimiento \npredictivo":
-                        datos.getId(getFecha(), 1);
-                        setValor(datos.getResultado());
-                        new PopClickListener(e, name, valor);      
-                        break;
-                    case "Mantenimiento \npreventivo": 
-                        datos.getId(getFecha(), 3);
-                        setValor(datos.getResultado());   
-                        new PopClickListener(e, name, valor);      
-                        break;
-                    case "Planificación":
-                        new PopClickListener(e, name, valor);      
-                        break;
-                    case "Programación":
-                        new PopClickListener(e, name, valor);      
-                        break;
-                    case "Ejecución":
-                        new PopClickListener(e, name, valor);      
-                        break;
-                    case "Gestión de las \nparadas de planta":
-                        new PopClickListener(e, name, valor);      
-                        break;
-                    case "Punto de pedido":
-                        new PopClickListener(e, name, valor);      
-                        break;
-                    case "Cantidad de pedido":
-                        new PopClickListener(e, name, valor);      
-                        break;
-                    case "Materiales \nobsoletos":
-                        new PopClickListener(e, name, valor);      
-                        break;
-                    case "ACR":
-                        new PopClickListener(e, name, valor);      
-                        break;
-                    case "Mantenimiento \nplanificado":
-                        new PopClickListener(e, name, valor);      
-                        break;
-                    case "Inventarios":
-                        new PopClickListener(e, name, valor);      
-                        break;
-                    case "Factor de utilización de \nla capacidad instalada":
-                        new PopClickListener(e, name, valor);      
-                        break;
-                    case "Confiabilidad":
-                        new PopClickListener(e, name, valor);      
-                        break;
-                    case "MTTR":
-                        new PopClickListener(e, name, valor);      
-                        break;
-                    case "Disponibilidad":
-                        new PopClickListener(e, name, valor);      
-                        break;
-                    case "Costos":
-                        new PopClickListener(e, name, valor);      
-                        break;
-                    case "Ingresos":
-                        new PopClickListener(e, name, valor);      
-                        break;
-                    case "AO":
-                        new PopClickListener(e, name, valor);      
-                        break;
-                    case "EBIT":
-                        new PopClickListener(e, name, valor);      
-                        break;
-                    case "EVA":
-                        new PopClickListener(e, name, valor);      
-                        break;
+                    
+                        switch (name){
+                            case "Mantenimiento \npredictivo":
+                                datos.getId(getFecha(), 1);
+                                setValor(datos.getResultado());
+                                new PopClickListener(e, name, valor);      
+                                break;
+                            case "Mantenimiento \npreventivo": 
+                                datos.getId(getFecha(), 3);
+                                setValor(datos.getResultado());   
+                                new PopClickListener(e, name, valor);      
+                                break;
+                            case "Planificación":
+                                new PopClickListener(e, name, valor);      
+                                break;
+                            case "Programación":
+                                new PopClickListener(e, name, valor);      
+                                break;
+                            case "Ejecución":
+                                new PopClickListener(e, name, valor);      
+                                break;
+                            case "Gestión de las \nparadas de planta":
+                                new PopClickListener(e, name, valor);      
+                                break;
+                            case "Punto de pedido":
+                                new PopClickListener(e, name, valor);      
+                                break;
+                            case "Cantidad de pedido":
+                                new PopClickListener(e, name, valor);      
+                                break;
+                            case "Materiales \nobsoletos":
+                                new PopClickListener(e, name, valor);      
+                                break;
+                            case "ACR":
+                                new PopClickListener(e, name, valor);      
+                                break;
+                            case "Mantenimiento \nplanificado":
+                                new PopClickListener(e, name, valor);      
+                                break;
+                            case "Inventarios":
+                                new PopClickListener(e, name, valor);      
+                                break;
+                            case "Factor de utilización de \nla capacidad instalada":
+                                new PopClickListener(e, name, valor);      
+                                break;
+                            case "Confiabilidad":
+                                new PopClickListener(e, name, valor);      
+                                break;
+                            case "MTTR":
+                                new PopClickListener(e, name, valor);      
+                                break;
+                            case "Disponibilidad":
+                                new PopClickListener(e, name, valor);      
+                                break;
+                            case "Costos":
+                                new PopClickListener(e, name, valor);      
+                                break;
+                            case "Ingresos":
+                                new PopClickListener(e, name, valor);      
+                                break;
+                            case "AO":
+                                new PopClickListener(e, name, valor);      
+                                break;
+                            case "EBIT":
+                                new PopClickListener(e, name, valor);      
+                                break;
+                            case "EVA":
+                                new PopClickListener(e, name, valor);      
+                                break;
 
-                    default:
-                        System.out.println("No existente.");
-                        break;
-        
-                    }                       
+                            default:
+                                System.out.println("No existente.");
+                                break;
+                        
+                    }
+                    
                 }
             }
         }); 
