@@ -394,13 +394,19 @@ public class FormuDatos extends javax.swing.JFrame {
         }
         num++;
         
-        datos.insertGeneral("datos", ""+num, ""+id, ""+fecha.getText(), ""+tiemMedRep.getText(), ""+tiemTotFunc.getText(), ""+tiemIndMan.getText(), ""+nItPtPdV.getText(),
+        String[] fe = fecha.getText().split("/");
+        String dia = fe[0];
+        String mes = fe[1];
+        String anio = fe[2];
+        
+        datos.insertGeneral("datos", ""+num, "1", ""+dia+"-"+mes+"-"+anio, ""+tiemMedRep.getText(), ""+tiemTotFunc.getText(), ""+tiemIndMan.getText(), ""+nItPtPdV.getText(),
         ""+nTotItInv.getText(), ""+vValInvMatOb.getText(), ""+valTotInv.getText(), ""+valTotInvMant.getText(),
         ""+valTotAcOp.getText(), ""+cosTotMan.getText(), ""+canTotUnPro.getText(), ""+cosTotUnPro.getText() ,""+tiemTotOper.getText(),
         ""+tiemTotDis.getText(), ""+nSisCubSisCRaiz.getText(), ""+nTotSis.getText(), ""+hHManPred.getText(),
         ""+hHTotMan.getText(), ""+hHManPlPr.getText(), ""+hHManPre.getText(), ""+hHTotManDis.getText(),
         ""+nOTejeCosPl.getText(), ""+nTotalOTeje.getText(), ""+nTotOTpro.getText(), ""+canOTret.getText(),
         ""+nProEjePl.getText(), ""+nTotProyEje.getText(), ""+sumTiemRep.getText(), ""+nTotRep.getText());
+        
         JOptionPane.showMessageDialog(null, "Registro Exitoso.");
         dispose();
     }//GEN-LAST:event_procesarActionPerformed
