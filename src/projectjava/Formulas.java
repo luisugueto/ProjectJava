@@ -11,7 +11,7 @@ import model.DB;
  *
  * @author Luis
  */
-public class Formulas {
+public final class Formulas {
     //Formulas
     String formAnalisisCausaRaiz = "Número de sistemas cubiertos por un Análisis de Causa Raíz/Número total de sistemas";
     String formMantenPredictivo = "Horas Hombre de Mantenimiento Predictivo/Horas Hombre totales de Mantenimiento";
@@ -39,108 +39,105 @@ public class Formulas {
         hHombreMantenPlanifiPro,hHombreTotalesMantenDisp, nOTejeDen20CostPlan, nTotalOTeje, nTotalOTpro, cantOTretrab, 
        /* cantOTeje,*/ nProyecEjeDent15Plan, nTotalProyecEje, tiempoMedFallar, tiempoMedRep, timeTotalFunc, timeTotalIndisManten,
         nItemsPtoPedidoVig, nTotalItemsInvent, nItemsCantPedidoVig, valorInventMatObso, valorTotalInventario, 
-        valorTotalInventaManten, valorTotalActOpera, costoTotalManten, cantTotalUnidProd, timeTotalOpera, timeTotalDisp;
+        valorTotalInventaManten, valorTotalActOpera, costoTotalManten, cantTotalUnidProd, timeTotalOpera, timeTotalDisp, sumaTiempoRep,
+        nTotalRep;
     
         DB datos = DB.getInstance();
 
     Formulas(){
     }
     
-    Formulas(String nsistemascubiertosACR,String ntotalSistemas,String hhombreMantenPredictivo,String hhombreTotalesManten,String hhombreMantenPreventivo,
-        String hhombreMantenPlanifiPro,String hhombreTotalesMantenDisp,String notejeDen20CostPlan,String ntotalOTeje,String ntotalOTpro,String cantotretrab,
-       /* float cantoteje,*/String nproyecEjeDent15Plan,String ntotalProyecEje,String tiempomedFallar,String tiempomedRep,String timetotalFunc,String timetotalIndisManten,
-        String nitemsPtoPedidoVig,String ntotalItemsInvent,String nitemsCantPedidoVig,String valorinventMatObso,String valortotalInventario, 
-        String valortotalInventaManten,String valortotalActOpera,String costototalManten,String canttotalUnidProd,String timetotalOpera,String timetotalDisp){
-    
-        this.nSistemasCubiertosACR = Float.parseFloat(nsistemascubiertosACR);
-        this.nTotalSistemas = Float.parseFloat(ntotalSistemas);
-        this.hHombreMantenPredictivo = Float.parseFloat(hhombreMantenPredictivo);
-        this.hHombreTotalesManten = Float.parseFloat(hhombreTotalesManten);
-        this.hHombreMantenPreventivo = Float.parseFloat(hhombreMantenPreventivo);
-        this.hHombreMantenPlanifiPro = Float.parseFloat(hhombreMantenPlanifiPro);
-        this.hHombreTotalesMantenDisp = Float.parseFloat(hhombreTotalesMantenDisp);
-        this.nOTejeDen20CostPlan = Float.parseFloat(notejeDen20CostPlan);
-        this.nTotalOTeje = Float.parseFloat(ntotalOTeje);
-        this.nTotalOTpro = Float.parseFloat(ntotalOTpro);
-        this.cantOTretrab = Float.parseFloat(cantotretrab);
-       // this.cantOTeje = Float.parseFloat(cantoteje);
-        this.nProyecEjeDent15Plan = Float.parseFloat(nproyecEjeDent15Plan);
-        this.nTotalProyecEje = Float.parseFloat(ntotalProyecEje);
-        this.tiempoMedFallar = Float.parseFloat(tiempomedFallar);
-        this.tiempoMedRep = Float.parseFloat(tiempomedRep);
-        this.timeTotalFunc = Float.parseFloat(timetotalFunc);
-        this.timeTotalIndisManten = Float.parseFloat(timetotalIndisManten);
-        this.nItemsPtoPedidoVig = Float.parseFloat(nitemsPtoPedidoVig);
-        this.nTotalItemsInvent = Float.parseFloat(ntotalItemsInvent);
-        this.nItemsCantPedidoVig = Float.parseFloat(nitemsCantPedidoVig);
-        this.valorInventMatObso = Float.parseFloat(valorinventMatObso);
-        this.valorTotalInventario = Float.parseFloat(valortotalInventario);
-        this.valorTotalInventaManten = Float.parseFloat(valortotalInventaManten);
-        this.valorTotalActOpera = Float.parseFloat(valortotalActOpera);
-        this.costoTotalManten = Float.parseFloat(costototalManten);
-        this.cantTotalUnidProd = Float.parseFloat(canttotalUnidProd);
-        this.timeTotalOpera = Float.parseFloat(timetotalOpera);
-        this.timeTotalDisp = Float.parseFloat(timetotalDisp);
-        mantenimientoPredictivo();
-    }
-    
     Formulas(String fecha){
                 datos.getId(fecha, 18); 
                 nSistemasCubiertosACR = Float.parseFloat(datos.getResultado());
+                
                 datos.getId(fecha, 19); 
                 nTotalSistemas = Float.parseFloat(datos.getResultado());
+                
                 datos.getId(fecha, 20);
                 hHombreMantenPredictivo = Float.parseFloat(datos.getResultado());
+                
                 datos.getId(fecha, 21);
                 hHombreTotalesManten = Float.parseFloat(datos.getResultado());
+                
                 datos.getId(fecha, 23);
                 hHombreMantenPreventivo = Float.parseFloat(datos.getResultado());
+                
                 datos.getId(fecha, 22);
                 hHombreMantenPlanifiPro = Float.parseFloat(datos.getResultado());
+                
                 datos.getId(fecha, 24);
                 hHombreTotalesMantenDisp = Float.parseFloat(datos.getResultado());
+                
                 datos.getId(fecha, 25);
                 nOTejeDen20CostPlan = Float.parseFloat(datos.getResultado());
+                
                 datos.getId(fecha, 26);
                 nTotalOTeje = Float.parseFloat(datos.getResultado());
+                
                 datos.getId(fecha, 27);
                 nTotalOTpro = Float.parseFloat(datos.getResultado());
+                
                 datos.getId(fecha, 28);
                 cantOTretrab = Float.parseFloat(datos.getResultado());
+                
                 datos.getId(fecha, 29);
                 nProyecEjeDent15Plan = Float.parseFloat(datos.getResultado());
+                
                 datos.getId(fecha, 30);
                 nTotalProyecEje = Float.parseFloat(datos.getResultado());
+                
+                datos.getId(fecha, 31);
+                sumaTiempoRep = Float.parseFloat(datos.getResultado());
+                
+                datos.getId(fecha, 32);
+                nTotalRep = Float.parseFloat(datos.getResultado());
+                
                 datos.getId(fecha, 5);
                 tiempoMedFallar = Float.parseFloat(datos.getResultado());
+                
                 datos.getId(fecha, 4);
                 tiempoMedRep = Float.parseFloat(datos.getResultado());
+                
                 datos.getId(fecha, 5);
                 timeTotalFunc = Float.parseFloat(datos.getResultado());
+                
                 datos.getId(fecha, 6);
                 timeTotalIndisManten = Float.parseFloat(datos.getResultado());
+                
                 datos.getId(fecha, 7);
                 nItemsPtoPedidoVig = Float.parseFloat(datos.getResultado());
+                
                 datos.getId(fecha, 8);
                 nTotalItemsInvent = Float.parseFloat(datos.getResultado());
+                
                 datos.getId(fecha, 7);
                 nItemsCantPedidoVig = Float.parseFloat(datos.getResultado());
+                
                 datos.getId(fecha, 9);
                 valorInventMatObso = Float.parseFloat(datos.getResultado());
+                
                 datos.getId(fecha, 10);
                 valorTotalInventario = Float.parseFloat(datos.getResultado());
+                
                 datos.getId(fecha, 11);
                 valorTotalInventaManten = Float.parseFloat(datos.getResultado());
+                
                 datos.getId(fecha, 12);
                 valorTotalActOpera = Float.parseFloat(datos.getResultado());
+                
                 datos.getId(fecha, 13);
                 costoTotalManten = Float.parseFloat(datos.getResultado());
+                
                 datos.getId(fecha, 14);
                 cantTotalUnidProd = Float.parseFloat(datos.getResultado());
+                
                 datos.getId(fecha, 15);
                 timeTotalOpera = Float.parseFloat(datos.getResultado());
+                
                 datos.getId(fecha, 16);
                 timeTotalDisp = Float.parseFloat(datos.getResultado());
+                
                 
                 this.ACR();
                 this.mantenimientoPredictivo();
@@ -170,8 +167,8 @@ public class Formulas {
     public void programacion(){ this.programacion = nTotalOTeje/nTotalOTpro; }
     public void ejecucion(){ this.ejecucion = cantOTretrab/nTotalOTeje; }
     public void gestionProyectos(){ this.gestionProyectos = nProyecEjeDent15Plan/nTotalProyecEje; }
-    public void confiabilidad(){ this.confiabilidad = tiempoMedFallar-tiempoMedRep; }
-    public void MTTR(){ this.MTTR = tiempoMedRep;}
+    public void confiabilidad(){ this.confiabilidad = tiempoMedRep; }
+    public void MTTR(){ this.MTTR = sumaTiempoRep/nTotalRep;}
     public void disponibilidad(){ this.disponibilidad = timeTotalFunc/(timeTotalFunc+timeTotalIndisManten); }
     public void puntoPedido(){ this.puntoPedido = nItemsPtoPedidoVig/nTotalItemsInvent; }
     public void cantidadPedido(){ this.cantidadPedido = nItemsCantPedidoVig/nTotalItemsInvent; }
