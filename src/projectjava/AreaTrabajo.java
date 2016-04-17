@@ -70,6 +70,7 @@ public final class AreaTrabajo extends JPanel
     boolean diagramaActivo = false;
     boolean diagramaCreado = false;
     DB datos = DB.getInstance();
+    Formulas form;
     
     AreaTrabajo (Controlador controlador) {
         super();
@@ -156,7 +157,7 @@ public final class AreaTrabajo extends JPanel
                 v4 = graph.insertVertex(parent, null, "Inventarios", 170, 500, 100, 40);                     
                 v5 = graph.insertVertex(parent, null, "Factor de utilización de \nla capacidad instalada", 170, 600, 100, 40);                     
                 v6 = graph.insertVertex(parent, null, "Confiabilidad", 350, 70, 100, 40);   
-                v7 = graph.insertVertex(parent, null, "MTR", 350, 250, 100, 40);                     
+                v7 = graph.insertVertex(parent, null, "MTTR", 350, 250, 100, 40);                     
                 v8 = graph.insertVertex(parent, null, "Disponibilidad", 460, 150, 100, 40);                     
                 v9 = graph.insertVertex(parent, null, "Costos", 490, 350, 100, 40);                     
                 v10 = graph.insertVertex(parent, null, "Ingresos", 630, 150, 100, 40);                     
@@ -204,6 +205,8 @@ public final class AreaTrabajo extends JPanel
             @Override 
             public void mousePressed(MouseEvent e)
             {
+                form = new Formulas(getFecha());
+                
                 String name;
                 float num;
                 Object cell = graphComponent.getCellAt(e.getX(), e.getY());
@@ -213,61 +216,75 @@ public final class AreaTrabajo extends JPanel
                     
                         switch (name){
                             case "Mantenimiento \npredictivo":
-                                datos.getId(getFecha(), 1);
-                                setValor(datos.getResultado());
+                                setValor(form.getMantenimientoPredictivo());
                                 new PopClickListener(e, name, valor);      
                                 break;
                             case "Mantenimiento \npreventivo": 
-                                datos.getId(getFecha(), 3);
-                                setValor(datos.getResultado()); 
+                                setValor(form.getMantenimientoPreventivo()); 
                                 new PopClickListener(e, name, valor);      
                                 break;
                             case "Planificación":
+                                setValor(form.getPlanificacion());
                                 new PopClickListener(e, name, valor);      
                                 break;
                             case "Programación":
+                                setValor(form.getProgramacion());
                                 new PopClickListener(e, name, valor);      
                                 break;
                             case "Ejecución":
+                                setValor(form.getEjecucion());
                                 new PopClickListener(e, name, valor);      
                                 break;
                             case "Gestión de las \nparadas de planta":
+                                setValor("");
                                 new PopClickListener(e, name, valor);      
                                 break;
                             case "Punto de pedido":
+                                setValor(form.getPuntoPedido());
                                 new PopClickListener(e, name, valor);      
                                 break;
                             case "Cantidad de pedido":
+                                setValor(form.getCantidadPedido());
                                 new PopClickListener(e, name, valor);      
                                 break;
                             case "Materiales \nobsoletos":
+                                setValor(form.getMaterialesObsoletos());
                                 new PopClickListener(e, name, valor);      
                                 break;
                             case "ACR":
+                                setValor("");
                                 new PopClickListener(e, name, valor);      
                                 break;
                             case "Mantenimiento \nplanificado":
+                                setValor(form.getMantenimientoPlanificado());
                                 new PopClickListener(e, name, valor);      
                                 break;
                             case "Inventarios":
+                                setValor(form.getInventarios());
                                 new PopClickListener(e, name, valor);      
                                 break;
                             case "Factor de utilización de \nla capacidad instalada":
+                                setValor("");
                                 new PopClickListener(e, name, valor);      
                                 break;
                             case "Confiabilidad":
+                                setValor(form.getConfiabilidad());
                                 new PopClickListener(e, name, valor);      
                                 break;
                             case "MTTR":
+                                setValor(form.getMTTR());
                                 new PopClickListener(e, name, valor);      
                                 break;
                             case "Disponibilidad":
+                                setValor(form.getDisponibilidad());
                                 new PopClickListener(e, name, valor);      
                                 break;
                             case "Costos":
+                                setValor(form.getCostos());
                                 new PopClickListener(e, name, valor);      
                                 break;
                             case "Ingresos":
+                                setValor("");
                                 new PopClickListener(e, name, valor);      
                                 break;
                             case "AO":

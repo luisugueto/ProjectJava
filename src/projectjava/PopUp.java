@@ -19,7 +19,8 @@ import javax.swing.JPopupMenu;
  */
 public class PopUp extends JPopupMenu implements ActionListener{
     JMenuItem item;
-    String nombreCampo, valor;
+    String nombreCampo;
+    String valor;
     Formulas form = new Formulas();
     Grafico grafico = new Grafico();
        
@@ -42,9 +43,38 @@ public class PopUp extends JPopupMenu implements ActionListener{
         
         switch (fuente){
             case "Mostrar Formula":
-                if(nombreCampo.equals("Disponibilidad"))
-                    JOptionPane.showMessageDialog(this, form.getFormulaDisponibilidad());
-                
+                if (nombreCampo.equals("Mantenimiento \npredictivo"))
+                    JOptionPane.showMessageDialog(this, form.formMantenPredictivo);
+                if (nombreCampo.equals("Mantenimiento \npreventivo"))
+                    JOptionPane.showMessageDialog(this, form.formMantenPreventivo);
+                if (nombreCampo.equals("Planificación"))
+                    JOptionPane.showMessageDialog(this, form.formPlanificacion);
+                if (nombreCampo.equals("Programación"))
+                    JOptionPane.showMessageDialog(this, form.formProgramacion);
+                if (nombreCampo.equals("Ejecución"))
+                    JOptionPane.showMessageDialog(this, form.formEjecucion);
+                if (nombreCampo.equals("Punto de pedido"))
+                    JOptionPane.showMessageDialog(this, form.formPuntoPedido);
+                if (nombreCampo.equals("Cantidad de pedido"))
+                    JOptionPane.showMessageDialog(this, form.formCantidadPedido);
+                if (nombreCampo.equals("Materiales \nobsoletos"))
+                    JOptionPane.showMessageDialog(this, form.formMaterialesObsoletos);
+                if (nombreCampo.equals("ACR"))
+                    JOptionPane.showMessageDialog(this, form.formAnalisisCausaRaiz);
+                if (nombreCampo.equals("Mantenimiento \nplanificado"))
+                    JOptionPane.showMessageDialog(this, form.formMantenPlanificado);
+                if (nombreCampo.equals("Inventarios"))
+                    JOptionPane.showMessageDialog(this, form.formInventarios);
+                if (nombreCampo.equals("Factor de utilización de \nla capacidad instalada"))
+                    JOptionPane.showMessageDialog(this, form.formFactorUtilizacion);
+                if (nombreCampo.equals("Confiabilidad"))
+                    JOptionPane.showMessageDialog(this, form.formConfiabilidad);
+                if (nombreCampo.equals("MTTR"))
+                    JOptionPane.showMessageDialog(this, form.formMTTR);
+                if (nombreCampo.equals("Disponibilidad"))
+                    JOptionPane.showMessageDialog(this, form.formDisponibilidad);
+                if (nombreCampo.equals("Costos"))
+                    JOptionPane.showMessageDialog(this, form.formCostos);              
                 break;
             case "Mostrar Gráfico":
                 grafico.setName(nombreCampo);

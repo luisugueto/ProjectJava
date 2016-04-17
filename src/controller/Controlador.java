@@ -25,7 +25,6 @@ public class Controlador extends AbsControlador
     private Ventana ventana;
     private BarraHerramientas bh;
     private StringBuffer log = new StringBuffer();
-    String name;
   
     private final DB datos = DB.getInstance();
     
@@ -48,7 +47,7 @@ public class Controlador extends AbsControlador
                 crear.setVisible(true);
                 break;
             case "DISPONIBILIDAD":
-                Fecha fecha = new Fecha(2);
+              //  Fecha fecha = new Fecha(2);
                 break;
             case "SALIR":
                 ventana.dispatchEvent(new WindowEvent(ventana, WindowEvent.WINDOW_CLOSING));

@@ -192,7 +192,7 @@ public class Fecha extends javax.swing.JFrame {
         datos.getId(botonFecha.getModel().getDay()+"-"+mess+"-"+botonFecha.getModel().getYear(), 3);
         control.setFecha(datos.getResultado());
         if(datos.getResultado()!=null) control.dibujar();
-        else JOptionPane.showMessageDialog(this, "Fecha no registrada.");
+        else JOptionPane.showMessageDialog(this, "No existe registro en esta fecha.");
        /* Grafico grafico = new Grafico();
              
         grafico.setDiaDesde(botonFecha.getModel().getDay());

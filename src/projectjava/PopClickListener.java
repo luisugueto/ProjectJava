@@ -35,36 +35,44 @@ public class PopClickListener extends MouseAdapter{
                 menu.show(e.getComponent(), e.getX(), e.getY());
                 break;
             case "Planificación":
+                menu.agregarItem("Valor");
+                menu.setValor(valor);
                 menu.agregarItem("Mostrar Formula");
                 menu.agregarItem("Mostrar Gráfico");
                 menu.setNombrecampo("Planificación");
                 menu.show(e.getComponent(), e.getX(), e.getY());
                 break;
             case "Programación":
+                menu.agregarItem("Valor");
+                menu.setValor(valor);
                 menu.agregarItem("Mostrar Formula");
                 menu.agregarItem("Mostrar Gráfico");
                 menu.setNombrecampo("Programación");
                 menu.show(e.getComponent(), e.getX(), e.getY());
                 break;
             case "Ejecución":
+                menu.agregarItem("Valor");
+                menu.setValor(valor);
                 menu.agregarItem("Mostrar Formula");
                 menu.agregarItem("Mostrar Gráfico");
                 menu.setNombrecampo("Ejecución");
                 menu.show(e.getComponent(), e.getX(), e.getY());
                 break;
             case "Gestión de las \nparadas de planta":
-                menu.agregarItem("Mostrar Formula");
-                menu.agregarItem("Mostrar Gráfico");
+                
                 menu.setNombrecampo("Gestión de las \nparadas de planta");
-                menu.show(e.getComponent(), e.getX(), e.getY());
                 break;
             case "Punto de pedido":
+                menu.agregarItem("Valor");
+                menu.setValor(valor);
                 menu.agregarItem("Mostrar Formula");
                 menu.agregarItem("Mostrar Gráfico");
                 menu.setNombrecampo("Punto de pedido");
                 menu.show(e.getComponent(), e.getX(), e.getY());
                 break;
             case "Cantidad de pedido":
+                menu.agregarItem("Valor");
+                menu.setValor(valor);
                 menu.agregarItem("Mostrar Formula");
                 menu.agregarItem("Mostrar Gráfico");
                 menu.setNombrecampo("Cantidad de pedido");
@@ -89,6 +97,8 @@ public class PopClickListener extends MouseAdapter{
                 menu.show(e.getComponent(), e.getX(), e.getY());
                 break;
             case "Inventarios":
+                menu.agregarItem("Valor");
+                menu.setValor(valor);
                 menu.agregarItem("Mostrar Formula");
                 menu.agregarItem("Mostrar Gráfico");
                 menu.setNombrecampo("Inventarios");
@@ -101,18 +111,24 @@ public class PopClickListener extends MouseAdapter{
                 menu.show(e.getComponent(), e.getX(), e.getY());
                 break;
             case "Confiabilidad":
+                menu.agregarItem("Valor");
+                menu.setValor(valor);
                 menu.agregarItem("Mostrar Formula");
                 menu.agregarItem("Mostrar Gráfico");
                 menu.setNombrecampo("Confiabilidad");
                 menu.show(e.getComponent(), e.getX(), e.getY());
                 break;
             case "MTTR":
+                menu.agregarItem("Valor");
+                menu.setValor(valor);
                 menu.agregarItem("Mostrar Formula");
                 menu.agregarItem("Mostrar Gráfico");
                 menu.setNombrecampo("MTTR");
                 menu.show(e.getComponent(), e.getX(), e.getY());
                 break;
             case "Disponibilidad":
+                menu.agregarItem("Valor");
+                menu.setValor(valor);
                 menu.agregarItem("Mostrar Formula");
                 menu.agregarItem("Mostrar Gráfico");
                 menu.setNombrecampo("Disponibilidad");
@@ -125,28 +141,21 @@ public class PopClickListener extends MouseAdapter{
                 menu.show(e.getComponent(), e.getX(), e.getY());
                 break;
             case "Ingresos":
-                menu.agregarItem("Mostrar Formula");
-                menu.agregarItem("Mostrar Gráfico");
-                menu.setNombrecampo("Ingresos");
-                menu.show(e.getComponent(), e.getX(), e.getY());
+                menu.agregarItem("Valor");
+                menu.setValor(valor);
+
                 break;
             case "AO":
-                menu.agregarItem("Mostrar Formula");
-                menu.agregarItem("Mostrar Gráfico");
-                menu.setNombrecampo("AO");
-                menu.show(e.getComponent(), e.getX(), e.getY());
+                menu.agregarItem("Valor");
+                menu.setValor(valor);
                 break;
             case "EBIT":
-                menu.agregarItem("Mostrar Formula");
-                menu.agregarItem("Mostrar Gráfico");
-                menu.setNombrecampo("EBIT");
-                menu.show(e.getComponent(), e.getX(), e.getY());
+                menu.agregarItem("Valor");
+                menu.setValor(valor);
                 break;
             case "EVA":
-                menu.agregarItem("Mostrar Formula");
-                menu.agregarItem("Mostrar Gráfico");
-                menu.setNombrecampo("EVA");
-                menu.show(e.getComponent(), e.getX(), e.getY());
+                menu.agregarItem("Valor");
+                menu.setValor(valor);
                 break;
                 
             default:
