@@ -31,6 +31,7 @@ public final class AreaTrabajo extends JPanel
     Cursor pt;
     
     String fecha, valor;
+    String fech = "";
     
     String eol = "<br>"; //System.getProperty("line.separator");
     
@@ -65,7 +66,7 @@ public final class AreaTrabajo extends JPanel
     JPanel barraSuperior = new JPanel();
     JPanel panelBoton = new JPanel();
     
-    JButton botonn;
+    JButton botonn, botonnn;
     
     boolean diagramaActivo = false;
     boolean diagramaCreado = false;
@@ -82,7 +83,10 @@ public final class AreaTrabajo extends JPanel
         boton = new ButtonTabComponent(this);
         boton.setBounds(5, 0, boton.getWidth(), boton.getHeight());
         
-       // graph.addAttribute("ui.stylesheet", "url('file:src/css/estiloPrincipal.css')");
+        botonnn = new JButton("Buscar");
+        botonnn.setBounds(5,0, 5, 10);
+        botonnn.setName("BUSCAR");
+        botonnn.addActionListener(controlador);
         
         add(panelBoton, BorderLayout.SOUTH);
 
@@ -101,17 +105,12 @@ public final class AreaTrabajo extends JPanel
         barraSuperior.setSize(this.getWidth(), 25);
         barraSuperior.add(boton);
         barraSuperior.add(botonFecha);   
-        
-        
-    }
-    
-    public void valoresDiagrama() {
-        
+        barraSuperior.add(botonnn);     
     }
     
     public void dibujarDiagrama () {
                 
-        remove(panelBoton);        
+        remove(panelBoton);
         diagramaActivo = true;
         
         int x = 20, y = 60, i=0, a = 0, b = 0, c = 0;
@@ -131,22 +130,6 @@ public final class AreaTrabajo extends JPanel
 		graph.getModel().beginUpdate();
 		try
 		{           
-          /* lineaActual = 1;
-           for (String[] tts : titulos) {
-                i = 0;
-                for (String t : tts) {
-                    v1 = graph.insertVertex(parent, null, t, x+((lineaActual*2)+a), y*(++i)+b+c, 100, 40);                     
-                    v.add(v1);
-                }
-                
-                if (lineaActual == 2 || lineaActual == 3 || lineaActual == 4){ c = 50;}
-                if (lineaActual == 5 || lineaActual == 6){ c = 70;}
-                
-                lineaActual++;
-                a += 140;
-                b = 150;
-           } 
-           */
             for (String t : titulos0) {
                     v1 = graph.insertVertex(parent, null, t, x+((lineaActual*2)+a), y*(++i)+b+c, 100, 40);                     
                     v.add(v1);
@@ -164,10 +147,7 @@ public final class AreaTrabajo extends JPanel
                 v11 = graph.insertVertex(parent, null, "AO", 690, 500, 100, 40);                     
                 v12 = graph.insertVertex(parent, null, "EBIT", 700, 260, 100, 40);                     
                 v13 = graph.insertVertex(parent, null, "EVA", 790, 350, 100, 40);                                    
-                
-               // if (lineaActual == 2 || lineaActual == 3 || lineaActual == 4){ c = 50;}
-               // if (lineaActual == 5 || lineaActual == 6){ c = 70;}          
-           
+                          
 			graph.insertEdge(parent, null, " ", v.get(0), v3);
             graph.insertEdge(parent, null, " ", v.get(1), v3);
             graph.insertEdge(parent, null, " ", v.get(2), v7);
@@ -198,15 +178,12 @@ public final class AreaTrabajo extends JPanel
 		{
 			graph.getModel().endUpdate();
 		}
-        
-        //graphComponent.getGraphControl().addMouseListener(new PopClickListener());
-        
+                
         graphComponent.getGraphControl().addMouseListener(new MouseAdapter() {
             @Override 
             public void mousePressed(MouseEvent e)
             {
                 form = new Formulas(getFecha());
-                
                 String name;
                 float num;
                 Object cell = graphComponent.getCellAt(e.getX(), e.getY());
@@ -316,8 +293,12 @@ public final class AreaTrabajo extends JPanel
     
     public void cerrarDiagrama() {
         diagramaActivo = false;
+        datePanel.getModel().setValue(null);
         remove(graphComponent);
+        remove(boton);
+        remove(botonFecha);
         remove(barraSuperior);
+        removeAll();
         repaint();
     }
     
@@ -369,8 +350,19 @@ public final class AreaTrabajo extends JPanel
         panelBoton.add(botonn = botonIcon(toolTipText, 250, 300, nombreImagen));
     }
     
-    public void setFecha(String val){ this.fecha = val;}
+    public void setFecha(String val){ this.fecha = val;
+    }
     public String getFecha(){ return fecha; }
+    
+    public void setFechaBoton(String val) { this.fecha = val;}
+    public String getFechaBoton() {
+        String diaa = "", mess = "";
+        int mes = botonFecha.getModel().getMonth()+1;
+        int dia = botonFecha.getModel().getDay();
+        if(dia<10) diaa = "0"+dia;
+        if (mes<10) mess = "0"+mes;
+        
+        return botonFecha.getModel().getDay()+"-"+mess+"-"+botonFecha.getModel().getYear(); }
     
     public void setValor(String val) { this.valor = val;}
     

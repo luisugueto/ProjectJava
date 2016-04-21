@@ -6,12 +6,14 @@
 package projectjava;
 
 import controller.Controlador;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Properties;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import model.DB;
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
@@ -41,10 +43,16 @@ public class Fecha extends javax.swing.JFrame {
     JLabel label3 = new JLabel("Fecha");  
     String mess = "";
     String diaa = "";
+    String fech="";
+    
+    ResultSet res = null;
+    
+    boolean tipo = false;
     
     public Fecha(Controlador controlador){
         initComponents();
         ButtonTabComponent boton;
+        tipo = false;
         this.control = controlador;
         
         p.put("text.today", "Today");
@@ -67,19 +75,13 @@ public class Fecha extends javax.swing.JFrame {
         setSize(260, 140);      
     }   
     
-    public Fecha(int num) {
+    public Fecha() {
         initComponents();
         
         ButtonTabComponent boton;
-    
+        tipo = true;
         label1.setVisible(true);
         label2.setVisible(true);
-        
-        /*for (int n=0; n<num; n++){
-            if(n==0) panel.add(label1);
-            if(n==1) panel.add(label2);
-            crearFechas();
-        }*/
         
         p.put("text.today", "Today");
         p.put("text.month", "Month");
@@ -134,7 +136,7 @@ public class Fecha extends javax.swing.JFrame {
         aceptar = new javax.swing.JButton();
         cancelar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Ingrese fecha:");
         setPreferredSize(new java.awt.Dimension(250, 270));
 
@@ -183,16 +185,26 @@ public class Fecha extends javax.swing.JFrame {
 
     private void aceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarActionPerformed
         dispose();
-        DB datos = DB.getInstance();
-        int mes = botonFecha.getModel().getMonth()+1;
-        int dia = botonFecha.getModel().getDay();
-        if(dia<10) diaa = "0"+dia;
-        if (mes<10) mess = "0"+mes;
-        
-        datos.getId(botonFecha.getModel().getDay()+"-"+mess+"-"+botonFecha.getModel().getYear(), 3);
-        control.setFecha(datos.getResultado());
-        if(datos.getResultado()!=null) control.dibujar();
-        else JOptionPane.showMessageDialog(this, "No existe registro en esta fecha.");
+        datePanel.getModel().getValue();
+        if (tipo == false){
+            DB datos = DB.getInstance();
+            int mes = botonFecha.getModel().getMonth()+1;
+            int dia = botonFecha.getModel().getDay();
+            if (dia<10) diaa = "0"+dia;
+            if (mes<10) mess = "0"+mes;
+            fech = botonFecha.getModel().getDay()+"-"+mess+"-"+botonFecha.getModel().getYear();
+
+            control.setFecha(fech);
+            datos.setFecha(control.getFecha());
+            datos.getId(3);
+            if(datos.getResultado()!=null && datePanel.getModel().getValue()!=null){
+                control.dibujar();
+            }
+            else JOptionPane.showMessageDialog(this, "No existe registro en esta fecha.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        else{
+            JOptionPane.showMessageDialog(null, " ");
+        }
        /* Grafico grafico = new Grafico();
              
         grafico.setDiaDesde(botonFecha.getModel().getDay());

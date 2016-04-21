@@ -1,12 +1,16 @@
 package projectjava;
 
+import controller.Controlador;
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicButtonUI;
 import java.awt.*;
 import java.awt.event.*;
+import model.DB;
 
 public class ButtonTabComponent extends JPanel {
     private AreaTrabajo pane;    
+    private Controlador control;
+    private DB datos;
     
     public ButtonTabComponent(final AreaTrabajo pane) {
         //unset default FlowLayout' gaps
@@ -46,8 +50,8 @@ public class ButtonTabComponent extends JPanel {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+            pane.datePanel.getModel().setValue(null);
             pane.cerrarDiagrama();
-            
         }
 
         //we don't want to update UI for this button

@@ -48,94 +48,94 @@ public final class Formulas {
     }
     
     Formulas(String fecha){
-                datos.getId(fecha, 18); 
+                datos.getId(18); 
                 nSistemasCubiertosACR = Float.parseFloat(datos.getResultado());
                 
-                datos.getId(fecha, 19); 
+                datos.getId(19); 
                 nTotalSistemas = Float.parseFloat(datos.getResultado());
                 
-                datos.getId(fecha, 20);
+                datos.getId(20);
                 hHombreMantenPredictivo = Float.parseFloat(datos.getResultado());
                 
-                datos.getId(fecha, 21);
+                datos.getId(21);
                 hHombreTotalesManten = Float.parseFloat(datos.getResultado());
                 
-                datos.getId(fecha, 23);
+                datos.getId(23);
                 hHombreMantenPreventivo = Float.parseFloat(datos.getResultado());
                 
-                datos.getId(fecha, 22);
+                datos.getId(22);
                 hHombreMantenPlanifiPro = Float.parseFloat(datos.getResultado());
                 
-                datos.getId(fecha, 24);
+                datos.getId(24);
                 hHombreTotalesMantenDisp = Float.parseFloat(datos.getResultado());
                 
-                datos.getId(fecha, 25);
+                datos.getId(25);
                 nOTejeDen20CostPlan = Float.parseFloat(datos.getResultado());
                 
-                datos.getId(fecha, 26);
+                datos.getId(26);
                 nTotalOTeje = Float.parseFloat(datos.getResultado());
                 
-                datos.getId(fecha, 27);
+                datos.getId(27);
                 nTotalOTpro = Float.parseFloat(datos.getResultado());
                 
-                datos.getId(fecha, 28);
+                datos.getId(28);
                 cantOTretrab = Float.parseFloat(datos.getResultado());
                 
-                datos.getId(fecha, 29);
+                datos.getId(29);
                 nProyecEjeDent15Plan = Float.parseFloat(datos.getResultado());
                 
-                datos.getId(fecha, 30);
+                datos.getId(30);
                 nTotalProyecEje = Float.parseFloat(datos.getResultado());
                 
-                datos.getId(fecha, 31);
+                datos.getId(31);
                 sumaTiempoRep = Float.parseFloat(datos.getResultado());
                 
-                datos.getId(fecha, 32);
+                datos.getId(32);
                 nTotalRep = Float.parseFloat(datos.getResultado());
                 
-                datos.getId(fecha, 5);
+                datos.getId(5);
                 tiempoMedFallar = Float.parseFloat(datos.getResultado());
                 
-                datos.getId(fecha, 4);
+                datos.getId(4);
                 tiempoMedRep = Float.parseFloat(datos.getResultado());
                 
-                datos.getId(fecha, 5);
+                datos.getId(5);
                 timeTotalFunc = Float.parseFloat(datos.getResultado());
                 
-                datos.getId(fecha, 6);
+                datos.getId(6);
                 timeTotalIndisManten = Float.parseFloat(datos.getResultado());
                 
-                datos.getId(fecha, 7);
+                datos.getId(7);
                 nItemsPtoPedidoVig = Float.parseFloat(datos.getResultado());
                 
-                datos.getId(fecha, 8);
+                datos.getId(8);
                 nTotalItemsInvent = Float.parseFloat(datos.getResultado());
                 
-                datos.getId(fecha, 7);
+                datos.getId(7);
                 nItemsCantPedidoVig = Float.parseFloat(datos.getResultado());
                 
-                datos.getId(fecha, 9);
+                datos.getId(9);
                 valorInventMatObso = Float.parseFloat(datos.getResultado());
                 
-                datos.getId(fecha, 10);
+                datos.getId(10);
                 valorTotalInventario = Float.parseFloat(datos.getResultado());
                 
-                datos.getId(fecha, 11);
+                datos.getId(11);
                 valorTotalInventaManten = Float.parseFloat(datos.getResultado());
                 
-                datos.getId(fecha, 12);
+                datos.getId(12);
                 valorTotalActOpera = Float.parseFloat(datos.getResultado());
                 
-                datos.getId(fecha, 13);
+                datos.getId(13);
                 costoTotalManten = Float.parseFloat(datos.getResultado());
                 
-                datos.getId(fecha, 14);
+                datos.getId(14);
                 cantTotalUnidProd = Float.parseFloat(datos.getResultado());
                 
-                datos.getId(fecha, 15);
+                datos.getId(15);
                 timeTotalOpera = Float.parseFloat(datos.getResultado());
                 
-                datos.getId(fecha, 16);
+                datos.getId(16);
                 timeTotalDisp = Float.parseFloat(datos.getResultado());
                 
                 

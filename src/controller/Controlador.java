@@ -6,6 +6,7 @@ import java.awt.event.WindowEvent;
 import java.io.File;
 import javax.swing.JComponent;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import projectjava.AreaTrabajo;
 import projectjava.BarraDeEstado;
 import model.DB;
@@ -23,10 +24,9 @@ public class Controlador extends AbsControlador
     private AreaTrabajo area;
     private Fecha fe;
     private Ventana ventana;
-    private BarraHerramientas bh;
     private StringBuffer log = new StringBuffer();
-  
-    private final DB datos = DB.getInstance();
+    private DB datos = DB.getInstance();
+    private String nombreGrafico = "";
     
     JFileChooser fc;
     int returnVal;
@@ -38,6 +38,15 @@ public class Controlador extends AbsControlador
 
         switch (fuente)
         {
+            case "BUSCAR":
+                datos = new DB();
+                datos.setFecha(area.getFechaBoton());
+                datos.getId(3);
+                if(datos.getResultado()==null){
+                    area.cerrarDiagrama();
+                    JOptionPane.showMessageDialog(null, "No Existe Registro en esta Fecha.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+                break;
             case "REGISTRAR":
                 FormuDatos form = new FormuDatos();
                 form.setVisible(true);
@@ -47,7 +56,7 @@ public class Controlador extends AbsControlador
                 crear.setVisible(true);
                 break;
             case "DISPONIBILIDAD":
-              //  Fecha fecha = new Fecha(2);
+                Fecha fecha = new Fecha();
                 break;
             case "SALIR":
                 ventana.dispatchEvent(new WindowEvent(ventana, WindowEvent.WINDOW_CLOSING));
@@ -62,6 +71,7 @@ public class Controlador extends AbsControlador
         }
     }
     public void setFecha(String val) { area.setFecha(val);}
+    public String getFecha() { return area.getFecha();}
     public void dibujar(){ area.dibujarDiagrama(); }
 
     // Añade un texto al registro de Eventos (Variable log)
@@ -174,6 +184,9 @@ public class Controlador extends AbsControlador
         be = ventana.getBarraEstado();
         area = ventana.getAreaTrabajo();
     }
+    
+    public void setNombreGrafico(String name){ this.nombreGrafico = name; }
+    public String getNombreGrafico(){ return nombreGrafico; }
     
     public void setBackground() { ventana.setBackground(); }
         

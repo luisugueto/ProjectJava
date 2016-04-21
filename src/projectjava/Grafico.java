@@ -13,22 +13,22 @@ import javafx.stage.Stage;
  
  
 public class Grafico extends Application {
+    Controlador control = Controlador.getInstance();
     int diaDesde, mesDesde, anioDesde, diaHasta, mesHasta, anioHasta;
-    String name = "";
     String desde = ""+getDiaDesde()+"-"+getMesDesde()+"-"+getAnioDesde(), hasta = ""+getDiaHasta()+"-"+getMesHasta()+"-"+getAnioHasta();
 
     @Override 
     public void start(Stage stage) {
-        stage.setTitle("Gráfico de "+getName());
+        stage.setTitle("Gráfico de "+control.getNombreGrafico());
         final CategoryAxis xAxis = new CategoryAxis();
         final NumberAxis yAxis = new NumberAxis();
          xAxis.setLabel("Fechas");
         final LineChart<String,Number> lineChart = new LineChart<String,Number>(xAxis,yAxis);
        
-        lineChart.setTitle("Gráfico de "+getName()+" entre fechas");
+        lineChart.setTitle("Gráfico de "+control.getNombreGrafico()+" entre fechas");
                           
         XYChart.Series series1 = new XYChart.Series();
-        series1.setName(getName());
+        series1.setName(control.getNombreGrafico());
         
         //series1.getData().add(new XYChart.Data("", 0));
         //series1.getData().add(new XYChart.Data(getDesde(), 30));
@@ -46,12 +46,18 @@ public class Grafico extends Application {
         stage.show();
     }
     
-    public void iniciar(){
+    public void iniciar() throws Exception{ 
         launch();
-    }
+        /*
+        Platform.runLater(new Runnable() {
+
+        @Override
+        public void run() {             
+           new Grafico().start(new Stage());
+       }
+    }); */
     
-    public void setName(String n) { this.name = n;}
-    public String getName(){ return name; }
+    }
     
     public void setDesde(String des){ this.desde = des; }
     public void setHasta(String has){ this.hasta = has; }
@@ -75,5 +81,4 @@ public class Grafico extends Application {
     public int getDiaHasta(){ return diaHasta; }
     public int getMesHasta(){ return mesHasta; }
     public int getAnioHasta(){ return anioHasta; }
-
 }
