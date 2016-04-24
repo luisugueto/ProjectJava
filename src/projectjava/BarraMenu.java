@@ -20,13 +20,13 @@ public class BarraMenu extends JMenuBar
 
     JMenu menus[];
     
-    String archivoText[]   = {"Registrar", "Listar", "Ver diagrama"},
+    String archivoText[]   = {"Registrar", /*"Listar",*/ "Ver diagrama"},
             
            graficoText[] = {"Disponibilidad", "Costos", "Ingresos"},
             
            //usuarioText[] = {"Registrar", "Ver lista"},
             
-           ayudaText[]   = {"Ayuda", "Cerrar Sesión", "Salir"};
+           ayudaText[]   = {"Ayuda", /*"Cerrar Sesión",*/ "Salir"};
     
     String textItems[][] = {archivoText, graficoText, /*usuarioText,*/ ayudaText};
     

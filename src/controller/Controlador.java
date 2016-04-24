@@ -26,7 +26,10 @@ public class Controlador extends AbsControlador
     private Ventana ventana;
     private StringBuffer log = new StringBuffer();
     private DB datos = DB.getInstance();
+    
+    //VARIABLES PARA EL GRÁFICO
     private String nombreGrafico = "";
+    boolean iniciado = false;
     
     JFileChooser fc;
     int returnVal;
@@ -35,16 +38,20 @@ public class Controlador extends AbsControlador
     @Override
     public void actionPerformed(ActionEvent e) {
         String fuente = ((JComponent)e.getSource()).getName();
-
+        Fecha fecha;
         switch (fuente)
         {
             case "BUSCAR":
                 datos = new DB();
                 datos.setFecha(area.getFechaBoton());
-                datos.getId(3);
+                setFecha(area.getFechaBoton());
+                datos.getDatoPorPosicion(3);
                 if(datos.getResultado()==null){
                     area.cerrarDiagrama();
                     JOptionPane.showMessageDialog(null, "No Existe Registro en esta Fecha.", "Error", JOptionPane.ERROR_MESSAGE);
+                }else {
+                    JOptionPane.showMessageDialog(null, "Diagrama Actualizado.", "Información", JOptionPane.INFORMATION_MESSAGE);
+                    area.dibujarDiagrama();
                 }
                 break;
             case "REGISTRAR":
@@ -56,7 +63,13 @@ public class Controlador extends AbsControlador
                 crear.setVisible(true);
                 break;
             case "DISPONIBILIDAD":
-                Fecha fecha = new Fecha();
+                fecha = new Fecha("Disponibilidad");
+                break;
+            case "COSTOS":
+                fecha = new Fecha("Costos");
+                break;
+            case "INGRESOS":
+                fecha = new Fecha("Ingresos");
                 break;
             case "SALIR":
                 ventana.dispatchEvent(new WindowEvent(ventana, WindowEvent.WINDOW_CLOSING));
@@ -185,8 +198,11 @@ public class Controlador extends AbsControlador
         area = ventana.getAreaTrabajo();
     }
     
+    //MÉTODOS PARA EL GRÁFICO
     public void setNombreGrafico(String name){ this.nombreGrafico = name; }
     public String getNombreGrafico(){ return nombreGrafico; }
+    public void setIniciadoGrafico(boolean val){ this.iniciado = val; }
+    public Boolean getIniciadoGrafico(){ return iniciado; }
     
     public void setBackground() { ventana.setBackground(); }
         

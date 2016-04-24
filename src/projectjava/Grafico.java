@@ -16,6 +16,7 @@ public class Grafico extends Application {
     Controlador control = Controlador.getInstance();
     int diaDesde, mesDesde, anioDesde, diaHasta, mesHasta, anioHasta;
     String desde = ""+getDiaDesde()+"-"+getMesDesde()+"-"+getAnioDesde(), hasta = ""+getDiaHasta()+"-"+getMesHasta()+"-"+getAnioHasta();
+    boolean iniciado = false;
 
     @Override 
     public void start(Stage stage) {
@@ -47,15 +48,19 @@ public class Grafico extends Application {
     }
     
     public void iniciar() throws Exception{ 
-        launch();
-        /*
-        Platform.runLater(new Runnable() {
+        if(control.getIniciadoGrafico()==false){
+            launch();
+            control.setIniciadoGrafico(true);
+        }
+       
+        if (control.getIniciadoGrafico() == true)
+            Platform.runLater(new Runnable() {
 
-        @Override
-        public void run() {             
-           new Grafico().start(new Stage());
-       }
-    }); */
+            @Override
+            public void run() {
+                new Grafico().start(new Stage());
+            }
+        }); 
     
     }
     

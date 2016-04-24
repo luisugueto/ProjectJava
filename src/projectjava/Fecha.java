@@ -8,7 +8,11 @@ package projectjava;
 import controller.Controlador;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -28,7 +32,7 @@ public class Fecha extends javax.swing.JFrame {
     /**
      * Creates new form Fecha
      */
-    Controlador control;
+    Controlador control = Controlador.getInstance();
     AreaTrabajo area;
     UtilDateModel model = new UtilDateModel();
     UtilDateModel model1 = new UtilDateModel();
@@ -41,10 +45,10 @@ public class Fecha extends javax.swing.JFrame {
     JLabel label1 = new JLabel("Desde");
     JLabel label2 = new JLabel("Hasta");
     JLabel label3 = new JLabel("Fecha");  
-    String mess = "";
-    String diaa = "";
-    String fech="";
-    
+    String mess = "", diaa = "", mess1 = "", diaa1 = "";
+    String fech = "", fech1 = "", nombreCampo = "";
+    ArrayList resultados = new ArrayList();
+    float[] valor;
     ResultSet res = null;
     
     boolean tipo = false;
@@ -75,13 +79,14 @@ public class Fecha extends javax.swing.JFrame {
         setSize(260, 140);      
     }   
     
-    public Fecha() {
+    public Fecha(String name) {
         initComponents();
         
         ButtonTabComponent boton;
         tipo = true;
         label1.setVisible(true);
         label2.setVisible(true);
+        this.nombreCampo = name;
         
         p.put("text.today", "Today");
         p.put("text.month", "Month");
@@ -184,39 +189,135 @@ public class Fecha extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void aceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarActionPerformed
-        dispose();
-        datePanel.getModel().getValue();
         if (tipo == false){
+            dispose();
             DB datos = DB.getInstance();
             int mes = botonFecha.getModel().getMonth()+1;
             int dia = botonFecha.getModel().getDay();
-            if (dia<10) diaa = "0"+dia;
-            if (mes<10) mess = "0"+mes;
-            fech = botonFecha.getModel().getDay()+"-"+mess+"-"+botonFecha.getModel().getYear();
+            if (dia<10) diaa = "0"+dia; else diaa = ""+dia;
+            if (mes<10) mess = "0"+mes; else mess = ""+mes;
+            fech = diaa+"-"+mess+"-"+botonFecha.getModel().getYear();
 
             control.setFecha(fech);
             datos.setFecha(control.getFecha());
-            datos.getId(3);
+            datos.getDatoPorPosicion(3);
             if(datos.getResultado()!=null && datePanel.getModel().getValue()!=null){
                 control.dibujar();
             }
             else JOptionPane.showMessageDialog(this, "No existe registro en esta fecha.", "Error", JOptionPane.ERROR_MESSAGE);
         }
         else{
-            JOptionPane.showMessageDialog(null, " ");
+            dispose();
+            DB datos = new DB();
+            int mes = botonFecha.getModel().getMonth()+1;
+            int dia = botonFecha.getModel().getDay();
+            if (dia<10) diaa = "0"+dia; else diaa = ""+dia;
+            if (mes<10) mess = "0"+mes; else mess = ""+mes;
+            
+            int mes1 = botonFecha1.getModel().getMonth()+1;
+            int dia1 = botonFecha1.getModel().getDay();
+            if (dia1<10) diaa1 = "0"+dia1; else diaa1 = ""+dia1;
+            if (mes1<10) mess1 = "0"+mes1; else mess1 = ""+mes1;
+            
+            fech = diaa+"-"+mess+"-"+botonFecha.getModel().getYear();
+            fech1 = diaa1+"-"+mess1+"-"+botonFecha1.getModel().getYear();
+            datos.setFecha(fech);
+            datos.setFecha2(fech1);
+            try {
+                datos.getResultadosRangoDeFecha();
+                for (int i = 0; i< datos.resultados.size(); i++){
+                    String fecha = String.valueOf(datos.resultados.get(i));
+                    Formulas form = new Formulas(fecha);
+                    
+                    switch (nombreCampo){
+                            case "Mantenimiento \npredictivo":
+                                resultados.add(form.getMantenimientoPredictivo());
+                                form.getMantenimientoPredictivo();
+                                break;
+                            case "Mantenimiento \npreventivo": 
+                                resultados.add(form.getMantenimientoPreventivo());
+                                form.getMantenimientoPreventivo();
+                                break;
+                            case "Planificación":
+                                resultados.add(form.getPlanificacion());
+                                form.getPlanificacion();
+                                break;
+                            case "Programación":
+                                resultados.add(form.getProgramacion());
+                                form.getProgramacion();
+                                break;
+                            case "Ejecución":
+                                resultados.add(form.getEjecucion());
+                                form.getEjecucion();
+                                break;
+                            case "Gestión de las \nparadas de planta":
+                                resultados.add(form.getGestionProyectos());
+                                form.getGestionProyectos();
+                                break;
+                            case "Punto de pedido":
+                                resultados.add(form.getPuntoPedido());
+                                form.getPuntoPedido();
+                                break;
+                            case "Cantidad de pedido":
+                                resultados.add(form.getCantidadPedido());
+                                form.getCantidadPedido();
+                                break;
+                            case "Materiales \nobsoletos":
+                                resultados.add(form.getMaterialesObsoletos());
+                                form.getMaterialesObsoletos();
+                                break;
+                            case "ACR":
+                                resultados.add(form.getACR());
+                                form.getACR();
+                                break;
+                            case "Mantenimiento \nplanificado":
+                                resultados.add(form.getMantenimientoPlanificado());
+                                form.getMantenimientoPlanificado();
+                                break;
+                            case "Inventarios":
+                                resultados.add(form.getInventarios());
+                                form.getInventarios();
+                                break;
+                            case "Factor de utilización de \nla capacidad instalada":
+                                resultados.add(form.getFactorUtilizacion());
+                                form.getFactorUtilizacion();
+                                break;
+                            case "Confiabilidad":
+                                resultados.add(form.getConfiabilidad());
+                                form.getConfiabilidad();
+                                break;
+                            case "MTTR":
+                                resultados.add(form.getMTTR());
+                                form.getMTTR();
+                                break;
+                            case "Disponibilidad":
+                                resultados.add(form.getDisponibilidad());
+                                form.getDisponibilidad();
+                                break;
+                            case "Costos":
+                                resultados.add(form.getCostos());
+                                form.getCostos();
+                                break;
+                            case "Ingresos":
+                                break;
+                            case "AO":
+                                break;
+                            case "EBIT":
+                                break;
+                            case "EVA":
+                                break;
+
+                            default:
+                                System.out.println("No existente.");
+                                break;
+                    }
+                    
+                }
+               VentanaGrafico grafico = new VentanaGrafico(nombreCampo, resultados);
+            } catch (ParseException ex) {
+                Logger.getLogger(Fecha.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-       /* Grafico grafico = new Grafico();
-             
-        grafico.setDiaDesde(botonFecha.getModel().getDay());
-        grafico.setMesDesde(botonFecha.getModel().getMonth());
-        grafico.setAnioDesde(botonFecha.getModel().getYear());
-        
-        grafico.setDiaHasta(botonFecha1.getModel().getDay());
-        grafico.setMesHasta(botonFecha1.getModel().getMonth());
-        grafico.setAnioHasta(botonFecha1.getModel().getYear());
-        
-        grafico.iniciar();
-        */
     }//GEN-LAST:event_aceptarActionPerformed
 
     private void cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarActionPerformed
@@ -261,6 +362,7 @@ public class Fecha extends javax.swing.JFrame {
             }
         });
     }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton aceptar;

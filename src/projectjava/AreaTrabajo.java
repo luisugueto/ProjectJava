@@ -98,7 +98,7 @@ public final class AreaTrabajo extends JPanel
         
         crearBotonesInicio("Registrar", "formulario");
         crearBotonesInicio("Ver Diagrama", "diagrama");
-        crearBotonesInicio("Gráfico", "nuevo");
+        //crearBotonesInicio("Gráfico", "nuevo");
         panelBoton.setSize(this.getWidth(), 80);
         panelBoton.setLocation(30, 300);
         
@@ -279,7 +279,6 @@ public final class AreaTrabajo extends JPanel
                                 break;
                         
                     }
-                    
                 }
             }
         }); 
@@ -359,10 +358,10 @@ public final class AreaTrabajo extends JPanel
         String diaa = "", mess = "";
         int mes = botonFecha.getModel().getMonth()+1;
         int dia = botonFecha.getModel().getDay();
-        if(dia<10) diaa = "0"+dia;
-        if (mes<10) mess = "0"+mes;
+        if(dia<10) diaa = "0"+dia; else diaa = ""+dia;
+        if (mes<10) mess = "0"+mes; else mess = ""+mes;
         
-        return botonFecha.getModel().getDay()+"-"+mess+"-"+botonFecha.getModel().getYear(); }
+        return diaa+"-"+mess+"-"+botonFecha.getModel().getYear(); }
     
     public void setValor(String val) { this.valor = val;}
     

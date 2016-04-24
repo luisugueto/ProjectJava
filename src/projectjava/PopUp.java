@@ -79,12 +79,15 @@ public class PopUp extends JPopupMenu implements ActionListener{
                     JOptionPane.showMessageDialog(this, form.formCostos, "Formula", JOptionPane.INFORMATION_MESSAGE);              
                 break;
             case "Mostrar Gráfico":
-                control.setNombreGrafico(nombreCampo);
+              /*  control.setNombreGrafico(nombreCampo);
                 try {
                     grafico.iniciar();
                 } catch (Exception ex) {
                     Logger.getLogger(PopUp.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                } */
+                
+                Fecha fech = new Fecha(nombreCampo);
+                control.setNombreGrafico(nombreCampo);
                 break;
             case "Valor":
                     JOptionPane.showMessageDialog(this, valor, "Valor", JOptionPane.INFORMATION_MESSAGE);

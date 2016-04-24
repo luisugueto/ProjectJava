@@ -13,14 +13,14 @@ import model.DB;
 
 /**
  *
- * @author Ypsis
+ * @author Luis
  */
 public class FormuDatos extends javax.swing.JFrame {
 
     /**
      * Creates new form FormuDatos
      */
-      DB datos = DB.getInstance();
+    DB datos = new DB();
     ResultSet resultados = null;
 
     int num, id;

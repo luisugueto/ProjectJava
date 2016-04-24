@@ -11,7 +11,7 @@ import model.DB;
  *
  * @author Luis
  */
-public final class Formulas {
+public class Formulas {
     //Formulas
     String formAnalisisCausaRaiz = "Número de sistemas cubiertos por un Análisis de Causa Raíz/Número total de sistemas";
     String formMantenPredictivo = "Horas Hombre de Mantenimiento Predictivo/Horas Hombre totales de Mantenimiento";
@@ -42,100 +42,102 @@ public final class Formulas {
         valorTotalInventaManten, valorTotalActOpera, costoTotalManten, cantTotalUnidProd, timeTotalOpera, timeTotalDisp, sumaTiempoRep,
         nTotalRep;
     
-        DB datos = DB.getInstance();
-
+    private static volatile Formulas instance = null;
+    
     Formulas(){
     }
     
     Formulas(String fecha){
-                datos.getId(18); 
+                DB datos = new DB();
+                datos.setFecha(fecha);
+                datos.getDatoPorPosicion(18); 
                 nSistemasCubiertosACR = Float.parseFloat(datos.getResultado());
                 
-                datos.getId(19); 
+                datos.getDatoPorPosicion(19); 
                 nTotalSistemas = Float.parseFloat(datos.getResultado());
                 
-                datos.getId(20);
+                datos.getDatoPorPosicion(20);
                 hHombreMantenPredictivo = Float.parseFloat(datos.getResultado());
                 
-                datos.getId(21);
+                datos.getDatoPorPosicion(21);
                 hHombreTotalesManten = Float.parseFloat(datos.getResultado());
                 
-                datos.getId(23);
+                datos.getDatoPorPosicion(23);
                 hHombreMantenPreventivo = Float.parseFloat(datos.getResultado());
                 
-                datos.getId(22);
+                datos.getDatoPorPosicion(22);
                 hHombreMantenPlanifiPro = Float.parseFloat(datos.getResultado());
                 
-                datos.getId(24);
+                datos.getDatoPorPosicion(24);
                 hHombreTotalesMantenDisp = Float.parseFloat(datos.getResultado());
                 
-                datos.getId(25);
+                datos.getDatoPorPosicion(25);
                 nOTejeDen20CostPlan = Float.parseFloat(datos.getResultado());
                 
-                datos.getId(26);
+                datos.getDatoPorPosicion(26);
                 nTotalOTeje = Float.parseFloat(datos.getResultado());
                 
-                datos.getId(27);
+                datos.getDatoPorPosicion(27);
                 nTotalOTpro = Float.parseFloat(datos.getResultado());
                 
-                datos.getId(28);
+                datos.getDatoPorPosicion(28);
                 cantOTretrab = Float.parseFloat(datos.getResultado());
                 
-                datos.getId(29);
+                datos.getDatoPorPosicion(29);
                 nProyecEjeDent15Plan = Float.parseFloat(datos.getResultado());
                 
-                datos.getId(30);
+                datos.getDatoPorPosicion(30);
                 nTotalProyecEje = Float.parseFloat(datos.getResultado());
                 
-                datos.getId(31);
+                datos.getDatoPorPosicion(31);
                 sumaTiempoRep = Float.parseFloat(datos.getResultado());
                 
-                datos.getId(32);
+                datos.getDatoPorPosicion(32);
                 nTotalRep = Float.parseFloat(datos.getResultado());
                 
-                datos.getId(5);
+                datos.getDatoPorPosicion(5);
                 tiempoMedFallar = Float.parseFloat(datos.getResultado());
                 
-                datos.getId(4);
+                datos.getDatoPorPosicion(4);
                 tiempoMedRep = Float.parseFloat(datos.getResultado());
                 
-                datos.getId(5);
+                datos.getDatoPorPosicion(5);
                 timeTotalFunc = Float.parseFloat(datos.getResultado());
                 
-                datos.getId(6);
+                datos.getDatoPorPosicion(6);
                 timeTotalIndisManten = Float.parseFloat(datos.getResultado());
                 
-                datos.getId(7);
+                datos.getDatoPorPosicion(7);
                 nItemsPtoPedidoVig = Float.parseFloat(datos.getResultado());
                 
-                datos.getId(8);
+                datos.getDatoPorPosicion(8);
                 nTotalItemsInvent = Float.parseFloat(datos.getResultado());
                 
-                datos.getId(7);
+                datos.getDatoPorPosicion(7);
                 nItemsCantPedidoVig = Float.parseFloat(datos.getResultado());
                 
-                datos.getId(9);
+                datos.getDatoPorPosicion(9);
                 valorInventMatObso = Float.parseFloat(datos.getResultado());
                 
-                datos.getId(10);
+                datos.getDatoPorPosicion(10);
                 valorTotalInventario = Float.parseFloat(datos.getResultado());
                 
-                datos.getId(11);
+                datos.getDatoPorPosicion(11);
                 valorTotalInventaManten = Float.parseFloat(datos.getResultado());
                 
-                datos.getId(12);
+                datos.getDatoPorPosicion(12);
                 valorTotalActOpera = Float.parseFloat(datos.getResultado());
                 
-                datos.getId(13);
+                datos.getDatoPorPosicion(13);
                 costoTotalManten = Float.parseFloat(datos.getResultado());
                 
-                datos.getId(14);
+                datos.getDatoPorPosicion(14);
                 cantTotalUnidProd = Float.parseFloat(datos.getResultado());
                 
-                datos.getId(15);
+                datos.getDatoPorPosicion(15);
                 timeTotalOpera = Float.parseFloat(datos.getResultado());
                 
-                datos.getId(16);
+                datos.getDatoPorPosicion(16);
                 timeTotalDisp = Float.parseFloat(datos.getResultado());
                 
                 
@@ -178,6 +180,7 @@ public final class Formulas {
     public void factorUtilizacion(){ this.factorUtilizacion = timeTotalOpera/timeTotalDisp; }
     
     //GETTERS de las Formulas
+    public String getACR(){ return String.valueOf(ACR);}
     public String getMantenimientoPredictivo(){ return String.valueOf(mantenPredictivo); }
     public String getMantenimientoPreventivo(){ return String.valueOf(mantenPrevetivo); }
     public String getMantenimientoPlanificado(){ return String.valueOf(mantenPlanificado); }
@@ -194,4 +197,9 @@ public final class Formulas {
     public String getInventarios(){ return String.valueOf(inventarios); }
     public String getCostos(){ return String.valueOf(costos); }
     public String getFactorUtilizacion(){ return String.valueOf(factorUtilizacion);}
+    
+    public static synchronized Formulas getInstance() {
+        if (instance == null) instance = new Formulas();
+        return instance;
+    }
 }
