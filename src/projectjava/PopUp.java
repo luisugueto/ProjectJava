@@ -87,6 +87,7 @@ public class PopUp extends JPopupMenu implements ActionListener{
                 } */
                 
                 Fecha fech = new Fecha(nombreCampo);
+                
                 control.setNombreGrafico(nombreCampo);
                 break;
             case "Valor":

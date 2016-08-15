@@ -6,14 +6,20 @@
 package projectjava;
 
 import controller.Controlador;
+import static java.lang.Integer.parseInt;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -38,6 +44,7 @@ public class Fecha extends javax.swing.JFrame {
     UtilDateModel model1 = new UtilDateModel();
     JDatePanelImpl datePanel,datePanel1;
     JDatePickerImpl botonFecha, botonFecha1;
+    JComboBox combo = new JComboBox();
     Properties p = new Properties();
 
     JPanel panel = new JPanel();
@@ -45,8 +52,10 @@ public class Fecha extends javax.swing.JFrame {
     JLabel label1 = new JLabel("Desde");
     JLabel label2 = new JLabel("Hasta");
     JLabel label3 = new JLabel("Fecha");  
+    JLabel label4 = new JLabel("Rango");
     String mess = "", diaa = "", mess1 = "", diaa1 = "";
     String fech = "", fech1 = "", nombreCampo = "";
+    float val = 0;
     ArrayList resultados = new ArrayList();
     float[] valor;
     ResultSet res = null;
@@ -86,6 +95,7 @@ public class Fecha extends javax.swing.JFrame {
         tipo = true;
         label1.setVisible(true);
         label2.setVisible(true);
+        label4.setVisible(true);
         this.nombreCampo = name;
         
         p.put("text.today", "Today");
@@ -104,7 +114,15 @@ public class Fecha extends javax.swing.JFrame {
         botonFecha1 = new JDatePickerImpl(datePanel1, new DateLabelFormatter());
         panel.add(label2);
         panel.add(botonFecha1);
-
+        combo.addItem("Semanal"); //6 meses
+        combo.addItem("Quincenal"); //1 año
+        combo.addItem("Mensual"); //2 años
+        combo.addItem("Trimestral");//6 años
+        combo.addItem("Semestral");// 12 años
+        combo.addItem("Anual");//24 años
+      
+        panel.add(label4);
+        panel.add(combo);
         add(panel);       
         
         panel.setSize(260, 100);
@@ -112,7 +130,7 @@ public class Fecha extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setResizable(false);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        setSize(260, 140);      
+        setSize(260, 200);      
     }
     
     
@@ -178,7 +196,7 @@ public class Fecha extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(106, Short.MAX_VALUE)
+                .addContainerGap(116, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(aceptar)
                     .addComponent(cancelar))
@@ -197,7 +215,6 @@ public class Fecha extends javax.swing.JFrame {
             if (dia<10) diaa = "0"+dia; else diaa = ""+dia;
             if (mes<10) mess = "0"+mes; else mess = ""+mes;
             fech = diaa+"-"+mess+"-"+botonFecha.getModel().getYear();
-
             control.setFecha(fech);
             datos.setFecha(control.getFecha());
             datos.getDatoPorPosicion(3);
@@ -221,10 +238,637 @@ public class Fecha extends javax.swing.JFrame {
             
             fech = diaa+"-"+mess+"-"+botonFecha.getModel().getYear();
             fech1 = diaa1+"-"+mess1+"-"+botonFecha1.getModel().getYear();
-            datos.setFecha(fech);
-            datos.setFecha2(fech1);
-            try {
-                datos.getResultadosRangoDeFecha();
+                              
+            
+            
+                
+//################SELECCION DE TIPO DE FILTRADO############################
+            if(combo.getSelectedItem().equals("Semanal"))
+            {
+                Calendar calendar = Calendar.getInstance();
+                calendar.setFirstDayOfWeek(Calendar.SUNDAY);
+                calendar.setMinimalDaysInFirstWeek(2);
+                calendar.setTime((Date) botonFecha.getModel().getValue());
+                int numberWeekOfYear = calendar.get(Calendar.WEEK_OF_YEAR);
+                Calendar calendar1 = Calendar.getInstance();
+                calendar1.setFirstDayOfWeek( Calendar.MONDAY);
+                calendar1.setMinimalDaysInFirstWeek( 4 );
+                calendar1.setTime((Date) botonFecha1.getModel().getValue());
+                int numberWeekOfYear1 = calendar1.get(Calendar.WEEK_OF_YEAR);
+                
+                Calendar suma = Calendar.getInstance();
+                suma.setTime((Date) botonFecha.getModel().getValue());
+                
+                Calendar suma1 = Calendar.getInstance();
+                suma1.setTime((Date) botonFecha.getModel().getValue());
+                                
+                int prom = 0;
+                int numVeces = 0;
+                
+                if((numberWeekOfYear1 - numberWeekOfYear) < 24)
+                {                    
+                    for(int i = numberWeekOfYear; i < numberWeekOfYear1; i++)
+                    {                       
+                        for(int j = 0; j < 7; j++)
+                        {
+                            suma.add(Calendar.DATE, 1);
+                            String fec = ""+suma.getTime();
+                            String partFec[] = fec.split(" ");
+                            String mesFec = "";
+                            switch(partFec[1])
+                            {
+                                case "Jan":  mesFec = "0"+1; break;
+                                case "Feb":  mesFec = "0"+2; break;
+                                case "Mar":  mesFec = "0"+3; break;
+                                case "Apr":  mesFec = "0"+4; break;
+                                case "May":  mesFec = "0"+5; break;
+                                case "Jun":  mesFec = "0"+6; break;
+                                case "Jul":  mesFec = "0"+7; break;
+                                case "Aug":  mesFec = "0"+8; break;
+                                case "Sep":  mesFec = "0"+9; break;
+                                case "Oct":  mesFec = ""+10; break;
+                                case "Nov":  mesFec = ""+11; break;
+                                case "Dec":  mesFec = ""+12; break;
+                            }
+                            
+                        String fechaa = partFec[2]+"-"+mesFec+"-"+partFec[5];
+                        
+                        Formulas form = new Formulas(fechaa);
+                            switch (nombreCampo){
+                                case "Mantenimiento \npredictivo":
+                                    if((form.getMantenimientoPredictivo().equals("NaN")) || (form.getMantenimientoPredictivo().equals("0.0"))){}
+                                    else{
+                                        numVeces++;
+                                        val += Float.parseFloat(form.getMantenimientoPredictivo());
+                                    }
+                                    break;
+                                case "Mantenimiento \npreventivo": 
+                                    if(form.getMantenimientoPreventivo().equals("NaN")){}
+                                    else{
+                                        numVeces++;
+                                        val += Float.parseFloat(form.getMantenimientoPreventivo());
+                                    }
+                                    break;
+                                case "Planificación":
+                                    if(form.getPlanificacion().equals("NaN")){}
+                                    else{
+                                        numVeces++;
+                                        val += Float.parseFloat(form.getPlanificacion());
+                                    }
+                                    break;
+                                case "Programación":
+                                    if(form.getProgramacion().equals("NaN")){}
+                                    else{
+                                        numVeces++;
+                                        val += Float.parseFloat(form.getProgramacion());
+                                    }
+                                    break;
+                                case "Ejecución":
+                                    if(form.getEjecucion().equals("NaN")){}
+                                    else{
+                                        numVeces++;
+                                        val += Float.parseFloat(form.getEjecucion());
+                                    }
+                                    break;
+                                case "Gestión de las \nparadas de planta":
+                                    if(form.getGestionProyectos().equals("NaN")){}
+                                    else{
+                                        numVeces++;
+                                        val += Float.parseFloat(form.getGestionProyectos());
+                                    }
+                                    break;
+                                case "Punto de pedido":
+                                    if(form.getPuntoPedido().equals("NaN")){}
+                                    else{
+                                        numVeces++;
+                                        val += Float.parseFloat(form.getPuntoPedido());
+                                    }
+                                    break;
+                                case "Cantidad de pedido":
+                                    if(form.getCantidadPedido().equals("NaN")){}
+                                    else{
+                                        numVeces++;
+                                        val += Float.parseFloat(form.getCantidadPedido());
+                                    }
+                                    break;
+                                case "Materiales \nobsoletos":
+                                    if(form.getMaterialesObsoletos().equals("NaN")){}
+                                    else{
+                                        numVeces++;
+                                        val += Float.parseFloat(form.getMaterialesObsoletos());
+                                    }
+                                    break;
+                                case "ACR":
+                                    if(form.getACR().equals("NaN")){}
+                                    else{
+                                        numVeces++;
+                                        val += Float.parseFloat(form.getACR());
+                                    }
+                                    break;
+                                case "Mantenimiento \nplanificado":
+                                    if(form.getMantenimientoPlanificado().equals("NaN")){}
+                                    else{
+                                        numVeces++;
+                                        val += Float.parseFloat(form.getMantenimientoPlanificado());
+                                    }
+                                    break;
+                                case "Inventarios":
+                                    if(form.getInventarios().equals("NaN")){}
+                                    else{
+                                        numVeces++;
+                                        val += Float.parseFloat(form.getInventarios());
+                                    }
+                                    break;
+                                case "Factor de utilización de \nla capacidad instalada":
+                                    if(form.getFactorUtilizacion().equals("NaN")){}
+                                    else{
+                                        numVeces++;
+                                        val += Float.parseFloat(form.getFactorUtilizacion());
+                                    }
+                                    break;
+                                case "Confiabilidad":
+                                    if(form.getConfiabilidad().equals("NaN")){}
+                                    else{
+                                        numVeces++;
+                                        val += Float.parseFloat(form.getConfiabilidad());
+                                    }
+                                    break;
+                                case "MTTR":
+                                    if(form.getMTTR().equals("NaN")){}
+                                    else{
+                                        numVeces++;
+                                        val += Float.parseFloat(form.getMTTR());
+                                    }
+                                    break;
+                                case "Disponibilidad":
+                                    if(form.getDisponibilidad().equals("NaN")){}
+                                    else{
+                                        numVeces++;
+                                        val += Float.parseFloat(form.getDisponibilidad());
+                                    }
+                                    break;
+                                case "Costos":
+                                    if(form.getCostos().equals("NaN")){}
+                                    else{
+                                        numVeces++;
+                                        val += Float.parseFloat(form.getCostos());
+                                    }
+                                    break;
+                                case "Ingresos":
+                                   
+                                    break;
+                                case "AO":
+                                   
+                                    break;
+                                case "EBIT":
+                                   
+                                    break;
+                                case "EVA":
+                                    
+                                    break;
+
+                                default:
+                                    System.out.println("No existente.");
+                                    break;
+                            }
+                            
+                        }
+                        resultados.add(val/numVeces);
+                        val = 0;
+                        numVeces = 0;
+                    }
+                }
+                else
+                {
+                    System.out.println("No");
+                }
+            }
+            
+ /* QUINCENAL ################################################*/
+            if(combo.getSelectedItem().equals("Quincenal"))
+            {
+                Calendar calendar = Calendar.getInstance();
+                calendar.setFirstDayOfWeek(Calendar.SUNDAY);
+                calendar.setMinimalDaysInFirstWeek(2);
+                calendar.setTime((Date) botonFecha.getModel().getValue());
+                int numberWeekOfYear = calendar.get(Calendar.WEEK_OF_YEAR);
+                Calendar calendar1 = Calendar.getInstance();
+                calendar1.setFirstDayOfWeek( Calendar.MONDAY);
+                calendar1.setMinimalDaysInFirstWeek( 4 );
+                calendar1.setTime((Date) botonFecha1.getModel().getValue());
+                int numberWeekOfYear1 = calendar1.get(Calendar.WEEK_OF_YEAR);
+                
+                Calendar suma = Calendar.getInstance();
+                suma.setTime((Date) botonFecha.getModel().getValue());
+                
+                Calendar suma1 = Calendar.getInstance();
+                suma1.setTime((Date) botonFecha.getModel().getValue());
+                                
+                int prom = 0;
+                int numVeces = 1;
+                
+                if(((numberWeekOfYear - numberWeekOfYear1)/2) < 24)
+                {                    
+                    for(int i = numberWeekOfYear; i < numberWeekOfYear1; i++)
+                    {                       
+                        for(int j = 0; j < 7; j++)
+                        {
+                            suma.add(Calendar.DATE, 1);
+                            String fec = ""+suma.getTime();
+                            String partFec[] = fec.split(" ");
+                            String mesFec = "";
+                            switch(partFec[1])
+                            {
+                                case "Jan":  mesFec = "0"+1; break;
+                                case "Feb":  mesFec = "0"+2; break;
+                                case "Mar":  mesFec = "0"+3; break;
+                                case "Apr":  mesFec = "0"+4; break;
+                                case "May":  mesFec = "0"+5; break;
+                                case "Jun":  mesFec = "0"+6; break;
+                                case "Jul":  mesFec = "0"+7; break;
+                                case "Aug":  mesFec = "0"+8; break;
+                                case "Sep":  mesFec = "0"+9; break;
+                                case "Oct":  mesFec = ""+10; break;
+                                case "Nov":  mesFec = ""+11; break;
+                                case "Dec":  mesFec = ""+12; break;
+                            }
+                            
+                        String fechaa = partFec[2]+"-"+mesFec+"-"+partFec[5];
+                        
+                        Formulas form = new Formulas(fechaa);
+                            switch (nombreCampo){
+                                case "Mantenimiento \npredictivo":
+                                    if(form.getMantenimientoPredictivo().equals("NaN")){}
+                                    else{
+                                        numVeces++;
+                                        val += Float.parseFloat(form.getMantenimientoPredictivo());
+                                    }
+                                    break;
+                                case "Mantenimiento \npreventivo": 
+                                    if(form.getMantenimientoPreventivo().equals("NaN")){}
+                                    else{
+                                        numVeces++;
+                                        val += Float.parseFloat(form.getMantenimientoPreventivo());
+                                    }
+                                    break;
+                                case "Planificación":
+                                    if(form.getPlanificacion().equals("NaN")){}
+                                    else{
+                                        numVeces++;
+                                        val += Float.parseFloat(form.getPlanificacion());
+                                    }
+                                    break;
+                                case "Programación":
+                                    if(form.getProgramacion().equals("NaN")){}
+                                    else{
+                                        numVeces++;
+                                        val += Float.parseFloat(form.getProgramacion());
+                                    }
+                                    break;
+                                case "Ejecución":
+                                    if(form.getEjecucion().equals("NaN")){}
+                                    else{
+                                        numVeces++;
+                                        val += Float.parseFloat(form.getEjecucion());
+                                    }
+                                    break;
+                                case "Gestión de las \nparadas de planta":
+                                    if(form.getGestionProyectos().equals("NaN")){}
+                                    else{
+                                        numVeces++;
+                                        val += Float.parseFloat(form.getGestionProyectos());
+                                    }
+                                    break;
+                                case "Punto de pedido":
+                                    if(form.getPuntoPedido().equals("NaN")){}
+                                    else{
+                                        numVeces++;
+                                        val += Float.parseFloat(form.getPuntoPedido());
+                                    }
+                                    break;
+                                case "Cantidad de pedido":
+                                    if(form.getCantidadPedido().equals("NaN")){}
+                                    else{
+                                        numVeces++;
+                                        val += Float.parseFloat(form.getCantidadPedido());
+                                    }
+                                    break;
+                                case "Materiales \nobsoletos":
+                                    if(form.getMaterialesObsoletos().equals("NaN")){}
+                                    else{
+                                        numVeces++;
+                                        val += Float.parseFloat(form.getMaterialesObsoletos());
+                                    }
+                                    break;
+                                case "ACR":
+                                    if(form.getACR().equals("NaN")){}
+                                    else{
+                                        numVeces++;
+                                        val += Float.parseFloat(form.getACR());
+                                    }
+                                    break;
+                                case "Mantenimiento \nplanificado":
+                                    if(form.getMantenimientoPlanificado().equals("NaN")){}
+                                    else{
+                                        numVeces++;
+                                        val += Float.parseFloat(form.getMantenimientoPlanificado());
+                                    }
+                                    break;
+                                case "Inventarios":
+                                    if(form.getInventarios().equals("NaN")){}
+                                    else{
+                                        numVeces++;
+                                        val += Float.parseFloat(form.getInventarios());
+                                    }
+                                    break;
+                                case "Factor de utilización de \nla capacidad instalada":
+                                    if(form.getFactorUtilizacion().equals("NaN")){}
+                                    else{
+                                        numVeces++;
+                                        val += Float.parseFloat(form.getFactorUtilizacion());
+                                    }
+                                    break;
+                                case "Confiabilidad":
+                                    if(form.getConfiabilidad().equals("NaN")){}
+                                    else{
+                                        numVeces++;
+                                        val += Float.parseFloat(form.getConfiabilidad());
+                                    }
+                                    break;
+                                case "MTTR":
+                                    if(form.getMTTR().equals("NaN")){}
+                                    else{
+                                        numVeces++;
+                                        val += Float.parseFloat(form.getMTTR());
+                                    }
+                                    break;
+                                case "Disponibilidad":
+                                    if(form.getDisponibilidad().equals("NaN")){}
+                                    else{
+                                        numVeces++;
+                                        val += Float.parseFloat(form.getDisponibilidad());
+                                    }
+                                    break;
+                                case "Costos":
+                                    if(form.getCostos().equals("NaN")){}
+                                    else{
+                                        numVeces++;
+                                        val += Float.parseFloat(form.getCostos());
+                                    }
+                                    break;
+                                case "Ingresos":
+                                   
+                                    break;
+                                case "AO":
+                                   
+                                    break;
+                                case "EBIT":
+                                   
+                                    break;
+                                case "EVA":
+                                    
+                                    break;
+
+                                default:
+                                    System.out.println("No existente.");
+                                    break;
+                            }
+                            
+                        }
+                        resultados.add(val/numVeces);
+                        val = 1;
+                        numVeces = 1;
+                    }
+                }
+                else
+                {
+                    System.out.println("No");
+                }
+            }
+ /* MENSUAL ################################################*/
+
+            if(combo.getSelectedItem().equals("Mensual"))
+            {
+                resultados.clear();
+                Calendar startCalendar = Calendar.getInstance();
+                startCalendar.setTime((Date) botonFecha.getModel().getValue());
+                //Fecha finalización en objeto Calendar
+                Calendar endCalendar = Calendar.getInstance();
+                endCalendar.setTime((Date) botonFecha1.getModel().getValue());
+                //Cálculo de meses para las fechas de inicio y finalización
+                int startMes = (startCalendar.get(Calendar.YEAR) * 12) + startCalendar.get(Calendar.MONTH);
+                int endMes = (endCalendar.get(Calendar.YEAR) * 12) + endCalendar.get(Calendar.MONTH);
+                //Diferencia en meses entre las dos fechas
+                int diffMonth = endMes - startMes;
+                   
+                if(diffMonth < 24){
+                    for(int i = startMes; i < endMes; i++){
+                        startCalendar.add(Calendar.MONTH, 1);
+                        String fec = ""+startCalendar.getTime();
+                        String partFec[] = fec.split(" ");
+                        String mesFec = "";
+                        switch(partFec[1]){
+                            case "Jan":  mesFec = "0"+1; break;
+                            case "Feb":  mesFec = "0"+2; break;
+                            case "Mar":  mesFec = "0"+3; break;
+                            case "Apr":  mesFec = "0"+4; break;
+                            case "May":  mesFec = "0"+5; break;
+                            case "Jun":  mesFec = "0"+6; break;
+                            case "Jul":  mesFec = "0"+7; break;
+                            case "Aug":  mesFec = "0"+8; break;
+                            case "Sep":  mesFec = "0"+9; break;
+                            case "Oct":  mesFec = ""+10; break;
+                            case "Nov":  mesFec = ""+11; break;
+                            case "Dec":  mesFec = ""+12; break;
+                        }
+                            
+                        String fechaa = ""+mesFec+"-"+partFec[5];
+                        datos.setFecha(fechaa);
+                        datos.getDatoPorPosicionMes(3);
+                        
+                    Formulas form = new Formulas(fechaa, "mes");
+                        
+                        switch (nombreCampo){
+                                case "Mantenimiento \npredictivo":
+                                    if(String.valueOf(form.mantenPreventivoR).equals("NaN")){}
+                                    else{ resultados.add(form.mantenPredictivoR); }
+                                    break;
+                                case "Mantenimiento \npreventivo": 
+                                    if(String.valueOf(form.mantenPreventivoR).equals("NaN")){}
+                                    else{ resultados.add(form.mantenPreventivoR);}
+                                    break;
+                                case "Planificación":
+                                    if(String.valueOf(form.planificacionR).equals("NaN")){}
+                                    else{ resultados.add(form.planificacionR); }
+                                    break;
+                                case "Programación":
+                                    if(String.valueOf(form.programacionR).equals("NaN")){}
+                                    else{ resultados.add(form.programacionR); }
+                                    break;
+                                case "Ejecución":
+                                    if(String.valueOf(form.ejecucionR).equals("NaN")){}
+                                    else{ resultados.add(form.ejecucionR);}
+                                    break;
+                                case "Gestión de las \nparadas de planta":
+                                    if(String.valueOf(form.gestionProyectosR).equals("NaN")){}
+                                    else{ resultados.add(form.gestionProyectosR);}
+                                    break;
+                                case "Punto de pedido":
+                                    if(String.valueOf(form.puntoPedidoR).equals("NaN")){}
+                                    else{  resultados.add(form.puntoPedidoR); }
+                                    break;
+                                case "Cantidad de pedido":
+                                    if(String.valueOf(form.cantidadPedidoR).equals("NaN")){}
+                                    else{ resultados.add(form.cantidadPedidoR);  }
+                                    break;
+                                case "Materiales \nobsoletos":
+                                    if(String.valueOf(form.materialesObsoletosR).equals("NaN")){}
+                                    else{ resultados.add(form.materialesObsoletosR); }
+                                    break;
+                                case "ACR":
+                                    if(String.valueOf(form.acrR).equals("NaN")){}
+                                    else{ resultados.add(form.acrR);  }
+                                    break;
+                                case "Mantenimiento \nplanificado":
+                                    if(String.valueOf(form.mantenPlanificadoR).equals("NaN")){}
+                                    else{ resultados.add(form.mantenPlanificadoR); }
+                                    break;
+                                case "Inventarios":
+                                    if(String.valueOf(form.inventariosR).equals("NaN")){}
+                                    else{ resultados.add(form.inventariosR);}
+                                    break;
+                                case "Factor de utilización de \nla capacidad instalada":
+                                    if(String.valueOf(form.factorUtilizacionR).equals("NaN")){}
+                                    else{ resultados.add(form.factorUtilizacionR); }
+                                    break;
+                                case "Confiabilidad":
+                                    if(String.valueOf(form.confiabilidadR).equals("NaN")){}
+                                    else{ resultados.add(form.confiabilidadR);}
+                                    break;
+                                case "MTTR":
+                                    if(String.valueOf(form.mttrR).equals("NaN")){}
+                                    else{ resultados.add(form.mttrR);}
+                                    break;
+                                case "Disponibilidad":
+                                    if(String.valueOf(form.disponibilidadR).equals("NaN")){}
+                                    else{ resultados.add(form.disponibilidadR); }
+                                    break;
+                                case "Costos":
+                                    if(String.valueOf(form.costosR).equals("NaN")){}
+                                    else{ resultados.add(form.costosR); }
+                                    break;
+                                case "Ingresos":
+                                   
+                                    break;
+                                case "AO":
+                                   
+                                    break;
+                                case "EBIT":
+                                   
+                                    break;
+                                case "EVA":
+                                    
+                                    break;
+
+                                default:
+                                    System.out.println("No existente.");
+                                    break;
+                            }
+                    } 
+                }
+                else
+                {
+                    System.out.println("No");
+                } 
+            }
+            
+            
+ /* TRIMESTRAL ################################################*/
+
+            if(combo.getSelectedItem().equals("Trimestral"))
+            {
+                int i = botonFecha.getModel().getMonth(); 
+                int o = botonFecha1.getModel().getMonth();
+                if(((i-0)/3)<24)
+                {
+                    for(int j = i; j < o; j++)
+                    {
+                        System.out.println(j);
+                    }
+                    System.out.println("Si");
+                }
+                else
+                {
+                    System.out.println("No");
+                }
+            }
+            
+ /* SEMESTRAL ################################################*/
+
+            if(combo.getSelectedItem().equals("Semestral"))
+            {
+                int i = botonFecha.getModel().getMonth(); 
+                int o = botonFecha1.getModel().getMonth();
+                if(((i-0)/6)<24)
+                {
+                    for(int j = i; j < o; j++)
+                    {
+                        System.out.println(j);
+                    }
+                    System.out.println("Si");
+                }
+                else
+                {
+                    System.out.println("No");
+                }
+                int s = (o-i)/6;
+                System.out.println(s);
+            }
+ /* ANUAL ################################################*/
+
+            if(combo.getSelectedItem().equals("Anual"))
+            {
+                Calendar startCalendar = Calendar.getInstance();
+                startCalendar.setTime((Date) botonFecha.getModel().getValue());
+                //Fecha finalización en objeto Calendar
+                Calendar endCalendar = Calendar.getInstance();
+                endCalendar.setTime((Date) botonFecha1.getModel().getValue());
+                //Cálculo de meses para las fechas de inicio y finalización
+                int startAnio = startCalendar.get(Calendar.YEAR);
+                int endAnio = endCalendar.get(Calendar.YEAR);
+                //Diferencia en meses entre las dos fechas
+                int diffMonth = endAnio - startAnio;
+                   
+                if(diffMonth < 24){
+                    for(int i = startAnio; i < endAnio; i++){                       
+                        startCalendar.add(Calendar.YEAR, 1);
+                        String fec = ""+startCalendar.getTime();
+                        String partFec[] = fec.split(" ");
+                        
+                        Formulas form = new Formulas(partFec[2], "mes");
+                            switch (nombreCampo){
+                                case "Mantenimiento \npredictivo":
+                                    System.out.println("Manten");
+                                    break;
+                               
+                                default:
+                                    System.out.println("No existente.");
+                                    break;
+                            }
+                        resultados.add(val);
+                        val = 1; 
+                    } 
+                }
+                else
+                {
+                    System.out.println("No");
+                } 
+            }
+            
+ //##################################################################
+            
+               /* 
+                  datos.getResultadosRangoDeFecha();
                 for (int i = 0; i< datos.resultados.size(); i++){
                     String fecha = String.valueOf(datos.resultados.get(i));
                     Formulas form = new Formulas(fecha);
@@ -312,11 +956,9 @@ public class Fecha extends javax.swing.JFrame {
                                 break;
                     }
                     
-                }
+                } */
                VentanaGrafico grafico = new VentanaGrafico(nombreCampo, resultados);
-            } catch (ParseException ex) {
-                Logger.getLogger(Fecha.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            
         }
     }//GEN-LAST:event_aceptarActionPerformed
 
@@ -362,6 +1004,13 @@ public class Fecha extends javax.swing.JFrame {
             }
         });
     }
+    
+    public static int getDayOfTheWeek(Date d){
+	GregorianCalendar cal = new GregorianCalendar();
+	cal.setTime(d);
+	return cal.get(Calendar.DAY_OF_WEEK);		
+}
+    
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

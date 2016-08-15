@@ -73,6 +73,7 @@ public final class AreaTrabajo extends JPanel
     DB datos = DB.getInstance();
     Formulas form;
     
+    
     AreaTrabajo (Controlador controlador) {
         super();
         setName("AT");
@@ -107,7 +108,7 @@ public final class AreaTrabajo extends JPanel
         barraSuperior.add(botonFecha);   
         barraSuperior.add(botonnn);     
     }
-    
+     
     public void dibujarDiagrama () {
                 
         remove(panelBoton);
@@ -126,7 +127,7 @@ public final class AreaTrabajo extends JPanel
         style.put(mxConstants.STYLE_FONTCOLOR, "#774400");
         style.put(mxConstants.STYLE_OPACITY, 50);
         style.put(mxConstants.STYLE_FONTCOLOR, "#774400");
-
+        
 		graph.getModel().beginUpdate();
 		try
 		{           
@@ -175,10 +176,10 @@ public final class AreaTrabajo extends JPanel
             graph.insertEdge(parent, null, " ", v12, v13);
 		}
 		finally
-		{
-			graph.getModel().endUpdate();
+		{           
+			graph.getModel().endUpdate();    
 		}
-                
+        
         graphComponent.getGraphControl().addMouseListener(new MouseAdapter() {
             @Override 
             public void mousePressed(MouseEvent e)
@@ -281,6 +282,11 @@ public final class AreaTrabajo extends JPanel
                     }
                 }
             }
+            
+            @Override
+            public void mouseEntered(MouseEvent e)
+            {
+            }           
         }); 
 
 		add(graphComponent);

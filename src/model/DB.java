@@ -35,6 +35,7 @@ public final class DB
     // Variable general para resultados
     ResultSet res = null;
     String resultado;
+    int resultad = 0;
     String fecha = "", fecha1 = ""; 
     public ArrayList resultados = new ArrayList();
     
@@ -70,20 +71,53 @@ public final class DB
     }
     
     public String getResultado(){ return resultado; }
+    public ArrayList getResultados(){ return resultados; }
+    public int getResultad(){ return resultad; }
     
     public void getDatoPorPosicion(int pos){
-    try { res = getDatos(); 
+        resultados.clear();
+        try { res = getDatos(); 
             while (res.next()) {
                    String temp = res.getString(3);
                     if(fecha.equals(temp)){// Asignar temp a alguna variable
-                       this.resultado = res.getString(pos);
+                            this.resultado = res.getString(pos);
+                            this.resultad = res.getInt(pos);
                        break;
                     }
             }
         } catch (SQLException ex) { System.out.println(ex.getMessage()); }
     }
     
+    public void getDatoPorPosicionMes(int pos){
+        resultados.clear();
+        try { res = getDatos(); 
+                while (res.next()) {
+                    String fechaData = res.getString(3);
+                    String partFechaData[] = fechaData.split("-");
+                    if(fecha.equalsIgnoreCase(partFechaData[1]+"-"+partFechaData[2]))
+                    {
+                        resultados.add(res.getString(pos));
+                    }
+                }
+            } catch (SQLException ex) { System.out.println(ex.getMessage()); } 
+    }
+    
+    public void getDatoPorPosicionAnio(int pos){     
+        resultados.clear();
+        try { res = getDatos(); 
+                while (res.next()) {
+                       String temp = res.getString(3);
+                       String partsTemp[] = temp.split("-");
+                       System.out.println(fecha);
+                        if(fecha.equals(partsTemp[2])){// Asignar temp a alguna variable
+                            this.resultados.add(res.getString(pos));                      
+                        }
+                }
+            } catch (SQLException ex) { System.out.println(ex.getMessage()); }
+    }
+    
     public void getResultadosRangoDeFecha() throws ParseException{
+        resultados.clear();
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         Date date1 = sdf.parse(fecha);
         Date date2 = sdf.parse(fecha1);
@@ -93,6 +127,27 @@ public final class DB
                     Date date3 = sdf.parse(res.getString(3));
                     if(date3.after(date1) && date3.before(date2)) 
                         resultados.add(res.getString(3));
+                }
+            } catch (SQLException ex) { System.out.println(ex.getMessage()); }
+    }
+    
+    public void getResultadosPorFecha(int pos) throws ParseException{
+        resultados.clear();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        Date date1 = sdf.parse(fecha);
+        String fechaC = ""+date1;
+
+        try { res = getDatos(); 
+                while (res.next()) {
+                    Date date3 = sdf.parse(res.getString(3));
+                   
+                    String fechaC1 = ""+date3;
+                    
+                    if(fechaC.equals(fechaC1))
+                    {
+                        this.resultad = res.getInt(pos);
+                        break;
+                    }
                 }
             } catch (SQLException ex) { System.out.println(ex.getMessage()); }
     }
