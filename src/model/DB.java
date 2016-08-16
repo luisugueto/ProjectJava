@@ -108,7 +108,6 @@ public final class DB
                 while (res.next()) {
                        String temp = res.getString(3);
                        String partsTemp[] = temp.split("-");
-                       System.out.println(fecha);
                         if(fecha.equals(partsTemp[2])){// Asignar temp a alguna variable
                             this.resultados.add(res.getString(pos));                      
                         }

@@ -828,35 +828,101 @@ public class Fecha extends javax.swing.JFrame {
 
             if(combo.getSelectedItem().equals("Anual"))
             {
-                Calendar startCalendar = Calendar.getInstance();
-                startCalendar.setTime((Date) botonFecha.getModel().getValue());
-                //Fecha finalización en objeto Calendar
-                Calendar endCalendar = Calendar.getInstance();
-                endCalendar.setTime((Date) botonFecha1.getModel().getValue());
-                //Cálculo de meses para las fechas de inicio y finalización
-                int startAnio = startCalendar.get(Calendar.YEAR);
-                int endAnio = endCalendar.get(Calendar.YEAR);
-                //Diferencia en meses entre las dos fechas
-                int diffMonth = endAnio - startAnio;
-                   
-                if(diffMonth < 24){
-                    for(int i = startAnio; i < endAnio; i++){                       
-                        startCalendar.add(Calendar.YEAR, 1);
-                        String fec = ""+startCalendar.getTime();
-                        String partFec[] = fec.split(" ");
+                resultados.clear();
+                int anioInicio = botonFecha.getModel().getYear();
+                int anioFinal = botonFecha1.getModel().getYear();
+                
+                if((anioFinal - anioInicio) < 24){
+                    for(int i = anioInicio; i <= anioFinal; i++){                            
                         
-                        Formulas form = new Formulas(partFec[2], "mes");
-                            switch (nombreCampo){
+                    Formulas form = new Formulas(""+i, "anual");
+                        
+                        switch (nombreCampo){
                                 case "Mantenimiento \npredictivo":
-                                    System.out.println("Manten");
+                                    if(String.valueOf(form.mantenPreventivoR).equals("NaN")){}
+                                    else{ resultados.add(form.mantenPredictivoR); }
                                     break;
-                               
+                                case "Mantenimiento \npreventivo": 
+                                    if(String.valueOf(form.mantenPreventivoR).equals("NaN")){}
+                                    else{ resultados.add(form.mantenPreventivoR);}
+                                    break;
+                                case "Planificación":
+                                    if(String.valueOf(form.planificacionR).equals("NaN")){}
+                                    else{ resultados.add(form.planificacionR); }
+                                    break;
+                                case "Programación":
+                                    if(String.valueOf(form.programacionR).equals("NaN")){}
+                                    else{ resultados.add(form.programacionR); }
+                                    break;
+                                case "Ejecución":
+                                    if(String.valueOf(form.ejecucionR).equals("NaN")){}
+                                    else{ resultados.add(form.ejecucionR);}
+                                    break;
+                                case "Gestión de las \nparadas de planta":
+                                    if(String.valueOf(form.gestionProyectosR).equals("NaN")){}
+                                    else{ resultados.add(form.gestionProyectosR);}
+                                    break;
+                                case "Punto de pedido":
+                                    if(String.valueOf(form.puntoPedidoR).equals("NaN")){}
+                                    else{  resultados.add(form.puntoPedidoR); }
+                                    break;
+                                case "Cantidad de pedido":
+                                    if(String.valueOf(form.cantidadPedidoR).equals("NaN")){}
+                                    else{ resultados.add(form.cantidadPedidoR);  }
+                                    break;
+                                case "Materiales \nobsoletos":
+                                    if(String.valueOf(form.materialesObsoletosR).equals("NaN")){}
+                                    else{ resultados.add(form.materialesObsoletosR); }
+                                    break;
+                                case "ACR":
+                                    if(String.valueOf(form.acrR).equals("NaN")){}
+                                    else{ resultados.add(form.acrR);  }
+                                    break;
+                                case "Mantenimiento \nplanificado":
+                                    if(String.valueOf(form.mantenPlanificadoR).equals("NaN")){}
+                                    else{ resultados.add(form.mantenPlanificadoR); }
+                                    break;
+                                case "Inventarios":
+                                    if(String.valueOf(form.inventariosR).equals("NaN")){}
+                                    else{ resultados.add(form.inventariosR);}
+                                    break;
+                                case "Factor de utilización de \nla capacidad instalada":
+                                    if(String.valueOf(form.factorUtilizacionR).equals("NaN")){}
+                                    else{ resultados.add(form.factorUtilizacionR); }
+                                    break;
+                                case "Confiabilidad":
+                                    if(String.valueOf(form.confiabilidadR).equals("NaN")){}
+                                    else{ resultados.add(form.confiabilidadR);}
+                                    break;
+                                case "MTTR":
+                                    if(String.valueOf(form.mttrR).equals("NaN")){}
+                                    else{ resultados.add(form.mttrR);}
+                                    break;
+                                case "Disponibilidad":
+                                    if(String.valueOf(form.disponibilidadR).equals("NaN")){}
+                                    else{ resultados.add(form.disponibilidadR); }
+                                    break;
+                                case "Costos":
+                                    if(String.valueOf(form.costosR).equals("NaN")){}
+                                    else{ resultados.add(form.costosR); }
+                                    break;
+                                case "Ingresos":
+                                   
+                                    break;
+                                case "AO":
+                                   
+                                    break;
+                                case "EBIT":
+                                   
+                                    break;
+                                case "EVA":
+                                    
+                                    break;
+
                                 default:
                                     System.out.println("No existente.");
                                     break;
                             }
-                        resultados.add(val);
-                        val = 1; 
                     } 
                 }
                 else
