@@ -686,9 +686,11 @@ public class Fecha extends javax.swing.JFrame {
                         datos.setFecha(fechaa);
                         datos.getDatoPorPosicionMes(3);
                         
-                    Formulas form = new Formulas(fechaa, "mes");
-                        
-                        switch (nombreCampo){
+                    Formulas form;
+                        try {
+                            form = new Formulas(fechaa, "", "mes");
+                            
+                            switch (nombreCampo){
                                 case "Mantenimiento \npredictivo":
                                     if(String.valueOf(form.mantenPreventivoR).equals("NaN")){}
                                     else{ resultados.add(form.mantenPredictivoR); }
@@ -774,6 +776,11 @@ public class Fecha extends javax.swing.JFrame {
                                     System.out.println("No existente.");
                                     break;
                             }
+                        } catch (ParseException ex) {
+                            Logger.getLogger(Fecha.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        
+                        
                     } 
                 }
                 else
@@ -787,57 +794,70 @@ public class Fecha extends javax.swing.JFrame {
 
             if(combo.getSelectedItem().equals("Trimestral"))
             {
-                int i = botonFecha.getModel().getMonth(); 
-                int o = botonFecha1.getModel().getMonth();
-                if(((i-0)/3)<24)
-                {
-                    for(int j = i; j < o; j++)
-                    {
-                        System.out.println(j);
-                    }
-                    System.out.println("Si");
-                }
-                else
-                {
-                    System.out.println("No");
-                }
-            }
-            
- /* SEMESTRAL ################################################*/
-
-            if(combo.getSelectedItem().equals("Semestral"))
-            {
-                int i = botonFecha.getModel().getMonth(); 
-                int o = botonFecha1.getModel().getMonth();
-                if(((i-0)/6)<24)
-                {
-                    for(int j = i; j < o; j++)
-                    {
-                        System.out.println(j);
-                    }
-                    System.out.println("Si");
-                }
-                else
-                {
-                    System.out.println("No");
-                }
-                int s = (o-i)/6;
-                System.out.println(s);
-            }
- /* ANUAL ################################################*/
-
-            if(combo.getSelectedItem().equals("Anual"))
-            {
                 resultados.clear();
-                int anioInicio = botonFecha.getModel().getYear();
-                int anioFinal = botonFecha1.getModel().getYear();
+                Calendar startCalendar = Calendar.getInstance();
+                startCalendar.setTime((Date) botonFecha.getModel().getValue());
+                //Fecha finalización en objeto Calendar
+                Calendar endCalendar = Calendar.getInstance();
+                endCalendar.setTime((Date) botonFecha1.getModel().getValue());
+                //Cálculo de meses para las fechas de inicio y finalización
+                int startMes = (startCalendar.get(Calendar.YEAR) * 12) + startCalendar.get(Calendar.MONTH);
+                int endMes = (endCalendar.get(Calendar.YEAR) * 12) + endCalendar.get(Calendar.MONTH);
                 
-                if((anioFinal - anioInicio) < 24){
-                    for(int i = anioInicio; i <= anioFinal; i++){                            
+                int diffMonth = endMes - startMes;
+                
+                Calendar suma = Calendar.getInstance();
+                suma.setTime((Date) botonFecha.getModel().getValue());
+                   
+                if((diffMonth/3) < 24){                    
+                    for(int i = startMes; i <= endMes; i+=3)
+                    {
+                        suma.add(Calendar.MONTH, 3);
+                        String fec1 = ""+suma.getTime();
+                        String partFec1[] = fec1.split(" ");
+                        String mesFec1 = "";
+                        switch(partFec1[1]){
+                            case "Jan":  mesFec1 = "0"+1; break;
+                            case "Feb":  mesFec1 = "0"+2; break;
+                            case "Mar":  mesFec1 = "0"+3; break;
+                            case "Apr":  mesFec1 = "0"+4; break;
+                            case "May":  mesFec1 = "0"+5; break;
+                            case "Jun":  mesFec1 = "0"+6; break;
+                            case "Jul":  mesFec1 = "0"+7; break;
+                            case "Aug":  mesFec1 = "0"+8; break;
+                            case "Sep":  mesFec1 = "0"+9; break;
+                            case "Oct":  mesFec1 = ""+10; break;
+                            case "Nov":  mesFec1 = ""+11; break;
+                            case "Dec":  mesFec1 = ""+12; break;
+                        }
+                            
+                        String fechaa1 = ""+mesFec1+"-"+partFec1[5];
                         
-                    Formulas form = new Formulas(""+i, "anual");
                         
-                        switch (nombreCampo){
+                        String fec = ""+startCalendar.getTime();
+                        String partFec[] = fec.split(" ");
+                        String mesFec = "";
+                        switch(partFec[1]){
+                            case "Jan":  mesFec = "0"+1; break;
+                            case "Feb":  mesFec = "0"+2; break;
+                            case "Mar":  mesFec = "0"+3; break;
+                            case "Apr":  mesFec = "0"+4; break;
+                            case "May":  mesFec = "0"+5; break;
+                            case "Jun":  mesFec = "0"+6; break;
+                            case "Jul":  mesFec = "0"+7; break;
+                            case "Aug":  mesFec = "0"+8; break;
+                            case "Sep":  mesFec = "0"+9; break;
+                            case "Oct":  mesFec = ""+10; break;
+                            case "Nov":  mesFec = ""+11; break;
+                            case "Dec":  mesFec = ""+12; break;
+                        }
+                            
+                        String fechaa = ""+mesFec+"-"+partFec[5];
+                        
+                        try {
+                            Formulas form = new Formulas("01-"+fechaa, "01-"+fechaa1,"trimestralYsemestral");
+                            
+                            switch (nombreCampo){
                                 case "Mantenimiento \npredictivo":
                                     if(String.valueOf(form.mantenPreventivoR).equals("NaN")){}
                                     else{ resultados.add(form.mantenPredictivoR); }
@@ -923,6 +943,279 @@ public class Fecha extends javax.swing.JFrame {
                                     System.out.println("No existente.");
                                     break;
                             }
+                        } catch (ParseException ex) {
+                            Logger.getLogger(Fecha.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        startCalendar.add(Calendar.MONTH, 3);                   
+                    }
+                }   
+            }
+            
+ /* SEMESTRAL ################################################*/
+
+            if(combo.getSelectedItem().equals("Semestral"))
+            {
+                resultados.clear();
+                Calendar startCalendar = Calendar.getInstance();
+                startCalendar.setTime((Date) botonFecha.getModel().getValue());
+                //Fecha finalización en objeto Calendar
+                Calendar endCalendar = Calendar.getInstance();
+                endCalendar.setTime((Date) botonFecha1.getModel().getValue());
+                //Cálculo de meses para las fechas de inicio y finalización
+                int startMes = (startCalendar.get(Calendar.YEAR) * 12) + startCalendar.get(Calendar.MONTH);
+                int endMes = (endCalendar.get(Calendar.YEAR) * 12) + endCalendar.get(Calendar.MONTH);
+                
+                int diffMonth = endMes - startMes;
+                
+                Calendar suma = Calendar.getInstance();
+                suma.setTime((Date) botonFecha.getModel().getValue());
+                   
+                if((diffMonth/6) < 24){                    
+                    for(int i = startMes; i <= endMes; i+=6)
+                    {
+                        suma.add(Calendar.MONTH, 6);
+                        String fec1 = ""+suma.getTime();
+                        String partFec1[] = fec1.split(" ");
+                        String mesFec1 = "";
+                        switch(partFec1[1]){
+                            case "Jan":  mesFec1 = "0"+1; break;
+                            case "Feb":  mesFec1 = "0"+2; break;
+                            case "Mar":  mesFec1 = "0"+3; break;
+                            case "Apr":  mesFec1 = "0"+4; break;
+                            case "May":  mesFec1 = "0"+5; break;
+                            case "Jun":  mesFec1 = "0"+6; break;
+                            case "Jul":  mesFec1 = "0"+7; break;
+                            case "Aug":  mesFec1 = "0"+8; break;
+                            case "Sep":  mesFec1 = "0"+9; break;
+                            case "Oct":  mesFec1 = ""+10; break;
+                            case "Nov":  mesFec1 = ""+11; break;
+                            case "Dec":  mesFec1 = ""+12; break;
+                        }
+                            
+                        String fechaa1 = ""+mesFec1+"-"+partFec1[5];
+                        
+                        
+                        String fec = ""+startCalendar.getTime();
+                        String partFec[] = fec.split(" ");
+                        String mesFec = "";
+                        switch(partFec[1]){
+                            case "Jan":  mesFec = "0"+1; break;
+                            case "Feb":  mesFec = "0"+2; break;
+                            case "Mar":  mesFec = "0"+3; break;
+                            case "Apr":  mesFec = "0"+4; break;
+                            case "May":  mesFec = "0"+5; break;
+                            case "Jun":  mesFec = "0"+6; break;
+                            case "Jul":  mesFec = "0"+7; break;
+                            case "Aug":  mesFec = "0"+8; break;
+                            case "Sep":  mesFec = "0"+9; break;
+                            case "Oct":  mesFec = ""+10; break;
+                            case "Nov":  mesFec = ""+11; break;
+                            case "Dec":  mesFec = ""+12; break;
+                        }
+                            
+                        String fechaa = ""+mesFec+"-"+partFec[5];
+                        try {
+                            Formulas form = new Formulas("01-"+fechaa, "01-"+fechaa1,"trimestralYsemestral");
+                            
+                            switch (nombreCampo){
+                                case "Mantenimiento \npredictivo":
+                                    if(String.valueOf(form.mantenPreventivoR).equals("NaN")){}
+                                    else{ resultados.add(form.mantenPredictivoR); }
+                                    break;
+                                case "Mantenimiento \npreventivo": 
+                                    if(String.valueOf(form.mantenPreventivoR).equals("NaN")){}
+                                    else{ resultados.add(form.mantenPreventivoR);}
+                                    break;
+                                case "Planificación":
+                                    if(String.valueOf(form.planificacionR).equals("NaN")){}
+                                    else{ resultados.add(form.planificacionR); }
+                                    break;
+                                case "Programación":
+                                    if(String.valueOf(form.programacionR).equals("NaN")){}
+                                    else{ resultados.add(form.programacionR); }
+                                    break;
+                                case "Ejecución":
+                                    if(String.valueOf(form.ejecucionR).equals("NaN")){}
+                                    else{ resultados.add(form.ejecucionR);}
+                                    break;
+                                case "Gestión de las \nparadas de planta":
+                                    if(String.valueOf(form.gestionProyectosR).equals("NaN")){}
+                                    else{ resultados.add(form.gestionProyectosR);}
+                                    break;
+                                case "Punto de pedido":
+                                    if(String.valueOf(form.puntoPedidoR).equals("NaN")){}
+                                    else{  resultados.add(form.puntoPedidoR); }
+                                    break;
+                                case "Cantidad de pedido":
+                                    if(String.valueOf(form.cantidadPedidoR).equals("NaN")){}
+                                    else{ resultados.add(form.cantidadPedidoR);  }
+                                    break;
+                                case "Materiales \nobsoletos":
+                                    if(String.valueOf(form.materialesObsoletosR).equals("NaN")){}
+                                    else{ resultados.add(form.materialesObsoletosR); }
+                                    break;
+                                case "ACR":
+                                    if(String.valueOf(form.acrR).equals("NaN")){}
+                                    else{ resultados.add(form.acrR);  }
+                                    break;
+                                case "Mantenimiento \nplanificado":
+                                    if(String.valueOf(form.mantenPlanificadoR).equals("NaN")){}
+                                    else{ resultados.add(form.mantenPlanificadoR); }
+                                    break;
+                                case "Inventarios":
+                                    if(String.valueOf(form.inventariosR).equals("NaN")){}
+                                    else{ resultados.add(form.inventariosR);}
+                                    break;
+                                case "Factor de utilización de \nla capacidad instalada":
+                                    if(String.valueOf(form.factorUtilizacionR).equals("NaN")){}
+                                    else{ resultados.add(form.factorUtilizacionR); }
+                                    break;
+                                case "Confiabilidad":
+                                    if(String.valueOf(form.confiabilidadR).equals("NaN")){}
+                                    else{ resultados.add(form.confiabilidadR);}
+                                    break;
+                                case "MTTR":
+                                    if(String.valueOf(form.mttrR).equals("NaN")){}
+                                    else{ resultados.add(form.mttrR);}
+                                    break;
+                                case "Disponibilidad":
+                                    if(String.valueOf(form.disponibilidadR).equals("NaN")){}
+                                    else{ resultados.add(form.disponibilidadR); }
+                                    break;
+                                case "Costos":
+                                    if(String.valueOf(form.costosR).equals("NaN")){}
+                                    else{ resultados.add(form.costosR); }
+                                    break;
+                                case "Ingresos":
+                                   
+                                    break;
+                                case "AO":
+                                   
+                                    break;
+                                case "EBIT":
+                                   
+                                    break;
+                                case "EVA":
+                                    
+                                    break;
+
+                                default:
+                                    System.out.println("No existente.");
+                                    break;
+                            }
+                            
+                        } catch (ParseException ex) {
+                            Logger.getLogger(Fecha.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        startCalendar.add(Calendar.MONTH, 6);                   
+                    }
+                }
+            }
+ /* ANUAL ################################################*/
+
+            if(combo.getSelectedItem().equals("Anual"))
+            {
+                resultados.clear();
+                int anioInicio = botonFecha.getModel().getYear();
+                int anioFinal = botonFecha1.getModel().getYear();
+                
+                if((anioFinal - anioInicio) < 24){
+                    for(int i = anioInicio; i <= anioFinal; i++){                            
+                        
+                        try {
+                            Formulas form = new Formulas(""+i, "","anual");
+                            
+                            switch (nombreCampo){
+                                case "Mantenimiento \npredictivo":
+                                    if(String.valueOf(form.mantenPreventivoR).equals("NaN")){}
+                                    else{ resultados.add(form.mantenPredictivoR); }
+                                    break;
+                                case "Mantenimiento \npreventivo": 
+                                    if(String.valueOf(form.mantenPreventivoR).equals("NaN")){}
+                                    else{ resultados.add(form.mantenPreventivoR);}
+                                    break;
+                                case "Planificación":
+                                    if(String.valueOf(form.planificacionR).equals("NaN")){}
+                                    else{ resultados.add(form.planificacionR); }
+                                    break;
+                                case "Programación":
+                                    if(String.valueOf(form.programacionR).equals("NaN")){}
+                                    else{ resultados.add(form.programacionR); }
+                                    break;
+                                case "Ejecución":
+                                    if(String.valueOf(form.ejecucionR).equals("NaN")){}
+                                    else{ resultados.add(form.ejecucionR);}
+                                    break;
+                                case "Gestión de las \nparadas de planta":
+                                    if(String.valueOf(form.gestionProyectosR).equals("NaN")){}
+                                    else{ resultados.add(form.gestionProyectosR);}
+                                    break;
+                                case "Punto de pedido":
+                                    if(String.valueOf(form.puntoPedidoR).equals("NaN")){}
+                                    else{  resultados.add(form.puntoPedidoR); }
+                                    break;
+                                case "Cantidad de pedido":
+                                    if(String.valueOf(form.cantidadPedidoR).equals("NaN")){}
+                                    else{ resultados.add(form.cantidadPedidoR);  }
+                                    break;
+                                case "Materiales \nobsoletos":
+                                    if(String.valueOf(form.materialesObsoletosR).equals("NaN")){}
+                                    else{ resultados.add(form.materialesObsoletosR); }
+                                    break;
+                                case "ACR":
+                                    if(String.valueOf(form.acrR).equals("NaN")){}
+                                    else{ resultados.add(form.acrR);  }
+                                    break;
+                                case "Mantenimiento \nplanificado":
+                                    if(String.valueOf(form.mantenPlanificadoR).equals("NaN")){}
+                                    else{ resultados.add(form.mantenPlanificadoR); }
+                                    break;
+                                case "Inventarios":
+                                    if(String.valueOf(form.inventariosR).equals("NaN")){}
+                                    else{ resultados.add(form.inventariosR);}
+                                    break;
+                                case "Factor de utilización de \nla capacidad instalada":
+                                    if(String.valueOf(form.factorUtilizacionR).equals("NaN")){}
+                                    else{ resultados.add(form.factorUtilizacionR); }
+                                    break;
+                                case "Confiabilidad":
+                                    if(String.valueOf(form.confiabilidadR).equals("NaN")){}
+                                    else{ resultados.add(form.confiabilidadR);}
+                                    break;
+                                case "MTTR":
+                                    if(String.valueOf(form.mttrR).equals("NaN")){}
+                                    else{ resultados.add(form.mttrR);}
+                                    break;
+                                case "Disponibilidad":
+                                    if(String.valueOf(form.disponibilidadR).equals("NaN")){}
+                                    else{ resultados.add(form.disponibilidadR); }
+                                    break;
+                                case "Costos":
+                                    if(String.valueOf(form.costosR).equals("NaN")){}
+                                    else{ resultados.add(form.costosR); }
+                                    break;
+                                case "Ingresos":
+                                   
+                                    break;
+                                case "AO":
+                                   
+                                    break;
+                                case "EBIT":
+                                   
+                                    break;
+                                case "EVA":
+                                    
+                                    break;
+
+                                default:
+                                    System.out.println("No existente.");
+                                    break;
+                            }
+                        } catch (ParseException ex) {
+                            Logger.getLogger(Fecha.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        
+                        
                     } 
                 }
                 else

@@ -82,7 +82,7 @@ public class Formulas {
     Formulas(){}
     
     //Constructor para hacer los calculos por Mes, Trimestre, Semestre y Anual.
-    Formulas(String fecha, String tipo){
+    Formulas(String fecha, String fecha2, String tipo) throws ParseException{
 
 // DATOS POR MES ////////////////////////////////////////
         if(tipo.equals("mes"))
@@ -260,104 +260,105 @@ public class Formulas {
         }
         
 // DATOS POR TRIMESTRE ////////////////////////////////////////
-        if(tipo.equals("trimestral"))
+        if(tipo.equals("trimestralYsemestral"))
         {
             DB datos = new DB();
             datos.setFecha(fecha);
-            datos.getDatoPorPosicionMes(3);
+            datos.setFecha2(fecha2);
+            datos.getDatoPorPosicionRangoMeses(3);
             this.numVueltas = 0;
             for(int i = 0; i < datos.resultados.size(); i++){
                 this.numVueltas++;
                 
                 //OBTIENE LOS DATOS
-                datos.getDatoPorPosicionMes(18);  
+                datos.getDatoPorPosicionRangoMeses(18);  
                 nSistemasCubiertosACR = Float.parseFloat(String.valueOf(datos.resultados.get(i)));
 
-                datos.getDatoPorPosicionMes(19); 
+                datos.getDatoPorPosicionRangoMeses(19); 
                 nTotalSistemas = Float.parseFloat(String.valueOf(datos.resultados.get(i)));
 
-                datos.getDatoPorPosicionMes(20);
+                datos.getDatoPorPosicionRangoMeses(20);
                 hHombreMantenPredictivo = Float.parseFloat(String.valueOf(datos.resultados.get(i)));
 
-                datos.getDatoPorPosicionMes(21);
+                datos.getDatoPorPosicionRangoMeses(21);
                 hHombreTotalesManten = Float.parseFloat(String.valueOf(datos.resultados.get(i)));
 
-                datos.getDatoPorPosicionMes(23);
+                datos.getDatoPorPosicionRangoMeses(23);
                 hHombreMantenPreventivo = Float.parseFloat(String.valueOf(datos.resultados.get(i)));
 
-                datos.getDatoPorPosicionMes(22);
+                datos.getDatoPorPosicionRangoMeses(22);
                 hHombreMantenPlanifiPro = Float.parseFloat(String.valueOf(datos.resultados.get(i)));
 
-                datos.getDatoPorPosicionMes(24);
+                datos.getDatoPorPosicionRangoMeses(24);
                 hHombreTotalesMantenDisp = Float.parseFloat(String.valueOf(datos.resultados.get(i)));
 
-                datos.getDatoPorPosicionMes(25);
+                datos.getDatoPorPosicionRangoMeses(25);
                 nOTejeDen20CostPlan = Float.parseFloat(String.valueOf(datos.resultados.get(i)));
 
-                datos.getDatoPorPosicionMes(26);
+                datos.getDatoPorPosicionRangoMeses(26);
                 nTotalOTeje = Float.parseFloat(String.valueOf(datos.resultados.get(i)));
 
-                datos.getDatoPorPosicionMes(27);
+                datos.getDatoPorPosicionRangoMeses(27);
                 nTotalOTpro = Float.parseFloat(String.valueOf(datos.resultados.get(i)));
 
-                datos.getDatoPorPosicionMes(28);
+                datos.getDatoPorPosicionRangoMeses(28);
                 cantOTretrab = Float.parseFloat(String.valueOf(datos.resultados.get(i)));
 
-                datos.getDatoPorPosicionMes(29);
+                datos.getDatoPorPosicionRangoMeses(29);
                 nProyecEjeDent15Plan = Float.parseFloat(String.valueOf(datos.resultados.get(i)));
 
-                datos.getDatoPorPosicionMes(30);
+                datos.getDatoPorPosicionRangoMeses(30);
                 nTotalProyecEje = Float.parseFloat(String.valueOf(datos.resultados.get(i)));
 
-                datos.getDatoPorPosicionMes(31);
+                datos.getDatoPorPosicionRangoMeses(31);
                 sumaTiempoRep = Float.parseFloat(String.valueOf(datos.resultados.get(i)));
 
-                datos.getDatoPorPosicionMes(32);
+                datos.getDatoPorPosicionRangoMeses(32);
                 nTotalRep = Float.parseFloat(String.valueOf(datos.resultados.get(i)));
 
-                datos.getDatoPorPosicionMes(5);
+                datos.getDatoPorPosicionRangoMeses(5);
                 tiempoMedFallar = Float.parseFloat(String.valueOf(datos.resultados.get(i)));
 
-                datos.getDatoPorPosicionMes(4);
+                datos.getDatoPorPosicionRangoMeses(4);
                 tiempoMedRep = Float.parseFloat(String.valueOf(datos.resultados.get(i)));
 
-                datos.getDatoPorPosicionMes(5);
+                datos.getDatoPorPosicionRangoMeses(5);
                 timeTotalFunc = Float.parseFloat(String.valueOf(datos.resultados.get(i)));
 
-                datos.getDatoPorPosicionMes(6);
+                datos.getDatoPorPosicionRangoMeses(6);
                 timeTotalIndisManten = Float.parseFloat(String.valueOf(datos.resultados.get(i)));
 
-                datos.getDatoPorPosicionMes(7);
+                datos.getDatoPorPosicionRangoMeses(7);
                 nItemsPtoPedidoVig = Float.parseFloat(String.valueOf(datos.resultados.get(i)));
 
-                datos.getDatoPorPosicionMes(8);
+                datos.getDatoPorPosicionRangoMeses(8);
                 nTotalItemsInvent = Float.parseFloat(String.valueOf(datos.resultados.get(i)));
 
-                datos.getDatoPorPosicionMes(7);
+                datos.getDatoPorPosicionRangoMeses(7);
                 nItemsCantPedidoVig = Float.parseFloat(String.valueOf(datos.resultados.get(i)));
 
-                datos.getDatoPorPosicionMes(9);
+                datos.getDatoPorPosicionRangoMeses(9);
                 valorInventMatObso = Float.parseFloat(String.valueOf(datos.resultados.get(i)));
 
-                datos.getDatoPorPosicionMes(10);
+                datos.getDatoPorPosicionRangoMeses(10);
                 valorTotalInventario = Float.parseFloat(String.valueOf(datos.resultados.get(i)));
 
-                datos.getDatoPorPosicionMes(11);
+                datos.getDatoPorPosicionRangoMeses(11);
                 valorTotalInventaManten = Float.parseFloat(String.valueOf(datos.resultados.get(i)));
 
-                datos.getDatoPorPosicionMes(12);
+                datos.getDatoPorPosicionRangoMeses(12);
                 valorTotalActOpera = Float.parseFloat(String.valueOf(datos.resultados.get(i)));
 
-                datos.getDatoPorPosicionMes(13);
+                datos.getDatoPorPosicionRangoMeses(13);
                 costoTotalManten = Float.parseFloat(String.valueOf(datos.resultados.get(i)));
 
-                datos.getDatoPorPosicionMes(14);
+                datos.getDatoPorPosicionRangoMeses(14);
                 cantTotalUnidProd = Float.parseFloat(String.valueOf(datos.resultados.get(i)));
 
-                datos.getDatoPorPosicionMes(15);
+                datos.getDatoPorPosicionRangoMeses(15);
                 timeTotalOpera = Float.parseFloat(String.valueOf(datos.resultados.get(i)));
 
-                datos.getDatoPorPosicionMes(16);
+                datos.getDatoPorPosicionRangoMeses(16);
                 timeTotalDisp = Float.parseFloat(String.valueOf(datos.resultados.get(i)));
             
                 //EJECUTA LAS FORMULAS 
@@ -398,8 +399,6 @@ public class Formulas {
                 this.costosA.add(this.getCostos());
                 this.factorUtilizacionA.add(this.getFactorUtilizacion());
             }
-            
-            //PROMEDIAR DATOS POR MESES
             for(int i = 0; i < acrA.size(); i++){ this.acumRes += Float.parseFloat(String.valueOf(this.acrA.get(i))); }
             this.acrR = this.acumRes/this.numVueltas;
             for(int i = 0; i < mantenPredictivoA.size(); i++){ this.acumRes += Float.parseFloat(String.valueOf(this.mantenPredictivoA.get(i))); }
@@ -433,184 +432,9 @@ public class Formulas {
             for(int i = 0; i < costosA.size(); i++){ this.acumRes += Float.parseFloat(String.valueOf(this.costosA.get(i))); }
             this.costosR = this.acumRes/this.numVueltas;
             for(int i = 0; i < factorUtilizacionA.size(); i++){ this.acumRes += Float.parseFloat(String.valueOf(this.factorUtilizacionA.get(i))); }
-            this.factorUtilizacionR = this.acumRes/this.numVueltas;
+            this.factorUtilizacionR = this.acumRes/this.numVueltas;         
         }
         
-// DATOS POR SEMESTRE ////////////////////////////////////////
-        if(tipo.equals("semestral"))
-        {
-            DB datos = new DB();
-            datos.setFecha(fecha);
-            datos.getDatoPorPosicionMes(3);
-            this.numVueltas = 0;
-            for(int i = 0; i < datos.resultados.size(); i++){
-                this.numVueltas++;
-                
-                //OBTIENE LOS DATOS
-                datos.getDatoPorPosicionMes(18);  
-                nSistemasCubiertosACR = Float.parseFloat(String.valueOf(datos.resultados.get(i)));
-
-                datos.getDatoPorPosicionMes(19); 
-                nTotalSistemas = Float.parseFloat(String.valueOf(datos.resultados.get(i)));
-
-                datos.getDatoPorPosicionMes(20);
-                hHombreMantenPredictivo = Float.parseFloat(String.valueOf(datos.resultados.get(i)));
-
-                datos.getDatoPorPosicionMes(21);
-                hHombreTotalesManten = Float.parseFloat(String.valueOf(datos.resultados.get(i)));
-
-                datos.getDatoPorPosicionMes(23);
-                hHombreMantenPreventivo = Float.parseFloat(String.valueOf(datos.resultados.get(i)));
-
-                datos.getDatoPorPosicionMes(22);
-                hHombreMantenPlanifiPro = Float.parseFloat(String.valueOf(datos.resultados.get(i)));
-
-                datos.getDatoPorPosicionMes(24);
-                hHombreTotalesMantenDisp = Float.parseFloat(String.valueOf(datos.resultados.get(i)));
-
-                datos.getDatoPorPosicionMes(25);
-                nOTejeDen20CostPlan = Float.parseFloat(String.valueOf(datos.resultados.get(i)));
-
-                datos.getDatoPorPosicionMes(26);
-                nTotalOTeje = Float.parseFloat(String.valueOf(datos.resultados.get(i)));
-
-                datos.getDatoPorPosicionMes(27);
-                nTotalOTpro = Float.parseFloat(String.valueOf(datos.resultados.get(i)));
-
-                datos.getDatoPorPosicionMes(28);
-                cantOTretrab = Float.parseFloat(String.valueOf(datos.resultados.get(i)));
-
-                datos.getDatoPorPosicionMes(29);
-                nProyecEjeDent15Plan = Float.parseFloat(String.valueOf(datos.resultados.get(i)));
-
-                datos.getDatoPorPosicionMes(30);
-                nTotalProyecEje = Float.parseFloat(String.valueOf(datos.resultados.get(i)));
-
-                datos.getDatoPorPosicionMes(31);
-                sumaTiempoRep = Float.parseFloat(String.valueOf(datos.resultados.get(i)));
-
-                datos.getDatoPorPosicionMes(32);
-                nTotalRep = Float.parseFloat(String.valueOf(datos.resultados.get(i)));
-
-                datos.getDatoPorPosicionMes(5);
-                tiempoMedFallar = Float.parseFloat(String.valueOf(datos.resultados.get(i)));
-
-                datos.getDatoPorPosicionMes(4);
-                tiempoMedRep = Float.parseFloat(String.valueOf(datos.resultados.get(i)));
-
-                datos.getDatoPorPosicionMes(5);
-                timeTotalFunc = Float.parseFloat(String.valueOf(datos.resultados.get(i)));
-
-                datos.getDatoPorPosicionMes(6);
-                timeTotalIndisManten = Float.parseFloat(String.valueOf(datos.resultados.get(i)));
-
-                datos.getDatoPorPosicionMes(7);
-                nItemsPtoPedidoVig = Float.parseFloat(String.valueOf(datos.resultados.get(i)));
-
-                datos.getDatoPorPosicionMes(8);
-                nTotalItemsInvent = Float.parseFloat(String.valueOf(datos.resultados.get(i)));
-
-                datos.getDatoPorPosicionMes(7);
-                nItemsCantPedidoVig = Float.parseFloat(String.valueOf(datos.resultados.get(i)));
-
-                datos.getDatoPorPosicionMes(9);
-                valorInventMatObso = Float.parseFloat(String.valueOf(datos.resultados.get(i)));
-
-                datos.getDatoPorPosicionMes(10);
-                valorTotalInventario = Float.parseFloat(String.valueOf(datos.resultados.get(i)));
-
-                datos.getDatoPorPosicionMes(11);
-                valorTotalInventaManten = Float.parseFloat(String.valueOf(datos.resultados.get(i)));
-
-                datos.getDatoPorPosicionMes(12);
-                valorTotalActOpera = Float.parseFloat(String.valueOf(datos.resultados.get(i)));
-
-                datos.getDatoPorPosicionMes(13);
-                costoTotalManten = Float.parseFloat(String.valueOf(datos.resultados.get(i)));
-
-                datos.getDatoPorPosicionMes(14);
-                cantTotalUnidProd = Float.parseFloat(String.valueOf(datos.resultados.get(i)));
-
-                datos.getDatoPorPosicionMes(15);
-                timeTotalOpera = Float.parseFloat(String.valueOf(datos.resultados.get(i)));
-
-                datos.getDatoPorPosicionMes(16);
-                timeTotalDisp = Float.parseFloat(String.valueOf(datos.resultados.get(i)));
-            
-                //EJECUTA LAS FORMULAS 
-                this.ACR();
-                this.mantenimientoPredictivo();
-                this.mantenimientoPreventivo();
-                this.mantenimientoPlanificado();
-                this.planificacion();
-                this.programacion();
-                this.ejecucion();
-                this.gestionProyectos();
-                this.confiabilidad();
-                this.MTTR();
-                this.disponibilidad();
-                this.puntoPedido();
-                this.cantidadPedido();
-                this.materialesObsoletos();
-                this.inventarios();
-                this.costos();
-                this.factorUtilizacion();    
-                
-                //Agrega los resultados al ArrayList para categorizarlos por Mes y/o Año.                
-                this.acrA.add(this.getACR());
-                this.mantenPredictivoA.add(this.getMantenimientoPredictivo());
-                this.mantenPreventivoA.add(this.getMantenimientoPreventivo());
-                this.mantenPlanificadoA.add(this.getMantenimientoPlanificado());
-                this.planificacionA.add(this.getPlanificacion());
-                this.programacionA.add(this.getProgramacion());
-                this.ejecucionA.add(this.getEjecucion());
-                this.gestionProyectosA.add(this.getGestionProyectos());
-                this.confiabilidadA.add(this.getConfiabilidad());
-                this.mttrA.add(this.getMTTR());
-                this.disponibilidadA.add(this.getDisponibilidad());
-                this.puntoPedidoA.add(this.getPuntoPedido());
-                this.cantidadPedidoA.add(this.getCantidadPedido());
-                this.materialesObsoletosA.add(this.getMaterialesObsoletos());
-                this.inventariosA.add(this.getInventarios());
-                this.costosA.add(this.getCostos());
-                this.factorUtilizacionA.add(this.getFactorUtilizacion());
-            }
-            
-            for(int i = 0; i < acrA.size(); i++){ this.acumRes += Float.parseFloat(String.valueOf(this.acrA.get(i))); }
-            this.acrR = this.acumRes/this.numVueltas;
-            for(int i = 0; i < mantenPredictivoA.size(); i++){ this.acumRes += Float.parseFloat(String.valueOf(this.mantenPredictivoA.get(i))); }
-            this.mantenPredictivoR = this.acumRes/this.numVueltas;
-            for(int i = 0; i < mantenPreventivoA.size(); i++){ this.acumRes += Float.parseFloat(String.valueOf(this.mantenPreventivoA.get(i))); }
-            this.mantenPreventivoR = this.acumRes/this.numVueltas;
-            for(int i = 0; i < mantenPlanificadoA.size(); i++){ this.acumRes += Float.parseFloat(String.valueOf(this.mantenPlanificadoA.get(i))); }
-            this.mantenPlanificadoR = this.acumRes/this.numVueltas;
-            for(int i = 0; i < planificacionA.size(); i++){ this.acumRes += Float.parseFloat(String.valueOf(this.planificacionA.get(i))); }
-            this.planificacionR = this.acumRes/this.numVueltas;
-            for(int i = 0; i < programacionA.size(); i++){ this.acumRes += Float.parseFloat(String.valueOf(this.programacionA.get(i))); }
-            this.programacionR = this.acumRes/this.numVueltas;
-            for(int i = 0; i < ejecucionA.size(); i++){ this.acumRes += Float.parseFloat(String.valueOf(this.ejecucionA.get(i))); }
-            this.ejecucionR = this.acumRes/this.numVueltas;
-            for(int i = 0; i < gestionProyectosA.size(); i++){ this.acumRes += Float.parseFloat(String.valueOf(this.gestionProyectosA.get(i))); }
-            this.gestionProyectosR = this.acumRes/this.numVueltas;
-            for(int i = 0; i < confiabilidadA.size(); i++){ this.acumRes += Float.parseFloat(String.valueOf(this.confiabilidadA.get(i))); }
-            this.confiabilidadR = this.acumRes/this.numVueltas;
-            for(int i = 0; i < mttrA.size(); i++){ this.acumRes += Float.parseFloat(String.valueOf(this.mttrA.get(i))); }
-            this.mttrR = this.acumRes/this.numVueltas;
-            for(int i = 0; i < disponibilidadA.size(); i++){ this.acumRes += Float.parseFloat(String.valueOf(this.disponibilidadA.get(i))); }
-            this.disponibilidadR = this.acumRes/this.numVueltas;
-            for(int i = 0; i < puntoPedidoA.size(); i++){ this.acumRes += Float.parseFloat(String.valueOf(this.puntoPedidoA.get(i))); }
-            this.puntoPedidoR = this.acumRes/this.numVueltas;
-            for(int i = 0; i < cantidadPedidoA.size(); i++){ this.acumRes += Float.parseFloat(String.valueOf(this.cantidadPedidoA.get(i))); }
-            this.cantidadPedidoR = this.acumRes/this.numVueltas;
-            for(int i = 0; i < materialesObsoletosA.size(); i++){ this.acumRes += Float.parseFloat(String.valueOf(this.materialesObsoletosA.get(i))); }
-            this.materialesObsoletosR = this.acumRes/this.numVueltas;
-            for(int i = 0; i < inventariosA.size(); i++){ this.acumRes += Float.parseFloat(String.valueOf(this.inventariosA.get(i))); }
-            this.inventariosR = this.acumRes/this.numVueltas;
-            for(int i = 0; i < costosA.size(); i++){ this.acumRes += Float.parseFloat(String.valueOf(this.costosA.get(i))); }
-            this.costosR = this.acumRes/this.numVueltas;
-            for(int i = 0; i < factorUtilizacionA.size(); i++){ this.acumRes += Float.parseFloat(String.valueOf(this.factorUtilizacionA.get(i))); }
-            this.factorUtilizacionR = this.acumRes/this.numVueltas;
-        }
 // DATOS POR AÑO ////////////////////////////////////////
         if(tipo.equals("anual"))
         {

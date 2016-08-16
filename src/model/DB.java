@@ -102,6 +102,21 @@ public final class DB
             } catch (SQLException ex) { System.out.println(ex.getMessage()); } 
     }
     
+    public void getDatoPorPosicionRangoMeses(int pos) throws ParseException{
+        resultados.clear();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        Date date1 = sdf.parse(fecha);
+        Date date2 = sdf.parse(fecha1);
+        try { res = getDatos(); 
+                while (res.next()) {
+                    Date date3 = sdf.parse(res.getString(3));
+                    if(date3.after(date1) && date3.before(date2)){
+                        resultados.add(res.getString(pos));
+                    }
+                }
+            } catch (SQLException ex) { System.out.println(ex.getMessage()); }
+    }
+    
     public void getDatoPorPosicionAnio(int pos){     
         resultados.clear();
         try { res = getDatos(); 
